@@ -3,7 +3,7 @@ App.Views.ProductView = Backbone.View.extend({
 	// el: '#container',
 
 	initialize: function () {
-		console.log('single category view created');
+		console.log('single product view created');
 		this.template = Handlebars.compile($('#page-template').html());
 		this.listenTo(this.model, 'change', this.renderUpdate);
 		this.render();
@@ -27,9 +27,9 @@ App.Views.ProductView = Backbone.View.extend({
  //        var id = $(e.target).closest('a').data('value');
  //        console.log(id);
 
- //        debugger;
+        
  //        var result = this.collection.fetchById(id);
- //        debugger;
+       
  //    }
 
-})
+});

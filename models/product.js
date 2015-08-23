@@ -21,16 +21,14 @@ module.exports.Product = {
   },
   getWithComments : function( id, callback){
     db.find('products', id, function (product) {
-      db.findRelations('comments', 'product_id', id, function (comments) {
-        db.all('customers', function (customers) {
-          var data = {
+      db.CustomerOfComment('comments', 'customers', 'customer_id', 'id', 'product_id', id, function (comments) {
+        var data = {
           product: product[0],
-          comments: comments[0],
-          customers: customers
+          comments: comments,
         };
         console.log(data);
         callback(data);
-        });
+       
       });
     });
   },

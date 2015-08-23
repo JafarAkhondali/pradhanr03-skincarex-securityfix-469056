@@ -24,8 +24,16 @@
 <div id="modal"></div>
   <div id="top-bar">
   <hr>
+  <div id ="sign-cart-wrap">
+  <div id="sign-log">
     <div id="sign" class="navigation-button">Sign in</div>
+    <br>
+    <div id="sign" class="navigation-button">Log in</div>
+  </div>
+  <div id="checkout" class="navigation-button">Check Out</div>
+  </div>
     <hr>
+
     <div id="title-wrap">
       <div id="web" class="navigation-button">
         SkinCareX
@@ -66,7 +74,48 @@
   </template>
 
   <template id="modal-template">
-  
+<p><button class='close'>Return Back</button></p>
+    <div class ="per-modal">
+      <div class ="img">
+      <img src="{{product.image}}">
+      </div>
+      <div class="info">
+        <div class="title">
+          <h3>{{product.title}}</h3>
+        </div>
+        <div class="price">
+          <p>${{product.price}}</p>
+          <button class="add" data-value="{{product.id}}">Add to Cart</button>
+        </div>
+        <div class="content">
+          <p>{{product.description}}</p>
+          
+          <p>Skin Type: {{product.skin_type}}</p>
+          <p>Skin Condition: {{product.skin_condition}}</p>
+        </div>
+      </div>
+      
+    </div>
+    <div id='comment-box'>
+    <h1> Write a Review </h1>
+    <input type='textarea' name='comment' class='textbox' data-value={{product.id}} placeholder='Enter your comments here'>
+    <input value={{product.id}} type='hidden' id='product-comment'>
+
+    <button class='submit-comment'>submit</button>
+</div>
+<br>
+<div id='comment-list'>
+<br>
+{{#each comments}}
+    <div class='comment-with-name'>
+        <div class= "customer" id='customerid'><h3> {{name}}</h3></div> 
+        <div class='comment-box'><p>{{description}}</p></div>
+
+    </div>
+<br>
+{{/each}}
+
+</div>
   </template>
 
 
@@ -92,7 +141,8 @@
  
   <script src="/javascript/backbone/models/productmodel.js"></script>
   <script src="/javascript/backbone/collections/productscollection.js"></script>
-
+<script src="/javascript/backbone/models/modalmodel.js"></script>
+<script src="/javascript/backbone/views/modalview.js"></script>
 
 
 </body>

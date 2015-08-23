@@ -68,3 +68,62 @@
     width: 200px;
 }
 
+#modal {
+    display: none;
+    position: fixed;
+    width: 99%;
+    background: rgba(0,0,0,.9);
+    color:yellow;
+    /*margin: 0 auto;*/
+    padding-top: 2%;
+    text-align: center;
+    overflow: scroll;
+    height: 86%;
+    z-index: 201;
+    margin-bottom: 10%;
+   /* margin-left: 5%;*/
+    /*margin-right: 5%;*/
+
+
+}
+
+.per-modal img {
+	width: 250px;
+	height: 250px;
+}
+
+.per-modal {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	text-align: left;
+	margin-right: 10%;
+	margin-left: 10%;
+}
+.content {
+	width: 600px;
+}
+
+.info {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+.close {
+	float: right;
+	margin-right: 10%;
+}
+
+#sign-cart-wrap {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+#sign-log {
+	display: flex;
+	flex-direction: row;
+	/*justify-content: space-between;*/
+}
+

@@ -15,9 +15,9 @@ App.Collections.Products = Backbone.Collection.extend({
             type: 'GET',
             success: function(data) {
                 
-                debugger;
+              
                 var modal = new App.Views.Modal({model:data});
-                // App.Views.Search.modal.set(data);
+                
             }
         });
     }

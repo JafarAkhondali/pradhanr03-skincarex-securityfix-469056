@@ -115,9 +115,9 @@ module.exports = {
     });
     this.end();
   },
-  authorOfArticle: function (table1, table2, column1, column2, id, cb) {
+  CustomerOfComment: function (table1, table2, column1, column2, column3, id, cb) {
   	pg.connect(dbUrl, function (err, client, done) {
-      client.query('SELECT * FROM ' + table1 + ' LEFT JOIN ' + table2+ ' ON ' +table1+ '.' + column1 + ' = ' + table2+'.'+column2+' WHERE '+table1+'.'+column2+ ' = '+id, function (err, result) {
+      client.query('SELECT * FROM ' + table1 + ' LEFT JOIN ' + table2+ ' ON ' +table1+ '.' + column1 + ' = ' + table2+'.'+column2+' WHERE '+table1+'.'+column3+ ' = '+id, function (err, result) {
         done();
         if(err){
           console.error("Stupid relationships", err)
