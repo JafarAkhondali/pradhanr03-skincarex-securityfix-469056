@@ -4,6 +4,7 @@ App.Models.Customer = Backbone.Model.extend({
 	tagName: 'div',
 
 	initialize: function () {
+		// debugger;
 		console.log('Customer model created');
 	}
 

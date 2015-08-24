@@ -17,7 +17,7 @@ App.Collections.Products = Backbone.Collection.extend({
                 
               
                 var modal = new App.Views.Modal({model:data});
-                
+              
             }
         });
     }

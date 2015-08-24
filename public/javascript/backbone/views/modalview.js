@@ -32,6 +32,12 @@ App.Views.Modal = Backbone.View.extend({
 	},
 	addToCart: function() {
 		console.log('product added to cart');
+		var template = Handlebars.compile($('#added-popup').html());
+		$('#modal').prepend(template());
+		$("#popup").delay(1000).fadeOut("slow", function () { $(this).remove(); });
+
+
+
 	},
 	// addVictims: function() {
 	// 	// $('.no-add').remove();

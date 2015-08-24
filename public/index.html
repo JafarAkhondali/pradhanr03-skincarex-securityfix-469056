@@ -16,7 +16,7 @@
  
 
 
-   <script type='text/javascript' src="/javascript/backbone/app.js">
+   
   </script>
 
   </head>
@@ -195,6 +195,39 @@
     </div>
 
   </template>
+
+  <template id="cart-template">
+      
+        {{#each data}} 
+        <tr>
+          <td>{{title}}</td>
+          <td>{{quantity}}</td>
+          <td>{{price}}</td>
+        </tr>
+        {{/each}}
+  </template>
+
+
+<template id="temp-cart">
+ <div id="cart-header">
+      <table id="cart-table">
+      <h1>Your Cart</h1>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+
+         </table>
+    </div>
+ </template>
+
+
+ <template id="added-popup">
+  <div id='popup'>
+<h1>This item has been added to your cart</h1>
+  </div>
+</template>
 
 
 

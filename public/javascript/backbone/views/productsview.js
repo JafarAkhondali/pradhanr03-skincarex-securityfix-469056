@@ -5,6 +5,7 @@ App.Views.ProductsView = Backbone.View.extend({
 	initialize: function () {
 		console.log('Product view created');
 		this.listenTo(this.collection, 'reset', this.renderAll)
+		
 	},
 
 	renderAll: function () {
