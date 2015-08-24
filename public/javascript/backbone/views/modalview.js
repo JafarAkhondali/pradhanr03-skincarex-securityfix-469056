@@ -6,6 +6,8 @@ App.Views.Modal = Backbone.View.extend({
 		this.template = Handlebars.compile($('#modal-template').html());
 		// this.listenTo(this.model, 'change', this.showUpdatedModal);
 		this.showModal();
+		
+		
 	},
 	render: function() {
 		$('#modal').empty();
@@ -35,67 +37,30 @@ App.Views.Modal = Backbone.View.extend({
 		var template = Handlebars.compile($('#added-popup').html());
 		$('#modal').prepend(template());
 		$("#popup").delay(1000).fadeOut("slow", function () { $(this).remove(); });
+		var productId = this.model.product.id;
+		
+		$.ajax({
+			url: '/products/'+productId,
+			type: 'GET',
+			success: function(data) {
+				var cart = {
+					id: data.product.id,
+		            title: data.product.title,
+		            price: data.product.price,
+		            quantity: 1
+		        }
+		        var jsonStr = JSON.stringify( cart );
+		        sessionStorage.setItem( counter, jsonStr );
+		        counter = counter+1;
+		        
+
+			}
+
+		});
 
 
 
 	},
-	// addVictims: function() {
-	// 	// $('.no-add').remove();
-	// 	console.log('seeker added victim');
-	// 	var victimId = this.$('.add').data('value');
-	// 	$.ajax({
-	//         url: '/sessions/new',
-	//         type: 'GET',
-	//         success: function(data) {
-
-	//         	var data1 = {
-	//         		seeker_id: data,
-	//         		victim_id: victimId
-	//         	}
-
-	//         	$.ajax({
-	//         		url: '/seekers/'+data+'/'+victimId,
-	//         		type: 'POST',
-	//         		success: function(data) {
-	//         			console.log(data);
-	        			        			
-	//         		}
-	//         	});
-	        	       	
-	//         }
- //    	});
- //    	$('.add').remove();
-	// 	var undoButton = $('<button>').addClass('no-add');
-	// 	undoButton.html('Not able to Help');
-	// 	undoButton.attr('data-value', victimId);
-	// 	$('#help-victim').append(undoButton);
-
-	// },
-	// markSafe: function() {
-	// 	console.log('victim was marked safe by the seeker');
-	// 	var victimId = this.$('.mark-safe').data('value');
-
-	// 	var mark = App.victims.get(victimId);
-	// 	mark.save({need_rescue: false})
-	// 	$('.mark-safe').remove();
-	// 	var unsafeButton = $('<button>').addClass('mark-unsafe');
-	// 	unsafeButton.html('Mark Unsafe');
-	// 	unsafeButton.attr('data-value', victimId);
-	// 	$('#safe').append(unsafeButton);
-
-	// }, 
-	// markUnsafe: function() {
-	// 	console.log('victim was marked unsafe by the seeker');
-	// 	var victimId = this.$('.mark-unsafe').data('value');
-
-	// 	var mark = App.victims.get(victimId);
-	// 	mark.save({need_rescue: true})
-	// 	$('.mark-unsafe').remove();
-	// 	var safeButton = $('<button>').addClass('mark-safe');
-	// 	safeButton.html('Mark Safe');
-	// 	safeButton.attr('data-value', victimId);
-	// 	$('#safe').append(safeButton);
-	// },
 	returnBack: function() {
 		this.$el.empty();
 		this.$el.fadeOut(100);

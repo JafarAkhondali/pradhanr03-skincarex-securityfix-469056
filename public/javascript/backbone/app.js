@@ -20,6 +20,8 @@ $(function() {
 
 });
 
+
+
 var productPage = function() {
      console.log('product clicked');
        
@@ -42,39 +44,61 @@ var companyPage = function() {
        
     };
 
+var counter = 0;
+
 var cartPage = function() {
     console.log('cart page clicked');
+
     var template = Handlebars.compile($('#cart-template').html());
     var template1 = Handlebars.compile($('#temp-cart').html());
+    var template2 = Handlebars.compile($('#temp-cart-bottom').html());
+    var template3 = Handlebars.compile($('#checkout-template').html());
      $('#page').empty();
      $('#page').append(template1());
-     var cart = {
-            data: [{
-            title: "Product apple",
-            price: 35,
-            quantity: 2
-            },
-            {
-            title: "Product banana",
-            price: 40.20,
-            quantity: 8
-            },
-            {
-            title: "Product orange",
-            price: 15.50,
-            quantity: 3
+    
+    var cartObj =[];
+    for (var key in sessionStorage) {
+        cartObj.push(JSON.parse(sessionStorage[key]));
+    }
+
+    var car = {
+        obj: cartObj
+    }
+         
+         $('#page').append(template(car));
+        
+         
+         var sum =0;
+         for (var key in car.obj) {
+
+            sum = sum+ car.obj[key].price;
+         }
+
+         var total = {
+            sum: sum
+         }
+            
+            $('#page').append(template2(total));
+
+            $.ajax({
+            url: '/sessions',
+            type: 'GET',
+            success: function(data) {
+                var sessObj = {
+                        id: data
+                    }
+
+                 $('#page').append(template3(sessObj));
+                
+            },            
+            fail: function(){
+                var sessObj = {
+                        id: null
+                    }
+                $('#page').append(template3(sessObj));
             }
-            ]
-        }
 
-    var jsonStr = JSON.stringify( cart );
-    sessionStorage.setItem( "cart", jsonStr );
-    var cartValue = sessionStorage.getItem( "cart" );
-    var cartObj = JSON.parse( cartValue );
-       
-
-     $('#page').append(template(cartObj));
-
+        });
 }
 
 
