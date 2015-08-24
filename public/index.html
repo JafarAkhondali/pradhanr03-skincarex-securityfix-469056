@@ -6,6 +6,7 @@
     <!-- <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/superhero/bootstrap.min.css" rel="stylesheet">
      -->
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/video/skin.mp4">
     <title></title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
@@ -21,25 +22,26 @@
   </head>
   
   <body>
+  <div id ='wrapper'>
 <div id="modal"></div>
   <div id="top-bar">
   <hr>
-  <div id ="sign-cart-wrap">
-  <div id="sign-log">
-    <div id="sign" class="navigation-button">Sign in</div>
-    <br>
-    <div id="sign" class="navigation-button">Log in</div>
-  </div>
-  <div id="checkout" class="navigation-button">Check Out</div>
-  </div>
-    <hr>
 
     <div id="title-wrap">
-      <div id="web" class="navigation-button">
-        SkinCareX
+      <div id = "contain">
+        <div id="web" class="navigation-button">
+          SkinCareX
 
+        </div>
+         <div id ="sign-cart-wrap">
+          <div id="sign-log">
+          </div>
+          
+          <hr>
+          <div id="checkout" class="navigation-button">Check Out</div>
+        </div>
       </div>
-      <br>
+      <hr>
       <div id="categories" class="navigation-button">
         <div class="company">Company</div>
         <div class="products">Products</div>
@@ -61,6 +63,7 @@
       
     </div>
   </div>
+  </div>
 
   <template id="page-template">
 
@@ -74,7 +77,7 @@
   </template>
 
   <template id="modal-template">
-<p><button class='close'>Return Back</button></p>
+    <p><button class='close'>Return Back</button></p>
     <div class ="per-modal">
       <div class ="img">
       <img src="{{product.image}}">
@@ -97,26 +100,102 @@
       
     </div>
     <div id='comment-box'>
-    <h1> Write a Review </h1>
-    <input type='textarea' name='comment' class='textbox' data-value={{product.id}} placeholder='Enter your comments here'>
-    <input value={{product.id}} type='hidden' id='product-comment'>
+      <h1> Write a Review </h1>
+      <input type='textarea' name='comment' class='textbox' data-value={{product.id}} placeholder='Enter your comments here'>
+      <input value={{product.id}} type='hidden' id='product-comment'>
 
-    <button class='submit-comment'>submit</button>
-</div>
-<br>
-<div id='comment-list'>
-<br>
-{{#each comments}}
-    <div class='comment-with-name'>
-        <div class= "customer" id='customerid'><h3> {{name}}</h3></div> 
-        <div class='comment-box'><p>{{description}}</p></div>
+      <button class='submit-comment'>submit</button>
+    </div>
+    <br>
+    <div id='comment-list'>
+      <br>
+      {{#each comments}}
+          <div class='comment-with-name'>
+              <div class= "customer" id='customerid'><h3> {{name}}</h3></div> 
+              <div class='comment-box'><p>{{description}}</p></div>
+
+          </div>
+      <br>
+      {{/each}}
 
     </div>
-<br>
-{{/each}}
-
-</div>
   </template>
+
+  <template id="sign-log-template">
+      {{#if name}}
+          <div id="sign" class= "customer-name" data-value={{id}}> Hello {{name}}</div> 
+          <div id="sign" class='log-out' data-value={{id}}>Log Out</div>
+       {{else}}
+          <div id="sign" class="sign-in">Sign in</div>
+          <br>
+          <div id="sign" class="log-in">Log in</div>
+        {{/if}}
+      </template>
+
+  <template id='signin-template'>
+    <div class='signup'>
+     
+      <h2> SIGN UP</h2>
+          
+            <label>Name:</label>
+              <br>
+            <input type="text" name="name" placeholder="Enter your name" required/>
+              <br> 
+            <label>Email:</label>
+              <br>
+            <input type="text" name="email" placeholder="Enter your email" required/>
+              <br>
+            <label>Password:</label>
+              <br>
+            <input type="password" name="password" placeholder="Enter your password" required/>
+              <br>
+              <br>
+            <button id='signup-button' name="sign">Submit</button>
+            <br>
+            <br>
+        
+    </div>
+  </template>
+
+  <template id='login-template'>
+    <div class='signup'>
+      <h2> LOG IN</h2>
+        <label>Email:</label>
+        <br>
+        <input type="text" name="email" placeholder="Enter your email" required/>
+        <br>
+        <br>
+        <label>Password:</label>
+        <br>
+            <input type="password" name="password" placeholder="Enter your password" required/>
+              <br>
+              <br>
+            <button id='login-button' name="log">Submit</button>
+            <br>
+            <br>
+        
+    </div>
+  </template>
+
+  <template id='company-template'>
+    <div id="company-container">
+      <div class="about">
+        <h1>OUR PROMISE</h1>
+        <h4>ADVANCED SKINCARE BACKED BY SCIENCE.</h4>
+        <p>Our mission is to improve skin health. Dedicated to this purpose, we make one simple promise—to provide advanced skincare backed by science.</p>
+        <p>Born from decades of skin cancer research that led to pivotal breakthroughs in antioxidants, our high potency formulas are concentrated in pure actives and proven to penetrate optimally into skin.</p>
+        <p>Made in the USA, our clinical skincare is used by dermatologists, plastic surgeons, and medi-spas for daily homecare and to complement aesthetic procedures. We formulate to correct signs of aging, protect healthy skin, and prevent future damage.</p>
+
+      </div>
+      <div class="video">
+        <video width="300" height="360" id="player1" preload="none" src="video/skin.mp4"></video>
+        
+      </div>
+
+    </div>
+
+  </template>
+
 
 
 
@@ -132,17 +211,22 @@
 
 <script src="/javascript/backbone/views/categoriesview.js"></script>
 <script src="/javascript/backbone/views/categoryview.js"></script>
- 
-  <script src="/javascript/backbone/models/categorymodel.js"></script>
-  <script src="/javascript/backbone/collections/categoriescollection.js"></script>
-
 <script src="/javascript/backbone/views/productsview.js"></script>
-<script src="/javascript/backbone/views/productview.js"></script>
- 
-  <script src="/javascript/backbone/models/productmodel.js"></script>
-  <script src="/javascript/backbone/collections/productscollection.js"></script>
-<script src="/javascript/backbone/models/modalmodel.js"></script>
+<script src="/javascript/backbone/views/productview.js"></script> 
 <script src="/javascript/backbone/views/modalview.js"></script>
+<script src="/javascript/backbone/views/loginview.js"></script>
+<script src="/javascript/backbone/views/signinview.js"></script>
+<script src="/javascript/backbone/views/signlogview.js"></script>
+ 
+<script src="/javascript/backbone/models/categorymodel.js"></script>
+<script src="/javascript/backbone/models/productmodel.js"></script>
+<script src="/javascript/backbone/models/modalmodel.js"></script>
+<script src="/javascript/backbone/models/customermodel.js"></script>
+
+<script src="/javascript/backbone/collections/categoriescollection.js"></script>
+<script src="/javascript/backbone/collections/productscollection.js"></script>
+<script src="/javascript/backbone/collections/customerscollection.js"></script>
+
 
 
 </body>

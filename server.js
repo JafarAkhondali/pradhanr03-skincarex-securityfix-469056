@@ -31,11 +31,11 @@ app.use(express.static('public'));
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-// app.use(session({
-//   secret: 'allthethings',
-//   saveUninitialized: false,
-//   resave: false
-// }));
+app.use(session({
+  secret: 'allthethings',
+  saveUninitialized: false,
+  resave: false
+}));
 
 
 
@@ -54,7 +54,7 @@ fs.readdirSync('./controllers').forEach(function (file) {
  if(file.substr(-3) == '.js') {
      route = require('./controllers/' + file);
      console.log('this is the route', route);
-     route.controller(app);
+     route.controller(app, session);
  };
 });
 

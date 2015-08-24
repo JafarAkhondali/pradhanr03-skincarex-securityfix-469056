@@ -5,7 +5,7 @@ module.exports.controller = function(app) {
 	//PRODUCT INDEX
 //this renders all the products in the products table INDEX
 	app.get('/products', function (req, res) {
-		debugger;
+		
 		Product.all( function (products) {
 
 			// var user = req.session.currentUser;

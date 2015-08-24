@@ -5,36 +5,24 @@ App = {
 }
 
 $(function() {
-    //set viz_wrapper to hide
-    // $('#viz_wrapper').hide();
-    
-    // $('#nav').click(function() {
-    //     $('#viz_wrapper').show();
-    // })
+    App.customers = new App.Collections.Customers();
+    App.signlog = new App.Views.Signlog({collection: App.customers});
+    App.customers.fetch({
+        reset: true
+    });
 
-    // $('#close').click(function() {
-    //     $('#viz_wrapper').hide();
-    // })
+    $('.products').click(productPage);
+    $('.company').click(companyPage);
+    // $('.sign-in').click(signinPage);
+    // $('.log-in').click(loginPage);
+       
 
+});
 
-    $('.products').click(function() {
-        
-        // $('#page').empty();
-        // $('#stocks-container').empty();
-        // $('#bots-container').empty();
-        // $('#companies-container').empty();
-        // $('#users-container').empty();
-        console.log('product clicked');
-        // App.categories = new App.Collections.Categories();
-         
-        // App.categoriesView = new App.Views.CategoriesView({
-        //     collection: App.categories
-        // })
-        // App.categories.fetch({
-        //     reset: true
-        // });
-
-    App.products = new App.Collections.Products();
+var productPage = function() {
+     console.log('product clicked');
+       
+        App.products = new App.Collections.Products();
          
         App.ProductsView = new App.Views.ProductsView({
             collection: App.products
@@ -42,21 +30,19 @@ $(function() {
         App.products.fetch({
             reset: true
         });
+
+    };
+
+var companyPage = function() {
+     console.log('company clicked');
+     var template = Handlebars.compile($('#company-template').html());
+     $('#page').empty();
+     $('#page').append(template);
        
-    });
+    };
 
 
-    // $('#showusers').click(function() {
-    //     $('#container').empty();
-    //     // $('#bots-container').empty();
-    //     // $('#stocks-container').empty();
-    //     // $('#companies-container').empty();
-    //     // $('#users-container').empty();
-    //     App.users = new App.Collections.Users;
-    //     App.usersView = new App.Views.UsersView({
-    //         collection: App.users
-    //     })
-    //     App.users.fetch({
-    //         reset: true
-    //     });
-});
+
+
+
+
