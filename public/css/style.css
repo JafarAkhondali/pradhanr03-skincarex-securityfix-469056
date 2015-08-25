@@ -51,7 +51,7 @@
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-around;
-	margin-top: 10%;
+	
 	
 	 /*display: inline;
     float: left;
@@ -72,6 +72,10 @@
     border: 1px solid red;
     margin-right: 5px;
     width: 200px;
+    display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+	margin-top: 10%;
 }
 
 #modal {
@@ -148,7 +152,7 @@
 
 #cart {
 	width: 500px;
-	height: 500px;
+	height: 600px;
 }
 
 #popup {

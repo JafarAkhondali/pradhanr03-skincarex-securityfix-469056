@@ -6,20 +6,20 @@ App.Collections.Products = Backbone.Collection.extend({
 
 	initialize: function() {
 		console.log('product collection created');
-	},
-	fetchById: function(id) {
+	}
+	// fetchById: function(id) {
 
       
-        $.ajax({
-            url: this.url + '/' + id,
-            type: 'GET',
-            success: function(data) {
-                
+ //        $.ajax({
+ //            url: this.url + '/' + id,
+ //            type: 'GET',
+ //            success: function(data) {
+         
               
-                var modal = new App.Views.Modal({model:data});
+ //                var modal = new App.Views.Modal({model:data});
               
-            }
-        });
-    }
+ //            }
+ //        });
+ //    }
 
 });

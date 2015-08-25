@@ -65,6 +65,19 @@
   </div>
   </div>
 
+
+ <template id="single-product-template">
+
+      
+        <div class = 'product-list'>
+          <img src="{{image}}">
+          <h6><a href="#" class="product-modal" data-value="{{id}}">{{title}}</a></h6>
+          <p>${{price}}</p>
+        </div>
+     
+  </template>
+
+
   <template id="page-template">
 
       {{#each products}}
@@ -80,25 +93,28 @@
     <p><button class='close'>Return Back</button></p>
     <div class ="per-modal">
       <div class ="img">
-      <img src="{{product.image}}">
+      <img src="{{image}}">
       </div>
       <div class="info">
         <div class="title">
-          <h3>{{product.title}}</h3>
+          <h3>{{title}}</h3>
         </div>
         <div class="price">
-          <p>${{product.price}}</p>
-          <button class="add" data-value="{{product.id}}">Add to Cart</button>
+          <p>${{price}}</p>
+          <button class="add" data-value="{{id}}">Add to Cart</button>
         </div>
         <div class="content">
-          <p>{{product.description}}</p>
+          <p>{{description}}</p>
           
-          <p>Skin Type: {{product.skin_type}}</p>
-          <p>Skin Condition: {{product.skin_condition}}</p>
+          <p>Skin Type: {{skin_type}}</p>
+          <p>Skin Condition: {{skin_condition}}</p>
         </div>
       </div>
       
     </div>
+  </template>
+
+  <template id="comment-template">
     <div id='comment-box'>
       <h1> Write a Review </h1>
       <input type='textarea' name='comment' class='textbox' data-value={{product.id}} placeholder='Enter your comments here'>
@@ -197,7 +213,7 @@
   </template>
 
   <template id="cart-template">
-      
+     
         {{#each obj}} 
         <tr>
           <td>{{id}}</td>
@@ -210,18 +226,19 @@
 
 
 <template id="temp-cart">
- <div id="cart-header">
-      <table id="cart-table">
+ 
+      
       <h1>Your Cart</h1>
+      <table id "cart-table">
         <tr>
           <th>Product id</th>
           <th>Product</th>
           <th>Quantity</th>
           <th>Price</th>
         </tr>
-
-         </table>
-    </div>
+      </table>
+     
+   
  </template>
 
  <template id="temp-cart-bottom">
@@ -231,6 +248,7 @@
     <td></td>
     <td>{{sum}}</td>
   </tr>
+ 
 
  </template>
 
@@ -243,6 +261,66 @@
   <div id='popup'>
 <h1>This item has been added to your cart</h1>
   </div>
+</template>
+
+<template id="order-address-template">
+<div class='order-address'>
+  <div class='order-shipping-address'>
+     
+      <h2> Enter Shipping Address</h2>
+          
+            <label>Name:</label>
+              <br>
+            <input type="text" name="name" placeholder="Enter your name" required/>
+              <br> 
+            <label>Street Address:</label>
+              <br>
+            <input type="text" name="email" placeholder="Enter your Street address" required/>
+              <br>
+              <label>State:</label>
+              
+            <input type="text" name="state" placeholder="" required/>
+              
+            <label>Zip Code:</label>
+              <input type="text" name="zipcode" placeholder="" required/> 
+            <label>Country:</label>
+              <input type="text" name="country" placeholder="" required/> 
+      
+            
+            <br>
+        
+    </div>
+
+<div class='order-billing-address'>
+     
+      <h2> Enter Billing Address</h2>
+          
+            <label>Name:</label>
+              <br>
+            <input type="text" name="bname" placeholder="Enter your name" required/>
+              <br> 
+            <label>Street Address:</label>
+              <br>
+            <input type="text" name="bemail" placeholder="Enter your Street address" required/>
+              <br>
+              <label>State:</label>
+              
+            <input type="text" name="bstate" placeholder="" required/>
+              
+            <label>Zip Code:</label>
+              <input type="text" name="bzipcode" placeholder="" required/> 
+            <label>Country:</label>
+              <input type="text" name="bcountry" placeholder="" required/> 
+      
+             
+        
+    </div>
+ 
+              <br>
+            <button id='shipping' name="shipping">Submit</button>
+            <br>
+            <br>
+    </div>
 </template>
 
 
@@ -266,15 +344,18 @@
 <script src="/javascript/backbone/views/loginview.js"></script>
 <script src="/javascript/backbone/views/signinview.js"></script>
 <script src="/javascript/backbone/views/signlogview.js"></script>
+<script src="/javascript/backbone/views/orderview.js"></script>
  
 <script src="/javascript/backbone/models/categorymodel.js"></script>
 <script src="/javascript/backbone/models/productmodel.js"></script>
 <script src="/javascript/backbone/models/modalmodel.js"></script>
 <script src="/javascript/backbone/models/customermodel.js"></script>
+<script src="/javascript/backbone/models/ordermodel.js"></script>
 
 <script src="/javascript/backbone/collections/categoriescollection.js"></script>
 <script src="/javascript/backbone/collections/productscollection.js"></script>
 <script src="/javascript/backbone/collections/customerscollection.js"></script>
+<script src="/javascript/backbone/collections/orderscollection.js"></script>
 
 
 

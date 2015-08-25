@@ -5,13 +5,17 @@ App.Views.Modal = Backbone.View.extend({
 		console.log('modal created');
 		this.template = Handlebars.compile($('#modal-template').html());
 		// this.listenTo(this.model, 'change', this.showUpdatedModal);
-		this.showModal();
+		// this.listenTo(this.collection, 'reset', this.showModal());
 		
+
+		this.showModal();
+	
 		
 	},
 	render: function() {
-		$('#modal').empty();
+	$('#modal').empty();
 		console.log(this.model);
+
 	$('#modal').append(this.template(this.model));
           			           
 	},
@@ -26,18 +30,14 @@ App.Views.Modal = Backbone.View.extend({
 	events: {
 		'click .close': 'returnBack',
 		'click .submit-comment': 'showComments',
-		'click .add': 'addToCart',
-		'click .mark-safe': 'markSafe',
-		'click .mark-unsafe': 'markUnsafe',
-		'click .no-add': 'cantHelp',
-		'click .seeker': 'loadSeeker'
+		'click .add': 'addToCart'
 	},
 	addToCart: function() {
 		console.log('product added to cart');
 		var template = Handlebars.compile($('#added-popup').html());
 		$('#modal').prepend(template());
 		$("#popup").delay(1000).fadeOut("slow", function () { $(this).remove(); });
-		var productId = this.model.product.id;
+		var productId = this.model.id; //probably this because it says this.model
 		
 		$.ajax({
 			url: '/products/'+productId,
@@ -49,6 +49,8 @@ App.Views.Modal = Backbone.View.extend({
 		            price: data.product.price,
 		            quantity: 1
 		        }
+
+		        
 		        var jsonStr = JSON.stringify( cart );
 		        sessionStorage.setItem( counter, jsonStr );
 		        counter = counter+1;
@@ -64,32 +66,10 @@ App.Views.Modal = Backbone.View.extend({
 	returnBack: function() {
 		this.$el.empty();
 		this.$el.fadeOut(100);
-		// this.unbind();
-		// this.destroy();
+		
 		this.undelegateEvents();
 		this.stopListening();
-		// $.ajax({
-	 //        url: '/sessions/new',
-	 //        type: 'GET',
-	 //        success: function(data) {
-
-
-	 //            if (data){
-	 //              $.ajax({
-	 //              type: 'GET',
-	 //              url: 'seekers/'+ data,
-	 //                success: function(data) {
-	 //                  console.log('hello');
-	 //                  console.log(data);
-	 //                  var template = HandlebarsTemplates['seeker'];
-	 //                  $('#search-bar').empty();
-	 //                  $('#search-bar').html(template(data));   
-	 //                }
-	 //              });
-	 //            }
-	 //        }
-  //  		});
-
+	
 	},
 	showComments: function() {
         // $('.comment-box').val('');
