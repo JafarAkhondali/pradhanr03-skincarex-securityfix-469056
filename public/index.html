@@ -5,8 +5,14 @@
     <meta charset="UTF-8">
     <!-- <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/superhero/bootstrap.min.css" rel="stylesheet">
      -->
+      <script src="/socket.io/socket.io.js"></script>
+      <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        <script type="text/javascript">
 
-<script type="text/javascript" src="https://js.stripe.com/v1/"></script>
+        </script>
+
+
+<!-- <script type="text/javascript" src="https://js.stripe.com/v1/"></script> -->
     
    
 
@@ -592,6 +598,17 @@
 </div>
 <div id="error" class="hidden"></div>
 <div id="success" class="hidden"></div>
+</template>
+
+<template id="chat-template">
+ <!--Message box: To show the sent/recieved messages-->
+    <div id="msgBox" style="height: 200px; width: 400px; border: 1px solid blue; overflow-y: scroll;">
+
+    </div>
+    <!--Textbox: to enter the message text-->
+    <input type="text" id="msg" style="width:300px" />
+    <!--Send: A button to send the message to others-->
+    <input type="submit" id="send" value="send" />
 </template>
 
 

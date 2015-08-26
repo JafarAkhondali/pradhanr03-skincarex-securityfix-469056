@@ -47,6 +47,10 @@ App.Views.Signin = Backbone.View.extend({
            }
           });
 
+  	var template = Handlebars.compile($('#home-template').html());
+	     $('#page').empty();
+	     $('#page').append(template);
+         
                      
 		console.log('what do you seek?');
      

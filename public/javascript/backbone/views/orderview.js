@@ -17,9 +17,9 @@ App.Views.Order = Backbone.View.extend({
 	},
 	events: {
 		'click #checkout-button': 'checkOut',
-		// 'click #shipping': 'confirmShipping',
-		'click #submitBtn': 'stripe',
-		'click #shipping': 'confirmStripe'
+		'click #shipping': 'confirmShipping',
+		'click #submitBtn': 'payment'
+		// 'click #shipping': 'confirmStripe' //this is for the actual stripe template
 	},
 	checkOut: function () {
 		console.log('clicked checkout');
@@ -52,12 +52,6 @@ App.Views.Order = Backbone.View.extend({
 		console.log('shipping button clicked');
 		
 
-		// var data = {
-  //           customer_id: user_id,
-  //           shipping_address: ($('[name=name]').val()+" "+$('[name=email]').val()+" "+$('[name=state]').val()+" "+$('[name=zipcode]').val()+" "+$('[name=country]').val()), 
-  //           billing_address: ($('[name=bname]').val()+" "+ $('[name=bemail]').val()+" "+$('[name=bstate]').val()+" "+$('[name=bzipcode]').val()+" "+$('[name=bcountry]').val())
-           
-  //       };
         var ship = $('[name=name]').val()+" "+$('[name=email]').val()+" "+$('[name=state]').val()+" "+$('[name=zipcode]').val()+" "+$('[name=country]').val();
         var bill = $('[name=bname]').val()+" "+ $('[name=bemail]').val()+" "+$('[name=bstate]').val()+" "+$('[name=bzipcode]').val()+" "+$('[name=bcountry]').val();
 
@@ -67,27 +61,29 @@ App.Views.Order = Backbone.View.extend({
            //storing tha values in local storage, so that when payment is successful, the data is added into the order table.
         localStorage.setItem("shipping_address", ship);
         localStorage.setItem("billing_address", bill);
+debugger;
+       
         
         var template = Handlebars.compile($('#payment-template').html());
         $('#page').empty();
         $('#page').append(template());
 	},
-	stripe: function() {
+	payment: function() {
 		console.log('payment button clicked');
 			
-		var customer_id = JSON.parse(localStorage.getItem("customer_id"));
+		// var customer_id = JSON.parse(localStorage.getItem("customer_id"));
 		var shipping_address = localStorage.getItem("shipping_address");
        	var billing_address = localStorage.getItem("billing_address"); 
        	var total_price = JSON.parse(localStorage.getItem("total_price")); 
 
        	var cartObj =[];
-
+       	 
 	    for (var key in sessionStorage) {  //iterating over sessionStorage object and 
 	        cartObj.push(JSON.parse(sessionStorage[key])); //pushing into empty array cartObj
 	    }
 
        	var data = {
-       		customer_id: customer_id,
+       		customer_id: user_id,
        		shipping_address: shipping_address,
        		billing_address: billing_address,
        		total_price: total_price,
