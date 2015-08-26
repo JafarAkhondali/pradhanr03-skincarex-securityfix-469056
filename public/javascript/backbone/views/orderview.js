@@ -17,7 +17,9 @@ App.Views.Order = Backbone.View.extend({
 	},
 	events: {
 		'click #checkout-button': 'checkOut',
-		'click #shipping': 'confirmShipping'
+		// 'click #shipping': 'confirmShipping',
+		'click #submitBtn': 'stripe',
+		'click #shipping': 'confirmStripe'
 	},
 	checkOut: function () {
 		console.log('clicked checkout');
@@ -34,10 +36,17 @@ App.Views.Order = Backbone.View.extend({
 		        App.login = new App.Views.Login({
 		            collection: App.customers
 		        });
-		        App.customers.fetch({
-		            reset: true
-		        });
+		        // App.customers.fetch({
+		        //     reset: true
+		        // });
 			}
+	},
+	confirmStripe: function() {
+		var template = Handlebars.compile($('#stripe-template').html());
+        $('#page').empty();
+        $('#page').append(template());
+
+
 	},
 	confirmShipping: function() {
 		console.log('shipping button clicked');
@@ -55,12 +64,59 @@ App.Views.Order = Backbone.View.extend({
 
 
 
-        localStorage.setItem("customer_id", user_id);   //storing tha values in local storage, so that when payment is successful, the data is added into the order table.
+           //storing tha values in local storage, so that when payment is successful, the data is added into the order table.
         localStorage.setItem("shipping_address", ship);
         localStorage.setItem("billing_address", bill);
         
+        var template = Handlebars.compile($('#payment-template').html());
+        $('#page').empty();
+        $('#page').append(template());
+	},
+	stripe: function() {
+		console.log('payment button clicked');
+			
+		var customer_id = JSON.parse(localStorage.getItem("customer_id"));
+		var shipping_address = localStorage.getItem("shipping_address");
+       	var billing_address = localStorage.getItem("billing_address"); 
+       	var total_price = JSON.parse(localStorage.getItem("total_price")); 
+
+       	var cartObj =[];
+
+	    for (var key in sessionStorage) {  //iterating over sessionStorage object and 
+	        cartObj.push(JSON.parse(sessionStorage[key])); //pushing into empty array cartObj
+	    }
+
+       	var data = {
+       		customer_id: customer_id,
+       		shipping_address: shipping_address,
+       		billing_address: billing_address,
+       		total_price: total_price,
+       		product_items: cartObj
+       	};
+
+       	console.log(data);
+
+          $.ajax({
+            type: "POST",
+            url: '/orderscustomers',
+            data: data,
+           success: function(){
+             
+              
+           },
+           fail: function(){
+           }
+          });
+
+          sessionStorage.clear();
+          localStorage.clear();
+
+          var template = Handlebars.compile($('#thanks-template').html());
+        $('#page').empty();
+        $('#page').append(template());
 
 
-	}
+       
+    }
 	
 });

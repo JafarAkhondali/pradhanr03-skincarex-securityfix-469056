@@ -31,6 +31,9 @@ App.Views.Login = Backbone.View.extend({
            success: function(){
               App.signlog = new App.Views.Signlog({collection: App.customers});
               
+              var template = Handlebars.compile($('#home-template').html());
+		     $('#page').empty();
+		     $('#page').append(template);
            },
            fail: function(){
            }

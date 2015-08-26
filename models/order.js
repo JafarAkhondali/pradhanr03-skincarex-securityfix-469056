@@ -12,7 +12,7 @@ module.exports.Order = {
     });
   },
   createCustomerOrder : function(obj, callback){
-    db.create('orders', obj, function (data) {
+    db.createOrder('orders', obj, function (data) {
       callback( data );
     });
   },

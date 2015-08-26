@@ -56,6 +56,7 @@ CREATE TABLE orders (
 	shipping_address VARCHAR(255),
 	billing_address VARCHAR(255),
 	total_price INTEGER,
+	product_items TEXT,
 	date DATE NOT NULL default CURRENT_DATE
 );
 

@@ -34,7 +34,8 @@ module.exports.controller = function(app) {
 	        customer_id: req.body.customer_id,
 	        shipping_address: req.body.shipping_address,
 	        billing_address: req.session.billing_address,
-	        total_price: req.body.total_price
+	        total_price: req.body.total_price,
+	        product_items: req.body.product_items
 	      }, function(data) {
 	       
 	        console.log(data);
