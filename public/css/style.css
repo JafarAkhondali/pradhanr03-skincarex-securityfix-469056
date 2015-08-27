@@ -11,8 +11,114 @@
 	height: 100px;
 }
 
+#page-table {
+	width: 100%;
+	height: 100%;
+}
+
+#page-table h1{
+	margin-left: 45%;
+}
+
+#table-header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	
+	width: 1000px;
+	
+}
+
+#checkout-button {
+	margin-left: 80%;
+}
+
+#checkout-button:hover {
+	color: green;
+}
+
+#page-table tr{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	border: 2px dotted rgba(0, 0, 0, 0.2);
+	width: 1000px;
+	
+}
+
+.total-price {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	
+	width: 1000px;
+	
+}
+
+
 #web {
 	text-align: center;
+}
+
+#science-explained {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+#container {
+	/*width: 100px;*/
+
+	height: 200px;
+	margin-top: -14%;
+	margin-right: 85%;
+	margin-left: -20%;
+	margin-bottom: 10%;
+
+}
+
+#sci-pic img {
+	width: 400px;
+	height: 300px;
+	
+}
+
+#sci-three {
+	display: flex;
+	flex-direction: row;
+	/*justify-content: space-around;*/
+	
+}
+
+#science-bottom {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+#sci-bot {
+	width: 300px;
+}
+.bot-img {
+	margin-right: 30%;
+}
+
+#pavan-box {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+#pavan-info {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+#pav {
+	width: 600px;
+	margin-top: 8%;
+	margin-right: 10%;
 }
 
 #title-wrap {
@@ -39,13 +145,15 @@
 #page-container {
 	margin-left: 10%;
 	margin-right: 10%;
-	background: lightgrey;
+	/*background: lightgrey;*/
 	height: 100%;
 }
 
 #page {
 	/*height: 800px;*/
 }
+
+
 
 .item-list {
 	display: flex;
@@ -59,6 +167,15 @@
 
 }
 
+.m-title {
+	text-align: left;
+
+}
+
+.m-price {
+	text-align: left;
+}
+
 .product-list img{
 	width: 200px;
 	height: 200px;
@@ -68,13 +185,15 @@
 	height: 50px;
 	margin: auto;*/
 	 display: block;
-    padding: 10px;
-    border: 1px solid red;
+    /*padding: 18px;*/
+    border: 1px solid lightgrey;
     margin-right: 5px;
     width: 200px;
+    height: 300px;
     display: flex;
 	flex-flow: row wrap;
-	justify-content: space-around;
+	flex-direction: column;
+	justify-content: space-between;
 	margin-top: 10%;
 }
 
@@ -82,20 +201,27 @@
     display: none;
     position: fixed;
     width: 99%;
-    background: rgba(0,0,0,.9);
-    color:yellow;
+    background: rgba(255,255,255,1);
+    color:black;
     /*margin: 0 auto;*/
-    padding-top: 2%;
+    /*padding-top: 2%;*/
     text-align: center;
     overflow: scroll;
-    height: 86%;
+    height: 100%;
     z-index: 201;
-    margin-bottom: 10%;
+    /*margin-bottom: -3%;*/
+    margin-top: -3%;
    /* margin-left: 5%;*/
     /*margin-right: 5%;*/
 
 
 }
+
+#modal p {
+	margin-top: 5%;
+}
+
+
 
 .per-modal img {
 	width: 250px;
@@ -109,6 +235,8 @@
 	text-align: left;
 	margin-right: 10%;
 	margin-left: 10%;
+	margin-top: 3%;
+	/*border: 2px solid rgba(0, 0, 0, 0.4);*/
 }
 .content {
 	width: 600px;
@@ -157,10 +285,29 @@
 
 #popup {
 	position:absolute;
+	margin-top: 10%;
+	margin-left: 48%;
+	/*width:100px; 
+	height:10px; */
+	border:5px solid #000; 
+	z-index: 9002; 
+	color: rgb(0, 0, 0);
+	background-color: rgb(255, 255, 255);
+	border: 2px solid rgba(255, 255, 255, 0.8);
+	
+}
+
+#chat-popup {
+	position:absolute;
 	width:400px; 
 	height:400px; 
 	border:5px solid #000; 
 	z-index: 9002; 
 	
+}
+
+#map {
+	width: 300px;
+	height: 300px;
 }
 

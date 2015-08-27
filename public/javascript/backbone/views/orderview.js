@@ -1,6 +1,6 @@
 App.Views.Order = Backbone.View.extend({
 
-	el: '#page',
+	el: '#page-container',
 
 	initialize: function () {
 		console.log('Order view created');
@@ -23,7 +23,7 @@ App.Views.Order = Backbone.View.extend({
 	},
 	checkOut: function () {
 		console.log('clicked checkout');
-		$('#page').empty();
+		$('#page-table').empty();
 
 		// var id = $('#checkout-button').data('value');
 
@@ -33,13 +33,14 @@ App.Views.Order = Backbone.View.extend({
 		}
 			else { //if user is not logged in, log them in to go to next step
 				
+
+
 		        App.login = new App.Views.Login({
 		            collection: App.customers
 		        });
-		        // App.customers.fetch({
-		        //     reset: true
-		        // });
-			}
+		    }
+
+		   
 	},
 	confirmStripe: function() {
 		var template = Handlebars.compile($('#stripe-template').html());
@@ -61,7 +62,7 @@ App.Views.Order = Backbone.View.extend({
            //storing tha values in local storage, so that when payment is successful, the data is added into the order table.
         localStorage.setItem("shipping_address", ship);
         localStorage.setItem("billing_address", bill);
-debugger;
+
        
         
         var template = Handlebars.compile($('#payment-template').html());
@@ -77,7 +78,7 @@ debugger;
        	var total_price = JSON.parse(localStorage.getItem("total_price")); 
 
        	var cartObj =[];
-       	 
+
 	    for (var key in sessionStorage) {  //iterating over sessionStorage object and 
 	        cartObj.push(JSON.parse(sessionStorage[key])); //pushing into empty array cartObj
 	    }

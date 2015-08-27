@@ -16,6 +16,15 @@ $(function() {
     $('#web').click(homePage);
     $('.skin').click(skinPage);
     $('.science').click(sciencePage);
+    $('#chat').click(chatPage);
+
+
+    
+  });   
+
+
+    // $(this).removeClass("btn");
+
     
     // $('.sign-in').click(signinPage);
     // $('.log-in').click(loginPage);
@@ -77,13 +86,13 @@ $(function() {
 
 /////////////////////////STRIPE END
 
-});
+
 
 
 
 var productPage = function() {
      console.log('product clicked');
-
+     $('#page-table').empty();
        
         App.products = new App.Collections.Products();
          
@@ -99,35 +108,29 @@ var productPage = function() {
 
 var companyPage = function() {
      console.log('company clicked');
+     $('#page-table').empty();
      var template = Handlebars.compile($('#company-template').html());
      $('#page').empty();
      $('#page').append(template);
-       
-    };
+};
 
 var homePage = function() {
      console.log('home clicked');
+     $('#page-table').empty();
      var template = Handlebars.compile($('#home-template').html());
      $('#page').empty();
      $('#page').append(template);
-       
-    };
+};
 
-var skinPage = function() {
-     console.log('skin clicked');
-     var template = Handlebars.compile($('#skin-template').html());
-     $('#page').empty();
-     $('#page').append(template);
-       
-    };
 
-var sciencePage = function() {
-     console.log('science clicked');
+
+var chatPage = function() {
+     console.log('chat clicked');
      var template = Handlebars.compile($('#chat-template').html());
-
-     // var template = Handlebars.compile($('#science-template').html());
-     $('#page').empty();
-     $('#page').append(template);
+     $("#msgBox").empty();
+     $("#msg").empty();
+     $('#page-container').prepend(template);
+     $('#close-chat').click(closeChatPage);
 
      var name,
             socket = io.connect("http://localhost:3000");
@@ -169,6 +172,123 @@ var sciencePage = function() {
                 }, 3000);
             });
         });
+};
+
+
+
+var closeChatPage = function() {
+     console.log('chat close clicked');
+     
+    $('#chat-popup').remove();
+};
+
+
+var skinPage = function() {
+     console.log('skin clicked');
+     // var template = Handlebars.compile($('#skin-template').html());
+     // $('#page').empty();
+     // $('#page').append(template);
+     $('#page-table').empty();
+     var template = Handlebars.compile($('#google-template').html());
+     $('#page').empty();
+     $('#page').append(template);
+
+     var map;
+var infowindow;
+
+function initMap() {
+  var pyrmont = {lat: -33.867, lng: 151.195};
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: pyrmont,
+    zoom: 15
+  });
+
+  infowindow = new google.maps.InfoWindow();
+
+  var service = new google.maps.places.PlacesService(map);
+  service.nearbySearch({
+    location: pyrmont,
+    radius: 500,
+    types: ['store']
+  }, callback);
+}
+
+function callback(results, status) {
+  if (status === google.maps.places.PlacesServiceStatus.OK) {
+    for (var i = 0; i < results.length; i++) {
+      createMarker(results[i]);
+    }
+  }
+}
+
+function createMarker(place) {
+  var placeLoc = place.geometry.location;
+  var marker = new google.maps.Marker({
+    map: map,
+    position: place.geometry.location
+  });
+
+  google.maps.event.addListener(marker, 'click', function() {
+    infowindow.setContent(place.name);
+    infowindow.open(map, this);
+  });
+}
+
+
+
+
+       
+    };
+
+var sciencePage = function() {
+     console.log('science clicked');
+     
+     $('#page-table').empty();
+     var template = Handlebars.compile($('#science-template').html());
+     $('#page').empty();
+     $('#page').append(template);
+
+     // var name,
+     //        socket = io.connect("http://localhost:3000");
+     //    $(function () {
+     //        //as the user to enter their nick name or name.
+            
+     //        name = window.prompt("enter your name");
+     //        //If the name is not given, ask the user to enter once again
+     //        if (name == null) {
+     //            $("body").html(" please refresh the page and try again ");
+     //        }
+     //        //When send button is clicked on, send the message to server
+     //        $("#send").click(function () {
+     //            //send to the server with person name and message
+     //            socket.emit("clientMsg", {
+     //                "name": name,
+     //                "msg": $("#msg").val()
+     //            });
+     //        });
+
+     //        //After sending message to the server, we'll have to wire up the event for it.
+     //        //We can do the following. Upon recievin the message print it to the message box
+     //        //that we've created in our html
+     //        socket.on("serverMsg", function (data) {
+     //            //Append the message from the server to the message box
+     //            $("#msgBox").append("<strong>" + data.name + "</strong>: " + data.msg + "<br/>");
+     //        });
+
+     //        $("#msg").on("keyup", function (event) {
+     //            socket.emit("sender", {
+     //                name: name
+     //            });
+     //        });
+
+     //        socket.on("sender", function (data) {
+     //            $("#status").html(data.name + " is typing");
+     //            setTimeout(function () {
+     //                $("#status").html('');
+     //            }, 3000);
+     //        });
+     //    });
        
     };
 
@@ -185,7 +305,8 @@ var cartPage = function() {
     var template3 = Handlebars.compile($('#checkout-template').html());
 
      $('#page').empty();
-     $('#page').append(template1()); //just appending a header template
+     $('#page-table').empty();
+     $('#page-table').append(template1()); //just appending a header template
     
 
     var cartObj =[];
@@ -198,7 +319,7 @@ var cartPage = function() {
         obj: cartObj
     }
          
-         $('#page').append(template(car)); //appending the list of products objects template in the cart view
+         $('#page-table').append(template(car)); //appending the list of products objects template in the cart view
         
          
          var sum =0;
@@ -213,7 +334,7 @@ var cartPage = function() {
             localStorage.setItem("total_price", sum);
             localStorage.setItem("customer_id", user_id);
 
-            $('#page').append(template2(total)); //appending the template that has total price on it
+            $('#page-table').append(template2(total)); //appending the template that has total price on it
  
             $.ajax({          //ajax call to get the customer id from session to add it to the data-value of the checkout button
             url: '/sessions',
@@ -223,7 +344,7 @@ var cartPage = function() {
                         id: data
                     }
                 user_id = data
-                 $('#page').append(template3(sessObj));
+                 $('#page-table').append(template3(sessObj));
                 
             },            
             fail: function(){
@@ -231,12 +352,19 @@ var cartPage = function() {
                         id: null
                     }
 
-                $('#page').append(template3(sessObj));
+                $('#page-table').append(template3(sessObj));
             }
 
         });
-            App.orders = new App.Collections.Orders();
-            App.order = new App.Views.Order({collection: App.orders});
+            console.log(App.orders);
+            console.log(App.order);
+
+            if (!App.order) {
+          App.orders = new App.Collections.Orders();
+            App.order = new App.Views.Order({collection: App.orders});      
+        // App.order = new App.Views.Order();
+        }
+            
 }
 
 
