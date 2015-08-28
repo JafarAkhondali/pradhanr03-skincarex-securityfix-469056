@@ -59,34 +59,40 @@
 <div id="modal"></div>
 <div id="chat-modal"></div>
   <div id="top-bar">
-  <hr>
+  
 
     <div id="title-wrap">
+    <div id="top-fix">
       <div id = "contain">
-      <div id="chat">
-      Chat
+     
+      <div id="chat" id='high'> 
+      <p id='high'>Chat</p>
       </div>
-        <div id="web" class="navigation-button">
-          SkinCareX
+      
+        <div id="sign-log" id='high'>
+          </div>
+          <div id="checkout" class="navigation-button" id='high'><p id='high'>Check Out</p></div>
+     </div>
+     </div>
+     <div id="cat-top">
+      <div id="top-bottom">
+       <div id="web" class="navigation-button" id='high'><h4 id='high'> 
+          SkinCareX</h4>
 
         </div>
-         <div id ="sign-cart-wrap">
-          <div id="sign-log">
-          </div>
-          
-          <hr>
-          <div id="checkout" class="navigation-button">Check Out</div>
+       
+      <div id="categories" class="navigation-button">
+        <div class="company"><h4  id='high'>Company</h4></div>
+        <div class="products"> <h4  id='high'>Products</h4></div>
+        <div class="science"> <h4  id='high'>Science</h4></div>
+        <div class="skin"><h4  id='high'>Skin Explained</h4></div>
         </div>
       </div>
-      <hr>
-      <div id="categories" class="navigation-button">
-        <div class="company">Company</div>
-        <div class="products">Products</div>
-        <div class="science">Science</div>
-        <div class="skin">Skin Explained</div>
+
       </div>
-      <hr>
+      
     </div>
+
   </div>
 
   <div id="left-bar">
@@ -98,7 +104,7 @@
   <div id="page-container">
   <div id="page-table"></div>
     <div id="page">
-
+     
       <div class="img1">
       <img src="http://demandware.edgesuite.net/aang_prd/on/demandware.static/-/Sites-skinc-us-Library/default/dwc84fe9a3/homepage-slide-top/gwp_homepage_panel.jpg">
       </div>
@@ -190,12 +196,12 @@
 
   <template id="sign-log-template">
       {{#if name}}
-          <div id="sign" class= "customer-name" data-value={{id}}> Hello {{name}}</div> 
-          <div id="sign" class='log-out' data-value={{id}}>Log Out</div>
+          <div id="sign" class= "customer-name" data-value={{id}}> <p id='high'>Hello {{name}} </p></div> 
+          <div id="sign" class='log-out' data-value={{id}}><p id='high'>Log Out</p></div>
        {{else}}
-          <div id="sign" class="sign-in">Sign in</div>
+          <div id="sign" class="sign-in"><p id='high'>Sign in</p></div>
           <br>
-          <div id="sign" class="log-in">Log in</div>
+          <div id="sign" class="log-in"><p id='high'>Log in</p></div>
         {{/if}}
       </template>
 
@@ -252,6 +258,12 @@
         <p>Our mission is to improve skin health. Dedicated to this purpose, we make one simple promise—to provide advanced skincare backed by science.</p>
         <p>Born from decades of skin cancer research that led to pivotal breakthroughs in antioxidants, our high potency formulas are concentrated in pure actives and proven to penetrate optimally into skin.</p>
         <p>Made in the USA, our clinical skincare is used by dermatologists, plastic surgeons, and medi-spas for daily homecare and to complement aesthetic procedures. We formulate to correct signs of aging, protect healthy skin, and prevent future damage.</p>
+
+        <h4>OUR HISTORY</h4>
+        <p>The SkinCareX story started long before the company's founding in 1994 thanks to the pivotal research performed by Dr. Sheldon Pinnell. In the years since, we have continued to pave the way with breakthroughs that have changed the face of skin science.</p>
+
+        <h4>COSMECEUTICALS</h4>
+        <p>Physicians and skincare professionals define cosmeceuticals as products on the cutting-edge between cosmetics and pharmaceuticals. Active ingredients in cosmeceuticals are expected to be clinically proven to enhance skincare efficacy. At SkinCeuticals, our products provide scientifically proven skin improvement crafted in elegant formulations for customized skincare regimens.</p>
 
       </div>
       <div class="video">
@@ -406,6 +418,7 @@
 </template>
 
 <template id="skin-template">
+
 <div id="skin-container">
 <div class=" content_asset skin-explained-1 ">
   <div class="asset-bg" style="background:url(http://demandware.edgesuite.net/aang_prd/on/demandware.static/-/Sites-skinc-us-Library/default/dw3b4f437f/skin-explained/SKN_EXPLN_Lndng_Hero_BG.jpg) center -7px no-repeat;">
@@ -847,9 +860,9 @@
 
 <template id="chat-template">
   <div id="chat-popup">
-  <div id="close-chat"><h1>X</h1></div>
+  <div id="close-chat"><h3 id="high">X</h3></div>
  <!--Message box: To show the sent/recieved messages-->
-    <div id="msgBox" style="height: 200px; width: 400px; border: 1px solid blue; overflow-y: scroll;">
+    <div id="msgBox">
 
     </div>
     <!--Textbox: to enter the message text-->
@@ -861,7 +874,9 @@
 
 <template id="google-template">
  <script src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places&callback=initMap" async defer></script>
-
+ <div id="find" id='high'> 
+      <p id='high'>Find a dermatologist</p>
+      </div>
 <script>
 var map;
 var infowindow;

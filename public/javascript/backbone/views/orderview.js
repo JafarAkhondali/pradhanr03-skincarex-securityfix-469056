@@ -11,9 +11,7 @@ App.Views.Order = Backbone.View.extend({
 	},
 	renderOne: function () {
 		
-		// var viewthis = new App.Views.ProductView({ model: product });
 		
-		// this.$el.append(viewthis.el);
 	},
 	events: {
 		'click #checkout-button': 'checkOut',
@@ -80,7 +78,8 @@ App.Views.Order = Backbone.View.extend({
        	var cartObj =[];
 
 	    for (var key in sessionStorage) {  //iterating over sessionStorage object and 
-	        cartObj.push(JSON.parse(sessionStorage[key])); //pushing into empty array cartObj
+	        // cartObj.push(JSON.parse(sessionStorage[key])); //pushing into empty array cartObj
+	   		cartObj.push(sessionStorage[key]);
 	    }
 
        	var data = {
