@@ -71,6 +71,27 @@ module.exports = {
     })
     this.end();
   },
+  createOrder: function(table, obj, cb) {
+    pg.connect(dbUrl, function(err, client, done) {
+      var keys = [];
+      var values = [];
+      var dollars = [];
+      Object.keys(obj).forEach(function(key, i) {
+        keys.push(key);
+        values.push(obj[keys[i]]);
+        dollars.push('$' + (i + 1));
+      })
+      var queryString = 'INSERT INTO ' + table + '(' + keys.join(',') + ') VALUES(' + dollars.join(',') + ')';
+      client.query(queryString, values, function(err, result) {
+        done();
+        if (err) {
+          console.error('error running query', err);
+        }
+        cb(result)
+      });
+    })
+    this.end();
+  },
   update: function(table, obj, id, cb) {
     pg.connect(dbUrl, function(err, client, done) {
       var keys = [];

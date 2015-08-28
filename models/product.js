@@ -5,11 +5,16 @@ module.exports.Product = {
   all : function (callback) {
     db.all('products', function (products) {
 
+      // console.log(products);
+      // var data={
+      //   products: products
+      // }
+      // callback(data);
+
       console.log(products);
-      var data={
-        products: products
-      }
-      callback(data);
+      
+      callback(products);
+
     });
   },
    find : function(id, callback){

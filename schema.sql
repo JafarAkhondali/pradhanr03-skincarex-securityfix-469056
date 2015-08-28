@@ -55,11 +55,14 @@ CREATE TABLE orders (
 	customer_id INTEGER references customers,
 	shipping_address VARCHAR(255),
 	billing_address VARCHAR(255),
+	total_price INTEGER,
+	product_items TEXT,
 	date DATE NOT NULL default CURRENT_DATE
 );
 
 CREATE TABLE orders_products (
 	id SERIAL PRIMARY KEY,
+	order_id INTEGER references orders,
 	product_id INTEGER references products,
 	date DATE NOT NULL default CURRENT_DATE
 );

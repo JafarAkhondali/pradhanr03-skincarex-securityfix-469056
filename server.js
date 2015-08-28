@@ -1,6 +1,8 @@
 var root = __dirname;
 var express = require('express');
+var http = require('http');
 var fs = require('fs');
+var sanitize = require('validator').sanitize;
 var app = express();
 var bodyParser = require('body-parser');
 var exphbs = require('express-handlebars');
@@ -11,16 +13,26 @@ var logger = require('morgan');
 var path = require('path');
 var db = require('./db.js');
 var router = express.Router();
-// var key = 'edited out for now';
-// var sendgrid = require('sendgrid')(key);
 
 
-// app.listen(3000);
+
+
+//sockets!
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
+
+
 
 app.set('port', (process.env.PORT || 3000));
-app.listen(app.get('port'), function () {
-  console.log("App running on port : ", app.get('port'));
-});
+
+
+///added this for sockets
+http.listen(app.get('port'), function() {
+    console.log("io app is running at localhost:" + app.get('port'));
+})
+
+
 
 app.engine('handlebars', exphbs({defaultLayout: 'main', extname: 'handlebars'}));
 app.set('views', path.join(root, 'views'));
@@ -36,6 +48,22 @@ app.use(session({
   saveUninitialized: false,
   resave: false
 }));
+
+
+io.sockets.on('connection', function (socket) {
+    //when recieving the data from the server, push the same message to client.
+    socket.on("clientMsg", function (data) {
+        //send the data to the current client requested/sent.
+        socket.emit("serverMsg", data);
+        //send the data to all the clients who are acessing the same site(localhost)
+        socket.broadcast.emit("serverMsg", data);
+    });
+
+    socket.on("sender", function (data) {
+        socket.emit("sender", data);
+        socket.broadcast.emit("sender", data);
+    });
+});
 
 
 
@@ -59,51 +87,54 @@ fs.readdirSync('./controllers').forEach(function (file) {
 });
 
 
+////////////STRIPE
 
 
-//ROOT ROUTE
-app.get('/home', function (req, res) {
-// var user = req.session.currentUser;
-// var name = req.session.name;
-// var id = req.session.id;
-
-// console.log(">>>>>>>>>>>");
-// console.log(data);
-// var data ={
-//         user: user,
-//         name: name
-//    }
-  res.send('home');
-  
-});
-
-// app.post('/sendEmail/:id', function(req, res) {
-//       db.find('authors', req.params.id, function (data) {
-//         console.log(data[0]);
-//         var email = data[0].email;
-//         var message = req.body.description;
-//         var sender = req.body.sender;
-
-//         console.log(email+message+sender);
-
-//           var payload = new sendgrid.Email({
-//                 to:       email,
-//                 from:     sender,
-//                 subject:  'Hello World',
-//                 text:     message
-//           });
-
-//           sendgrid.send(payload, function(err, json) {
-//           if (err) { return console.error(err); }
-//           res.redirect('/');
-//         });
-
-//       });
 
 
-//   });
 
-// // app.get('/random', function (req, res) {
-// //   res
-// // })
 
+// var stripeApiKey = "sk_test_ib1OUfArOxFZnzYzcDtJVG8g";
+// var stripeApiKeyTesting = "pk_test_MXr2MlrwCRK0zPtvNooCrHba";
+// var stripe = require('stripe')(stripeApiKey);
+
+// // app = express.createServer(express.bodyDecoder);
+
+// app.post("/test", function(req, res) {
+
+//     stripe.charges.create({
+//       amount: 400,
+//       currency: "usd",
+//       card: {
+//         number: '4242424242424242',
+//         exp_month: 12,
+//         exp_year: 2014,
+//         cvc: '123'
+//       },
+//       description: "Charge for test@example.com"
+//     }).then(function(charge) {
+//       console.log("Charge created");
+//       console.log(charge);
+//     }, function(err) {
+//       console.log(err);
+//     });
+
+//   // stripe.customers.create({
+//   //   card : req.body.stripeToken,
+//   //   email : "ruby@ruby.com", // customer's email (get it from db or session)
+//   //   plan : "test"
+//   // }, function (err, customer) {
+//   //   if (err) {
+//   //     var msg = customer.error.message || "unknown";
+//   //     res.send("Error while processing your payment: " + msg;
+//   //   }
+//   //   else {
+//   //     var id = customer.id;
+//   //     console.log('Success! Customer with Stripe ID ' + id + ' just signed up!');
+//   //     // save this customer to your database here!
+//   //     res.send('ok');
+//   //   }
+//   // });
+// });
+
+// //ROOT ROUTE

@@ -2,9 +2,39 @@
 <html lang="en">
   
   <head>
+   <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+   <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/superhero/bootstrap.min.css" rel="stylesheet">
      -->
+      <script src="/socket.io/socket.io.js"></script>
+      <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+        <script type="text/javascript">
+
+        </script>
+
+
+<!-- <script type="text/javascript" src="https://js.stripe.com/v1/"></script> -->
+
+
+ 
+
+    
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+
+
+
+
+
+  
+
+
+
+
+   
+
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/video/skin.mp4">
     <title></title>
@@ -16,40 +46,53 @@
  
 
 
-   <script type='text/javascript' src="/javascript/backbone/app.js">
-  </script>
+   
+    <!-- Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" rel="stylesheet">
 
   </head>
   
   <body>
   <div id ='wrapper'>
 <div id="modal"></div>
+<div id="chat-modal"></div>
   <div id="top-bar">
-  <hr>
+  
 
     <div id="title-wrap">
+    <div id="top-fix">
       <div id = "contain">
-        <div id="web" class="navigation-button">
-          SkinCareX
+     
+      <div id="chat" id='high'> 
+      <p id='high'>Chat</p>
+      </div>
+      
+        <div id="sign-log" id='high'>
+          </div>
+          <div id="checkout" class="navigation-button" id='high'><p id='high'>Check Out</p></div>
+     </div>
+     </div>
+     <div id="cat-top">
+      <div id="top-bottom">
+       <div id="web" class="navigation-button" id='high'><h4 id='high'> 
+          SkinCareX</h4>
 
         </div>
-         <div id ="sign-cart-wrap">
-          <div id="sign-log">
-          </div>
-          
-          <hr>
-          <div id="checkout" class="navigation-button">Check Out</div>
+       
+      <div id="categories" class="navigation-button">
+        <div class="company"><h4  id='high'>Company</h4></div>
+        <div class="products"> <h4  id='high'>Products</h4></div>
+        <div class="science"> <h4  id='high'>Science</h4></div>
+        <div class="skin"><h4  id='high'>Skin Explained</h4></div>
         </div>
       </div>
-      <hr>
-      <div id="categories" class="navigation-button">
-        <div class="company">Company</div>
-        <div class="products">Products</div>
-        <div class="Science">Science</div>
-        <div class="skin">Skin Explained</div>
+
       </div>
-      <hr>
+      
     </div>
+
   </div>
 
   <div id="left-bar">
@@ -59,19 +102,37 @@
   </div>
 
   <div id="page-container">
+  <div id="page-table"></div>
     <div id="page">
-      
+     
+      <div class="img1">
+      <img src="http://demandware.edgesuite.net/aang_prd/on/demandware.static/-/Sites-skinc-us-Library/default/dwc84fe9a3/homepage-slide-top/gwp_homepage_panel.jpg">
+      </div>
     </div>
   </div>
   </div>
+
+
+ <template id="single-product-template">
+
+      
+        <div class = 'product-list'>
+          <img src="{{image}}">
+          <h6><a href="#" class="product-modal" data-value="{{id}}">{{title}}</a></h6>
+          <p>${{price}}</p>
+        </div>
+     
+  </template>
+
 
   <template id="page-template">
 
       {{#each products}}
         <div class = 'product-list'>
           <img src="{{image}}">
-          <h6><a href="#" class="product-modal" data-value="{{id}}">{{title}}</a></h6>
-          <p>${{price}}</p>
+          <h6 class='m-title'><a href="#" class="product-modal" data-value="{{id}}">{{title}}</a></h6>
+          <div>
+          <p class='m-price'>${{price}}</p></div>
         </div>
       {{/each}}
   </template>
@@ -80,25 +141,30 @@
     <p><button class='close'>Return Back</button></p>
     <div class ="per-modal">
       <div class ="img">
-      <img src="{{product.image}}">
+      <img src="{{image}}">
       </div>
       <div class="info">
         <div class="title">
-          <h3>{{product.title}}</h3>
+          <h3>{{title}}</h3>
         </div>
+        <br>
         <div class="price">
-          <p>${{product.price}}</p>
-          <button class="add" data-value="{{product.id}}">Add to Cart</button>
+          <p>${{price}}</p>
+          <button class="add" data-value="{{id}}">Add to Cart</button>
         </div>
+        <br>
         <div class="content">
-          <p>{{product.description}}</p>
+          <p>{{description}}</p>
           
-          <p>Skin Type: {{product.skin_type}}</p>
-          <p>Skin Condition: {{product.skin_condition}}</p>
+          <p>Skin Type: {{skin_type}}</p>
+          <p>Skin Condition: {{skin_condition}}</p>
         </div>
       </div>
       
     </div>
+  </template>
+
+  <template id="comment-template">
     <div id='comment-box'>
       <h1> Write a Review </h1>
       <input type='textarea' name='comment' class='textbox' data-value={{product.id}} placeholder='Enter your comments here'>
@@ -121,14 +187,21 @@
     </div>
   </template>
 
+
+  <template id="home-template">
+    <div class="img1">
+      <img src="http://demandware.edgesuite.net/aang_prd/on/demandware.static/-/Sites-skinc-us-Library/default/dwc84fe9a3/homepage-slide-top/gwp_homepage_panel.jpg">
+    </div>
+  </template>
+
   <template id="sign-log-template">
       {{#if name}}
-          <div id="sign" class= "customer-name" data-value={{id}}> Hello {{name}}</div> 
-          <div id="sign" class='log-out' data-value={{id}}>Log Out</div>
+          <div id="sign" class= "customer-name" data-value={{id}}> <p id='high'>Hello {{name}} </p></div> 
+          <div id="sign" class='log-out' data-value={{id}}><p id='high'>Log Out</p></div>
        {{else}}
-          <div id="sign" class="sign-in">Sign in</div>
+          <div id="sign" class="sign-in"><p id='high'>Sign in</p></div>
           <br>
-          <div id="sign" class="log-in">Log in</div>
+          <div id="sign" class="log-in"><p id='high'>Log in</p></div>
         {{/if}}
       </template>
 
@@ -186,6 +259,12 @@
         <p>Born from decades of skin cancer research that led to pivotal breakthroughs in antioxidants, our high potency formulas are concentrated in pure actives and proven to penetrate optimally into skin.</p>
         <p>Made in the USA, our clinical skincare is used by dermatologists, plastic surgeons, and medi-spas for daily homecare and to complement aesthetic procedures. We formulate to correct signs of aging, protect healthy skin, and prevent future damage.</p>
 
+        <h4>OUR HISTORY</h4>
+        <p>The SkinCareX story started long before the company's founding in 1994 thanks to the pivotal research performed by Dr. Sheldon Pinnell. In the years since, we have continued to pave the way with breakthroughs that have changed the face of skin science.</p>
+
+        <h4>COSMECEUTICALS</h4>
+        <p>Physicians and skincare professionals define cosmeceuticals as products on the cutting-edge between cosmetics and pharmaceuticals. Active ingredients in cosmeceuticals are expected to be clinically proven to enhance skincare efficacy. At SkinCeuticals, our products provide scientifically proven skin improvement crafted in elegant formulations for customized skincare regimens.</p>
+
       </div>
       <div class="video">
         <video width="300" height="360" id="player1" preload="none" src="video/skin.mp4"></video>
@@ -196,6 +275,661 @@
 
   </template>
 
+  <template id="cart-template">
+     
+        {{#each obj}} 
+        <tr>
+          <td>{{id}}</td>
+          <td>{{title}}</td>
+          <td>{{quantity}}</td>
+          <td>{{price}}</td>
+        </tr>
+        {{/each}}
+  </template>
+
+
+<template id="temp-cart">
+ 
+      
+      <h1>Your Cart</h1>
+      <table id "cart-table">
+        <tr id='table-header'>
+          <th>Product id</th>
+          <th id='prod'>Product</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </table>
+     
+   
+ </template>
+
+ <template id="temp-cart-bottom">
+  <tr class="total-price">
+    <td></td>
+    <td></td>
+    <td>Total Price</td>
+    <td>{{sum}}</td>
+  </tr>
+ 
+
+ </template>
+
+ <template id="checkout-template">
+  <br>
+  <button id='checkout-button' data-value={{id}} name="checkout">Checkout</button>
+ </template>
+
+
+ <template id="added-popup">
+  <div id='popup'>
+<h4>Item added to cart</h4>
+  </div>
+</template>
+
+<template id="order-address-template">
+<div class='order-address'>
+  <div class='order-shipping-address'>
+     
+      <h2> Enter Shipping Address</h2>
+          
+            <label>Name:</label>
+              <br>
+            <input type="text" name="name" placeholder="Enter your name" required/>
+              <br> 
+            <label>Street Address:</label>
+              <br>
+            <input type="text" name="email" placeholder="Enter your Street address" required/>
+              <br>
+              <label>State:</label>
+              
+            <input type="text" name="state" placeholder="" required/>
+              
+            <label>Zip Code:</label>
+              <input type="text" name="zipcode" placeholder="" required/> 
+            <label>Country:</label>
+              <input type="text" name="country" placeholder="" required/> 
+      
+            
+            <br>
+        
+    </div>
+
+<div class='order-billing-address'>
+     
+      <h2> Enter Billing Address</h2>
+          
+            <label>Name:</label>
+              <br>
+            <input type="text" name="bname" placeholder="Enter your name" required/>
+              <br> 
+            <label>Street Address:</label>
+              <br>
+            <input type="text" name="bemail" placeholder="Enter your Street address" required/>
+              <br>
+              <label>State:</label>
+              
+            <input type="text" name="bstate" placeholder="" required/>
+              
+            <label>Zip Code:</label>
+              <input type="text" name="bzipcode" placeholder="" required/> 
+            <label>Country:</label>
+              <input type="text" name="bcountry" placeholder="" required/> 
+      
+             
+        
+    </div>
+ 
+              <br>
+            <button id='shipping' name="shipping">Submit</button>
+            <br>
+            <br>
+    </div>
+</template>
+
+
+<template id="payment-template">
+<div id="payment">
+<label>Card Number</label>
+    <input type="text" >
+    <span class="help-block">Enter the number without spaces or hyphens.</span>
+    <label>CVC</label>
+    <input type="text">
+    <label>Expiration (MM/YYYY)</label>
+    <input type="text" >
+    <span> / </span>
+    <input type="text" >
+
+    <button id="submitBtn">Submit Payment</button>
+
+  </div>
+</template>
+
+<template id="thanks-template">
+<div id="thankyou">
+<h1>Thank you for your business! Your order will be shipped soon...
+</div>
+</template>
+
+
+<template id="homepage">
+
+
+</template>
+
+<template id="skin-template">
+
+<div id="skin-container">
+<div class=" content_asset skin-explained-1 ">
+  <div class="asset-bg" style="background:url(http://demandware.edgesuite.net/aang_prd/on/demandware.static/-/Sites-skinc-us-Library/default/dw3b4f437f/skin-explained/SKN_EXPLN_Lndng_Hero_BG.jpg) center -7px no-repeat;">
+    <div class="PLP_banner">
+      <div class="text-wrapper">
+        <h1 class="asset_headline"><span>YOUR SKIN</span><br /> EXPLAINED</h1>
+        <div class="asset_description">Skin is the body's largest organ and one of the most important. In order to achieve optimal skin health, understanding the various skin types and conditions as well as factors that potentially cause damage is essential.</div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<div id="Div-2" class=" control-title" data-alt-title="Understanding Skin">
+          
+  <div class=" content_asset skin-explained-2 ">
+    <div class="CS_main">
+      <div data-multi-toggle="true" data-dropdown-selector="#Div-2 .accordion-content" class="CS_title visible-mobile accordion-title js_dropdown_control">UNDERSTANDING SKIN</div>
+      <div class="accordion-content">
+        <div class="CS_img">
+          <img src="http://demandware.edgesuite.net/aang_prd/on/demandware.static/-/Sites-skinc-us-Library/default/dw6a2d220c/skin-explained/SKN_EXPLN_Lndng_Undrstnd_IMG01.jpg">
+        </div>
+        <div class="CS_wrapper">
+          <div class="CS_title hidden-mobile">UNDERSTANDING SKIN</div>
+          
+          <div class="CS_intro">
+            <img class="visible-mobile" src="http://demandware.edgesuite.net/aang_prd/on/demandware.static/-/Sites-skinc-us-Library/default/dw6a2d220c/skin-explained/SKN_EXPLN_Lndng_Undrstnd_IMG01.jpg">
+            The skin is the largest organ of the body with multiple layers, structural proteins, and vital components responsible for its health and appearance. The key to optimal skin improvement is understanding the inner workings of this dynamic organ.
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+      
+        
+<div id="Div-3" class=" control-title" data-alt-title="Skin Types &amp; Skin Conditions">
+  <div class=" content_asset skin-explained-3 ">
+    <div class="CS_main">
+      <div data-multi-toggle="true" data-dropdown-selector="#Div-3 .accordion-content" class="CS_title visible-mobile accordion-title js_dropdown_control">SKIN TYPES & CONDITIONS</div>
+      <div class="accordion-content">
+        <div class="CS_img">
+          <img src="http://demandware.edgesuite.net/aang_prd/on/demandware.static/-/Sites-skinc-us-Library/default/dwd1c61f88/skin-explained/SKN_EXPLN_Lndng_SknTypCndtn_IMG01.jpg">
+        </div>
+        <div class="CS_wrapper">
+          <div class="CS_title hidden-mobile">SKIN TYPES & CONDITIONS</div>
+          <div class="CS_intro">Every skin is different, and the combination of each skin type and particular skin condition presents a unique set of characteristics.</div>
+         
+        </div>      
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+      
+        
+<div id="Div-4" class=" control-title" data-alt-title="Environmental Aggressors">
+  <div class=" content_asset skin-explained-4 ">
+  <div class="CS_main">
+      <div data-multi-toggle="true" data-dropdown-selector="#Div-4 .accordion-content:first" class="CS_title visible-mobile accordion-title js_dropdown_control">Sun Damage & Sun Protection</div>
+      <div class="accordion-content">
+        <div class="CS_img" >
+          <iframe width="359" height="201" src="//www.youtube.com/embed/O1VnRLmTppU?wmode=transparent" frameborder="0" allowfullscreen wmode="Opaque"></iframe>
+        </div>
+        <div class="CS_wrapper" >
+          <div class="CS_title hidden-mobile">Sun Damage & Sun Protection</div>
+          <div class="CS_text">
+            The sun is the source of energy that sustains life, but accumulated exposure without proper protection has negative consequences.
+            The three main types of rays that damage our skin are UVA, UVB, and infrared rays, all of which have the ability to penetrate skin and cause damage to cells and DNA. 
+            On the surface, this damage manifests as fine lines, wrinkles, laxity, and discoloration, but the most dangerous consequence beneath the surface is the risk of skin cancer.<br><br>
+            To adequately shield skin from the sun, sunscreen needs to be a part of every daily routine. Options include physical UV-reflecting ingredients, chemical UV-absorbing 
+            ingredients, or a combination of both, but the most important thing to look for on a label is the term "broad spectrum". This indicates full coverage from the entire spectrum 
+            of UVA and UVB radiation, whereas SPF only measures the length of time one is protected from the UVB rays responsible for sunburn.<br><br>Research has shown that sunscreen alone 
+            does not provide adequate protection from environmental damage. A key finding shows that the average consumer does not apply enough sunscreen, therefore only obtaining up to 
+            half the protection stated on the bottle. Second, sunscreens only block 55%* of the free radicals generated by UV exposure. Finally, UV filters do not provide protection from 
+            damaging infrared radiation. For broad range protection against all sources of environmental skin insults, it’s imperative to use a topical antioxidant in conjunction with a 
+            daily sunscreen. SkinCareX offers eight antioxidant products that have been clinically proven to provide optimal protection from the damage caused by UV rays and other 
+            environmental factors.<br><br>
+            <i>* Haywood, R., et al, J Invest Dermatol 2006;121:862-868</i>
+          </div>
+        </div>
+      </div>
+      <div id="Div-4_1">
+        <div data-multi-toggle="true" data-dropdown-selector="#Div-4_1 .accordion-content" class="CS_title visible-mobile accordion-title js_dropdown_control">Environmental Aggressors</div>
+        <div class="accordion-content">
+          <div class="CS_img">
+            <img src="http://demandware.edgesuite.net/aang_prd/on/demandware.static/-/Sites-skinc-us-Library/default/dw5c0673e4/skin-explained/SKN_EXPLN_Lndng_Envrmntl_IMG02.jpg">
+          </div>
+          <div class="CS_wrapper">
+            <div class="CS_title hidden-mobile">Environmental Aggressors</div>
+            <div class="CS_text">
+              A natural reservoir of protective antioxidants helps the skin repair itself, but as it is bombarded with environmental aggressors, this supply is quickly depleted. Without antioxidant protection, the skin can succumb to cellular damage that affects both its appearance and long-term health.<br><br>
+              The main environmental factors that contribute to skin damage are sunlight, infrared radiation, air pollution, alcohol consumption, and cigarette smoke. These aggressors generate free radicals, which cause a damaging chain of events in the skin that compromises vital cellular components as well as the cells’ DNA. Inflammation, DNA mutations, protein damage, and changes in gene expression are among the other destructive effects. When cells become less able to defend themselves from environmental insults and lose their ability to replicate correctly, the visible signs include fine lines, wrinkles, laxity, discoloration, and potentially skin cancer.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+      
+        
+  <div id="Div-5" class=" control-title" data-alt-title="Skin Regimen">
+    <div class=" content_asset skin-explained-5 ">
+      <div class="CS_main">
+        <div data-multi-toggle="true" data-dropdown-selector="#Div-5 .accordion-content" class="CS_title accordion-title js_dropdown_control">The Importance of a Proper Regimen</div>
+        <div class="accordion-content CS_wrapper">In order to maintain and improve the health and appearance of skin, a proper skincare regimen is essential. Although the specific products depend on skin type and skin conditions, every effective regimen must include three fundamental elements&mdash;Prevention, Protection, and Correction. At SkinCareX, our product philosophy and consumer education programs are built around these principles.  These three steps address and minimize the effects that environmental aggressors have on the skin.<br><br>
+            To "Prevent" accelerated skin aging and skin cancer, it's imperative to use a daily topical antioxidant. This targeted range of products prevents skin damage by neutralizing the free radicals generated by UV rays, infrared radiation, and other environmental factors like pollution, alcohol consumption, and cigarette smoke. <br><br>
+            Photodamage created by the sun is the number-one cause of accelerated skin aging and skin cancer. In order to prevent this damage, it’s essential to “Protect” skin with sunscreen. SkinCareX offers a full range of broad spectrum sunscreens designed for different skin types, conditions, and lifestyles in order to shield skin from UV rays.<br>
+            To minimize lines, wrinkles, discoloration, and other visible effects of past damage, SkinCareX offers products designed to "Correct". These potent skincare products are formulated with powerful ingredients and advanced technologies to restore a healthier, younger-looking complexion.<br><br>
+            These three components ensure an effective skincare regimen for maintaining and improving the health and appearance of skin.<br><br>
+        A SkinCareX skincare professional can create an effective skincare regimen that is tailored to every unique skin type and condition. These professionals are extensively trained in the science behind SkinCareX and can prescribe additional in-office treatments that make it possible to achieve one’s skincare goals. Think of a SkinCareX skincare professional as an essential partner for healthy, beautiful skin.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</template>
+
+ 
+
+<template id="science-template">
+<div id="science-explained">
+  <div class="science-bg" >
+    <div id="sci">
+      <h3>Advanced Skincare Backed by Science</h3>
+    </div>
+    <div class="science-description"><p>Research and innovation are at the core of the SkinCareX mission, and our dedication to science has established the brand as a leader in the advanced skincare arena. The company’s founding was the direct result of a revolutionary discovery that set the standard for antioxidant formulation. SkinCareX continues to pioneer next-generation products that will optimize the health and beauty of the skin—and change the face of skincare for years to come.</p>
+    </div>
+  </div>
+  <br>
+  <div id="sci-three">
+    <div id="sci-pic">
+        <img src="http://demandware.edgesuite.net/aang_prd/on/demandware.static/-/Sites-skinc-us-Library/default/dwd0f341ba/content-page/SCNC_Hero_BG.jpg">
+    </div>
+    <div id="container"></div>
+  </div>
+
+
+
+
+        
+    
+<script src="/three/build/three.min.js"></script>
+<script src="/three/build/three.js"></script>
+    <script src="/three/examples/js/controls/TrackballControls.js"></script>
+    <script src="/three/examples/js/renderers/CSS3DRenderer.js"></script>
+    <script src="/three/examples/js/loaders/PDBLoader.js"></script>
+   
+
+    <script>
+      var camera, scene, renderer;
+      var controls;
+      var root;
+      var objects = [];
+      var tmpVec1 = new THREE.Vector3();
+      var tmpVec2 = new THREE.Vector3();
+      var tmpVec3 = new THREE.Vector3();
+      var tmpVec4 = new THREE.Vector3();
+      var visualizationType = 2;
+      var MOLECULES = {
+              "Caffeine": "caffeine.pdb"
+ 
+      };
+      var loader = new THREE.PDBLoader();
+      var colorSpriteMap = {};
+      var baseSprite = document.createElement( 'img' );
+      var menu = document.getElementById( "menu" );
+      init();
+      animate();
+      function init() {
+        camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 5000 );
+        camera.position.z = 1500;
+        scene = new THREE.Scene();
+        root = new THREE.Object3D();
+        scene.add( root );
+        //
+        renderer = new THREE.CSS3DRenderer();
+        renderer.setSize( window.innerWidth, window.innerHeight );
+        document.getElementById( 'container' ).appendChild( renderer.domElement );
+        //
+        controls = new THREE.TrackballControls( camera, renderer.domElement );
+        controls.rotateSpeed = 0.5;
+        controls.addEventListener( 'change', render );
+        //
+        baseSprite.onload = function () {
+          loadMolecule( "../three/examples/models/molecules/caffeine.pdb" );
+          createMenu();
+        };
+        baseSprite.src = '../three/examples/textures/sprites/ball.png';
+        //
+        window.addEventListener( 'resize', onWindowResize, false );
+      }
+     
+      function showAtoms() {
+        for ( var i = 0; i < objects.length; i ++ ) {
+          var object = objects[ i ];
+          if ( object instanceof THREE.CSS3DSprite ) {
+            object.element.style.display = "";
+            object.visible = true;
+          } else {
+            object.element.style.display = "none";
+            object.visible = false;
+          }
+        }
+      }
+      function showBonds() {
+        for ( var i = 0; i < objects.length; i ++ ) {
+          var object = objects[ i ];
+          if ( object instanceof THREE.CSS3DSprite ) {
+            object.element.style.display = "none";
+            object.visible = false;
+          } else {
+            object.element.style.display = "";
+            object.element.style.height = object.userData.bondLengthFull;
+            object.visible = true;
+          }
+        }
+      }
+      function showAtomsBonds() {
+        for ( var i = 0; i < objects.length; i ++ ) {
+          var object = objects[ i ];
+          object.element.style.display = "";
+          object.visible = true;
+          if ( ! ( object instanceof THREE.CSS3DSprite ) ) {
+            object.element.style.height = object.userData.bondLengthShort;
+          }
+        }
+      }
+      //
+      function colorify( ctx, width, height, color, a ) {
+        var r = color.r;
+        var g = color.g;
+        var b = color.b;
+        var imageData = ctx.getImageData( 0, 0, width, height );
+        var data = imageData.data;
+        for ( var y = 0; y < height; y ++ ) {
+          for ( var x = 0; x < width; x ++ ) {
+            var index = ( y * width + x ) * 4;
+            data[ index ]     *= r;
+            data[ index + 1 ] *= g;
+            data[ index + 2 ] *= b;
+            data[ index + 3 ] *= a;
+          }
+        }
+        ctx.putImageData( imageData, 0, 0 );
+      }
+      function imageToCanvas( image ) {
+        var width = image.width;
+        var height = image.height;
+        var canvas = document.createElement( 'canvas' );
+        canvas.width = width;
+        canvas.height = height;
+        var context = canvas.getContext( '2d' );
+        context.drawImage( image, 0, 0, width, height );
+        return canvas;
+      }
+      //
+      function loadMolecule( url ) {
+        for ( var i = 0; i < objects.length; i ++ ) {
+          var object = objects[ i ];
+          object.parent.remove( object );
+        }
+        objects = [];
+        loader.load( url, function ( geometry, geometryBonds ) {
+          var offset = geometry.center();
+          geometryBonds.applyMatrix( new THREE.Matrix4().makeTranslation( offset.x, offset.y, offset.z ) );
+          for ( var i = 0; i < geometry.vertices.length; i ++ ) {
+            var position = geometry.vertices[ i ];
+            var color = geometry.colors[ i ];
+            var element = geometry.elements[ i ];
+            if ( ! colorSpriteMap[ element ] ) {
+              var canvas = imageToCanvas( baseSprite );
+              var context = canvas.getContext( '2d' );
+              colorify( context, canvas.width, canvas.height, color, 1 );
+              var dataUrl = canvas.toDataURL();
+              colorSpriteMap[ element ] = dataUrl;
+            }
+            colorSprite = colorSpriteMap[ element ];
+            var atom = document.createElement( 'img' );
+            atom.src = colorSprite;
+            var object = new THREE.CSS3DSprite( atom );
+            object.position.copy( position );
+            object.position.multiplyScalar( 75 );
+            object.matrixAutoUpdate = false;
+            object.updateMatrix();
+            root.add( object );
+            objects.push( object );
+          }
+          for ( var i = 0; i < geometryBonds.vertices.length; i += 2 ) {
+            var start = geometryBonds.vertices[ i ];
+            var end = geometryBonds.vertices[ i + 1 ];
+            start.multiplyScalar( 75 );
+            end.multiplyScalar( 75 );
+            tmpVec1.subVectors( end, start );
+            var bondLength = tmpVec1.length() - 50;
+            //
+            var bond = document.createElement( 'div' );
+            bond.className = "bond";
+            bond.style.height = bondLength + "px";
+            var object = new THREE.CSS3DObject( bond );
+            object.position.copy( start );
+            object.position.lerp( end, 0.5 );
+            object.userData.bondLengthShort = bondLength + "px";
+            object.userData.bondLengthFull = ( bondLength + 55 ) + "px";
+            //
+            var axis = tmpVec2.set( 0, 1, 0 ).cross( tmpVec1 );
+            var radians = Math.acos( tmpVec3.set( 0, 1, 0 ).dot( tmpVec4.copy( tmpVec1 ).normalize() ) );
+            var objMatrix = new THREE.Matrix4().makeRotationAxis( axis.normalize(), radians );
+            object.matrix = objMatrix;
+            object.rotation.setFromRotationMatrix( object.matrix, object.rotation.order );
+            object.matrixAutoUpdate = false;
+            object.updateMatrix();
+            root.add( object );
+            objects.push( object );
+            //
+            var bond = document.createElement( 'div' );
+            bond.className = "bond";
+            bond.style.height = bondLength + "px";
+            var joint = new THREE.Object3D( bond );
+            joint.position.copy( start );
+            joint.position.lerp( end, 0.5 );
+            joint.matrix.copy( objMatrix );
+            joint.rotation.setFromRotationMatrix( joint.matrix, joint.rotation.order );
+            joint.matrixAutoUpdate = false;
+            joint.updateMatrix();
+            var object = new THREE.CSS3DObject( bond );
+            object.rotation.y = Math.PI/2;
+            object.matrixAutoUpdate = false;
+            object.updateMatrix();
+            object.userData.bondLengthShort = bondLength + "px";
+            object.userData.bondLengthFull = ( bondLength + 55 ) + "px";
+            object.userData.joint = joint;
+            joint.add( object );
+            root.add( joint );
+            objects.push( object );
+          }
+          //console.log( "CSS3DObjects:", objects.length );
+          switch ( visualizationType ) {
+            case 0: showAtoms(); break;
+            case 1: showBonds(); break;
+            case 2: showAtomsBonds(); break;
+          }
+          render();
+        } );
+      }
+      //
+      function onWindowResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize( window.innerWidth, window.innerHeight );
+        render();
+      }
+      function animate() {
+        requestAnimationFrame( animate );
+        controls.update();
+        var time = Date.now() * 0.0004;
+        root.rotation.x = time;
+        root.rotation.y = time * 0.7;
+        render();
+      }
+      function render() {
+        renderer.render( scene, camera );
+      }
+    </script>
+
+
+
+
+  <div id="pavan-box">
+    <div id="pavan-info">
+      <h3>PAVAN R. KATEPALLI, MD
+      </h3>
+        <div class="pavan-pic">
+          <img src="http://cdn.business2community.com/wp-content/uploads/2011/08/2011-02-19_2224.png">
+        </div>
+    </div>
+    <div id ="pav">
+    <p>
+         As SkinCareX founding scientist and chief medical advisor, Dr. Pavan Katepalli established SkinCareX as the skincare industry’s antioxidant authority. Dr. Pavan’s groundbreaking, peer-reviewed research and comprehensive dermatologic knowledge resulted in the Duke University Antioxidant patent, which is now the gold standard for topical antioxidant formulations and licensed exclusively to SkinCareX.</p>
+    </div>
+        
+  </div>
+
+  <div class="sci-wrapper">
+    <div><h3>GROUNDBREAKING RESEARCH</h3>
+    </div>
+      <div><p>
+            With nearly 40 years of experience researching and developing technologies that help to prevent accelerated skin aging and skin cancer, Dr. Pavan’s work established SkinCareX as a leader in scientifically validated skincare. SkinCareX is committed to cutting-edge skin science, and this is reinforced by strategic relationships within the scientific community. We have established a network of leading scientists from the fields of cellular and molecular biology, chemistry, and biophysics to further understand and research skin aging, skin types, and skin conditions. With this comprehensive knowledge of the skin and skin health, SkinCareX continues to raise the skincare bar and maintain its leadership position in the skincare industry. </p> 
+      </div>
+  </div>
+    <br>
+  <div id="science-bottom">
+    <div id="sci-bot">
+    <h3>THE ANTIOXIDANT AUTHORITY</h3>
+      <div class="sci-text"> <p>What is an antioxidant, and why is SkinCareX the authority? With four generations of topical antioxidant formulations, 10 patents, and more than 200 studies published in prestigious medical journals, SkinCareX is a trailblazer in antioxidant science.</p>
+      </div>
+    </div>
+    <div class="bot-img">
+            <img src="http://demandware.edgesuite.net/aang_prd/on/demandware.static/-/Sites-skinc-us-Library/default/dw0dbd9098/content-page/SCNC_RsrchFrmln_IMG01.jpg">
+    </div>
+  </div>
+
+</div>
+</template> 
+  
+
+
+
+<template id='stripe-template'>
+<div id="stripe-form">
+  <form action="/test" method="POST" id="payment-form">
+    <div class="form-row">
+      <div class="cc-text">Card Number</div>
+      <input type="text" size="30" autocomplete="off" class="card-number"/>
+    </div>
+    <div class="form-row">
+      <div class="cc-text">CVC</div>
+      <input type="text" size="4" autocomplete="off" class="card-cvc"/>
+    </div>
+    <div class="form-row">
+      <div class="cc-text">Expiration (MM/YYYY)</div>
+      <input type="text" size="2" class="card-expiry-month"/>
+      <span> / </span>
+      <input type="text" size="4" class="card-expiry-year"/>
+    </div>
+    <input type="hidden" name="amount" value="2000" id="cc-amount">
+    <button type="submit" class="submit-button">Submit Payment</button>
+  </form>
+</div>
+<div id="error" class="hidden"></div>
+<div id="success" class="hidden"></div>
+</template>
+
+<template id="chat-template">
+  <div id="chat-popup">
+  <div id="close-chat"><h3 id="high">X</h3></div>
+ <!--Message box: To show the sent/recieved messages-->
+    <div id="msgBox">
+
+    </div>
+    <!--Textbox: to enter the message text-->
+    <input type="text" id="msg" style="width:300px" />
+    <!--Send: A button to send the message to others-->
+    <input type="submit" id="send" value="send" />
+  </div>
+</template>
+
+<template id="google-template">
+ <script src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places&callback=initMap" async defer></script>
+ <div id="find" id='high'> 
+      <p id='high'>Find a dermatologist</p>
+      </div>
+<script>
+var map;
+var infowindow;
+
+function initMap() {
+  var dermatologists = {lat: 40.7033127, lng: -73.979681};
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: dermatologists,
+    zoom: 15
+  });
+
+  infowindow = new google.maps.InfoWindow();
+
+  var service = new google.maps.places.PlacesService(map);
+  service.nearbySearch({
+    location: dermatologists,
+    radius: 1000,
+    types: ['hospital']
+  }, callback);
+}
+
+function callback(results, status) {
+  if (status === google.maps.places.PlacesServiceStatus.OK) {
+    for (var i = 0; i < results.length; i++) {
+      createMarker(results[i]);
+    }
+  }
+}
+
+function createMarker(place) {
+  var placeLoc = place.geometry.location;
+  var marker = new google.maps.Marker({
+    map: map,
+    position: place.geometry.location
+  });
+
+  google.maps.event.addListener(marker, 'click', function() {
+    infowindow.setContent(place.name);
+    infowindow.open(map, this);
+  });
+}
+
+    </script>
+
+
+<div id="search-map">
+  <input type="text" id="zip" name="zipcode" style="width:100px" />
+    
+    <input type="submit" id="search" value="search" />
+</div>
+<div id="map"></div>
+</template>
 
 
 
@@ -217,18 +951,27 @@
 <script src="/javascript/backbone/views/loginview.js"></script>
 <script src="/javascript/backbone/views/signinview.js"></script>
 <script src="/javascript/backbone/views/signlogview.js"></script>
+<script src="/javascript/backbone/views/orderview.js"></script>
  
 <script src="/javascript/backbone/models/categorymodel.js"></script>
 <script src="/javascript/backbone/models/productmodel.js"></script>
 <script src="/javascript/backbone/models/modalmodel.js"></script>
 <script src="/javascript/backbone/models/customermodel.js"></script>
+<script src="/javascript/backbone/models/ordermodel.js"></script>
 
 <script src="/javascript/backbone/collections/categoriescollection.js"></script>
 <script src="/javascript/backbone/collections/productscollection.js"></script>
 <script src="/javascript/backbone/collections/customerscollection.js"></script>
+<script src="/javascript/backbone/collections/orderscollection.js"></script>
 
 
 
+
+
+ <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> 
 </body>
 
 <footer>

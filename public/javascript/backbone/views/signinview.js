@@ -38,28 +38,20 @@ App.Views.Signin = Backbone.View.extend({
             url: '/users',
             data: data,
            success: function(){
-           	
+           	var template = Handlebars.compile($('#home-template').html());
+	     $('#page').empty();
+	     $('#page').append(template);
+	           	
            },
            fail: function(){
            }
           });
 
-         	 // $.ajax({
-	          //   type: "POST",
-	          //   url: '/sessions',
-	          //   data: data1,
-	          //  success: function(){
-	          //     App.signlog = new App.Views.Signlog({collection: App.customers});
-	              
-	          //  },
-	          //  fail: function(){
-	          //  }
-	          // });
-
-
-        // var templateAfterSign = HandlebarsTemplates['search_box'];
-          
-            
+  	var template = Handlebars.compile($('#home-template').html());
+	     $('#page').empty();
+	     $('#page').append(template);
+         
+                     
 		console.log('what do you seek?');
      
 	}
