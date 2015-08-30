@@ -10,17 +10,41 @@ $(function() {
     App.customers.fetch({
         reset: true
     });
-    $('#checkout').click(cartPage);
+    
     $('.products').click(productPage);
+    $('.antioxidant').click(antioxidantPage);
+    $('.sunscreen').click(sunscreenPage);
     $('.company').click(companyPage);
     $('#web').click(homePage);
     $('.skin').click(skinPage);
     $('.science').click(sciencePage);
     $('#chat').click(chatPage);
+   
+   
 
 
     
   });   
+
+
+
+
+// geoAutocomplete: function(e) {
+//     var keyPressed = e.keyCode || e.which;
+
+//     // keyCode 13 is return key; keyCode 9 is tab key
+//     if ((keyPressed !== 13) && (keyPressed !== 9)) {
+//       $('#geolocation').val('')
+//       $('#location_specific').val($('#autocomplete').val());
+//       console.log('geolocation: ' + $('#geolocation').val());
+//       console.log('location specific: ' + $('#location_specific').val());
+//     }
+//   };
+
+
+
+
+
 
 
     // $(this).removeClass("btn");
@@ -105,6 +129,54 @@ var productPage = function() {
         });
 
     };
+
+
+var antioxidantPage = function() {
+     console.log('antioxidant clicked');
+     $('#page-table').empty();
+       
+        // App.antioxidant = new App.Models.Category({id: 1});
+        App.antioxidants = new App.Collections.Categories();
+
+        App.AntioxidantView = new App.Views.AntioxidantView({collection: App.antioxidants});
+        
+        App.antioxidants.fetch({
+            reset: true
+        });
+
+    };
+
+var sunscreenPage = function() {
+     console.log('sunscreen clicked');
+     $('#page-table').empty();
+
+        // App.sunscreen = Backbone.Collection.extend({url: '/categoriesprod/1'});
+       App.sunscreens = new App.Collections.Categories({url: '/categoriesprod/2'})
+
+        App.SunscreenView = new App.Views.SunscreenView({collection: App.sunscreens});
+        
+        App.sunscreens.fetch({
+            reset: true
+        });
+
+    };
+
+var moisturizerPage = function() {
+     console.log('moisturizer clicked');
+     $('#page-table').empty();
+       
+        App.moisturizer = new App.Models.Category({id: 3});
+
+        App.MoisturizerView = new App.Views.MoisturizerView({model: App.moisturizer});
+        
+        App.moisturizer.fetch({
+            reset: true
+        });
+
+    };
+
+    
+
 
 var companyPage = function() {
      console.log('company clicked');
@@ -191,61 +263,60 @@ var closeChatPage = function() {
 
 var skinPage = function() {
      console.log('skin clicked');
-     // var template = Handlebars.compile($('#skin-template').html());
-     // $('#page').empty();
-     // $('#page').append(template);
+      // $('#autocomplete').keyup(geoAutocomplete);
      $('#page-table').empty();
-     var template = Handlebars.compile($('#google-template').html());
+     var template = Handlebars.compile($('#skin-template').html());
      $('#page').empty();
      $('#page').append(template);
 
-     var map;
-var infowindow;
 
-function initMap() {
-  var pyrmont = {lat: -33.867, lng: 151.195};
+     // $('#page-table').empty();
+     // var template = Handlebars.compile($('#google-template').html());
+     // $('#page').empty();
+     // $('#page').append(template);
 
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: pyrmont,
-    zoom: 15
-  });
+//      var map;
+// var infowindow;
 
-  infowindow = new google.maps.InfoWindow();
+// function initMap() {
+//   var pyrmont = {lat: -33.867, lng: 151.195};
 
-  var service = new google.maps.places.PlacesService(map);
-  service.nearbySearch({
-    location: pyrmont,
-    radius: 500,
-    types: ['store']
-  }, callback);
-}
+//   map = new google.maps.Map(document.getElementById('map'), {
+//     center: pyrmont,
+//     zoom: 15
+//   });
 
-function callback(results, status) {
-  if (status === google.maps.places.PlacesServiceStatus.OK) {
-    for (var i = 0; i < results.length; i++) {
-      createMarker(results[i]);
-    }
-  }
-}
+//   infowindow = new google.maps.InfoWindow();
 
-function createMarker(place) {
-  var placeLoc = place.geometry.location;
-  var marker = new google.maps.Marker({
-    map: map,
-    position: place.geometry.location
-  });
+//   var service = new google.maps.places.PlacesService(map);
+//   service.nearbySearch({
+//     location: pyrmont,
+//     radius: 500,
+//     types: ['store']
+//   }, callback);
+// }
 
-  google.maps.event.addListener(marker, 'click', function() {
-    infowindow.setContent(place.name);
-    infowindow.open(map, this);
-  });
-}
+// function callback(results, status) {
+//   if (status === google.maps.places.PlacesServiceStatus.OK) {
+//     for (var i = 0; i < results.length; i++) {
+//       createMarker(results[i]);
+//     }
+//   }
+// }
 
+// function createMarker(place) {
+//   var placeLoc = place.geometry.location;
+//   var marker = new google.maps.Marker({
+//     map: map,
+//     position: place.geometry.location
+//   });
 
-
-
-       
-    };
+//   google.maps.event.addListener(marker, 'click', function() {
+//     infowindow.setContent(place.name);
+//     infowindow.open(map, this);
+//   });
+// }
+};
 
 var sciencePage = function() {
      console.log('science clicked');
@@ -261,77 +332,6 @@ var sciencePage = function() {
 
 var counter = 0;
 
-var cartPage = function() {
-    console.log('cart page clicked');
-
-    // -------templates required for the cart page--------
-    var template = Handlebars.compile($('#cart-template').html());
-    var template1 = Handlebars.compile($('#temp-cart').html());
-    var template2 = Handlebars.compile($('#temp-cart-bottom').html());
-    var template3 = Handlebars.compile($('#checkout-template').html());
-
-     $('#page').empty();
-     $('#page-table').empty();
-     $('#page-table').append(template1()); //just appending a header template
-    
-
-    var cartObj =[];
-
-    for (var key in sessionStorage) {  //iterating over sessionStorage object and 
-        cartObj.push(JSON.parse(sessionStorage[key])); //pushing into empty array cartObj
-    }
-
-    var car = {     //Just inserting a cartObj in an obj , so we can pass an object into the template
-        obj: cartObj
-    }
-         
-         $('#page-table').append(template(car)); //appending the list of products objects template in the cart view
-        
-         
-         var sum =0;
-         for (var key in car.obj) {   //calculating the total price of the added products
-            sum = sum+ car.obj[key].price;
-         }
-
-         var total = {  //just inserting the sum in an object, so we can pass it to a template
-            sum: sum
-         }
-            
-            localStorage.setItem("total_price", sum);
-            localStorage.setItem("customer_id", user_id);
-
-            $('#page-table').append(template2(total)); //appending the template that has total price on it
- 
-            $.ajax({          //ajax call to get the customer id from session to add it to the data-value of the checkout button
-            url: '/sessions',
-            type: 'GET',
-            success: function(data) {
-                var sessObj = {
-                        id: data
-                    }
-                user_id = data
-                 $('#page-table').append(template3(sessObj));
-                
-            },            
-            fail: function(){
-                var sessObj = {
-                        id: null
-                    }
-
-                $('#page-table').append(template3(sessObj));
-            }
-
-        });
-            console.log(App.orders);
-            console.log(App.order);
-
-            if (!App.order) {
-          App.orders = new App.Collections.Orders();
-            App.order = new App.Views.Order({collection: App.orders});      
-        // App.order = new App.Views.Order();
-        }
-            
-}
 
 
 

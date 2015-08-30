@@ -1,7 +1,7 @@
 
 App.Collections.Categories = Backbone.Collection.extend({
 
-	url: '/categories',
+	url: '/categoriesprod/1',
 	model: App.Models.Category,
 
 	initialize: function() {

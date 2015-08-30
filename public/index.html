@@ -2,6 +2,7 @@
 <html lang="en">
   
   <head>
+   <!--  -->
    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <meta charset="UTF-8">
@@ -52,48 +53,57 @@
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" rel="stylesheet">
 
+
+
+
+
+
   </head>
   
   <body>
   <div id ='wrapper'>
 <div id="modal"></div>
 <div id="chat-modal"></div>
-  <div id="top-bar">
-  
 
-    <div id="title-wrap">
-    <div id="top-fix">
-      <div id = "contain">
-     
-      <div id="chat" id='high'> 
-      <p id='high'>Chat</p>
-      </div>
-      
-        <div id="sign-log" id='high'>
-          </div>
-          <div id="checkout" class="navigation-button" id='high'><p id='high'>Check Out</p></div>
-     </div>
-     </div>
-     <div id="cat-top">
-      <div id="top-bottom">
-       <div id="web" class="navigation-button" id='high'><h4 id='high'> 
-          SkinCareX</h4>
 
-        </div>
-       
-      <div id="categories" class="navigation-button">
-        <div class="company"><h4  id='high'>Company</h4></div>
-        <div class="products"> <h4  id='high'>Products</h4></div>
-        <div class="science"> <h4  id='high'>Science</h4></div>
-        <div class="skin"><h4  id='high'>Skin Explained</h4></div>
-        </div>
-      </div>
-
-      </div>
-      
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header" id="web">
+      <a class="navbar-brand" class="active" href="#">SkinCareX</a>
     </div>
-
+    
+   
+    <div>
+      <ul class="nav navbar-nav navbar-right" id="sign-log">
+                
+      </ul>
+    </div>
+    <div>
+    <ul class="nav navbar-nav">
+        <li class="company"><a href="#">Company</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Product
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+          <li  class="products"><a href="#">Products</a></li>
+            <li class="antioxidant"><a href="#">Antioxidant</a></li>
+            <li class="sunscreen"><a href="#">Sunscreen</a></li>
+            <li class="moisturizer"><a href="#">Moisturizer</a></li> 
+            <li class="cleanser"><a href="#">Cleanser</a></li> 
+          </ul>
+        </li>
+        <li class="science"><a href="#">Science</a></li> 
+        <li class="skin"><a href="#">Skin Explained</a></li> 
+      </ul>
+    </div>
+    
+   
   </div>
+</nav>
+
+
+
+
 
   <div id="left-bar">
   </div>
@@ -196,12 +206,13 @@
 
   <template id="sign-log-template">
       {{#if name}}
-          <div id="sign" class= "customer-name" data-value={{id}}> <p id='high'>Hello {{name}} </p></div> 
-          <div id="sign" class='log-out' data-value={{id}}><p id='high'>Log Out</p></div>
+        <li id="sign" class= "customer-name" data-value={{id}}><a href="#"><span class="glyphicon glyphicon-user"></span> Hello {{name}} </a></li>
+        <li id="sign" class='log-out' data-value={{id}}><a href="#"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+        <li id="checkout"><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Check Out</a></li>
        {{else}}
-          <div id="sign" class="sign-in"><p id='high'>Sign in</p></div>
-          <br>
-          <div id="sign" class="log-in"><p id='high'>Log in</p></div>
+          <li id="sign" class="sign-in"><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li id="sign" class="log-in"><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li id="checkout"><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Check Out</a></li>
         {{/if}}
       </template>
 
@@ -266,10 +277,7 @@
         <p>Physicians and skincare professionals define cosmeceuticals as products on the cutting-edge between cosmetics and pharmaceuticals. Active ingredients in cosmeceuticals are expected to be clinically proven to enhance skincare efficacy. At SkinCeuticals, our products provide scientifically proven skin improvement crafted in elegant formulations for customized skincare regimens.</p>
 
       </div>
-      <div class="video">
-        <video width="300" height="360" id="player1" preload="none" src="video/skin.mp4"></video>
-        
-      </div>
+      
 
     </div>
 
@@ -420,126 +428,127 @@
 <template id="skin-template">
 
 <div id="skin-container">
-<div class=" content_asset skin-explained-1 ">
-  <div class="asset-bg" style="background:url(http://demandware.edgesuite.net/aang_prd/on/demandware.static/-/Sites-skinc-us-Library/default/dw3b4f437f/skin-explained/SKN_EXPLN_Lndng_Hero_BG.jpg) center -7px no-repeat;">
-    <div class="PLP_banner">
-      <div class="text-wrapper">
-        <h1 class="asset_headline"><span>YOUR SKIN</span><br /> EXPLAINED</h1>
-        <div class="asset_description">Skin is the body's largest organ and one of the most important. In order to achieve optimal skin health, understanding the various skin types and conditions as well as factors that potentially cause damage is essential.</div>
-      </div>
-      
-    </div>
-  </div>
-</div>
 
-<div id="Div-2" class=" control-title" data-alt-title="Understanding Skin">
-          
-  <div class=" content_asset skin-explained-2 ">
-    <div class="CS_main">
-      <div data-multi-toggle="true" data-dropdown-selector="#Div-2 .accordion-content" class="CS_title visible-mobile accordion-title js_dropdown_control">UNDERSTANDING SKIN</div>
-      <div class="accordion-content">
-        <div class="CS_img">
-          <img src="http://demandware.edgesuite.net/aang_prd/on/demandware.static/-/Sites-skinc-us-Library/default/dw6a2d220c/skin-explained/SKN_EXPLN_Lndng_Undrstnd_IMG01.jpg">
-        </div>
-        <div class="CS_wrapper">
-          <div class="CS_title hidden-mobile">UNDERSTANDING SKIN</div>
-          
-          <div class="CS_intro">
-            <img class="visible-mobile" src="http://demandware.edgesuite.net/aang_prd/on/demandware.static/-/Sites-skinc-us-Library/default/dw6a2d220c/skin-explained/SKN_EXPLN_Lndng_Undrstnd_IMG01.jpg">
-            The skin is the largest organ of the body with multiple layers, structural proteins, and vital components responsible for its health and appearance. The key to optimal skin improvement is understanding the inner workings of this dynamic organ.
-          </div>
-          
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-      
-    
-      
         
-<div id="Div-3" class=" control-title" data-alt-title="Skin Types &amp; Skin Conditions">
-  <div class=" content_asset skin-explained-3 ">
-    <div class="CS_main">
-      <div data-multi-toggle="true" data-dropdown-selector="#Div-3 .accordion-content" class="CS_title visible-mobile accordion-title js_dropdown_control">SKIN TYPES & CONDITIONS</div>
-      <div class="accordion-content">
-        <div class="CS_img">
-          <img src="http://demandware.edgesuite.net/aang_prd/on/demandware.static/-/Sites-skinc-us-Library/default/dwd1c61f88/skin-explained/SKN_EXPLN_Lndng_SknTypCndtn_IMG01.jpg">
+         <div class="skin-1-head">
+        <h1>YOUR SKIN EXPLAINED</h1>
         </div>
-        <div class="CS_wrapper">
-          <div class="CS_title hidden-mobile">SKIN TYPES & CONDITIONS</div>
-          <div class="CS_intro">Every skin is different, and the combination of each skin type and particular skin condition presents a unique set of characteristics.</div>
-         
-        </div>      
-      </div>
-    </div>
-  </div>
-</div>
-      
-    
-      
+
+        <div class="skin-div" class="skin-1">
+        <p>
+        Skin is the body's largest organ and one of the most important. In order to achieve optimal skin health, understanding the various skin types and conditions as well as factors that potentially cause damage is essential.</p>
+        </div>
+   
+        <div class="skin-2-head">
+        <h1>UNDERSTANDING SKIN</h1>
+        </div>
+
+        <div class="skin-div" class="skin-2">
+        <p>The skin is the largest organ of the body with multiple layers, structural proteins, and vital components responsible for its health and appearance. The key to optimal skin improvement is understanding the inner workings of this dynamic organ.</p>
+        </div>
+
+        <div class="skin-pic1">
+          <img src="http://demandware.edgesuite.net/aang_prd/on/demandware.static/-/Sites-skinc-us-Library/default/dwd1c61f88/skin-explained/SKN_EXPLN_Lndng_SknTypCndtn_IMG01.jpg" class="img-rounded">
+        </div>
+
+        <div class="skin-pic2">
+           <img class="visible-mobile" src="http://demandware.edgesuite.net/aang_prd/on/demandware.static/-/Sites-skinc-us-Library/default/dw6a2d220c/skin-explained/SKN_EXPLN_Lndng_Undrstnd_IMG01.jpg" class="img-rounded">
+        </div>
+
+         <div class="skin-pic3">
+               <img src="http://demandware.edgesuite.net/aang_prd/on/demandware.static/-/Sites-skinc-us-Library/default/dw5c0673e4/skin-explained/SKN_EXPLN_Lndng_Envrmntl_IMG02.jpg" class="img-rounded">
+            </div>
+
+        <div class="skin-3-head">
+        <h1>SKIN TYPES & CONDITIONS</h1>
+        </div>
+
+        <div class="skin-div" class="skin-3">
         
-<div id="Div-4" class=" control-title" data-alt-title="Environmental Aggressors">
-  <div class=" content_asset skin-explained-4 ">
-  <div class="CS_main">
-      <div data-multi-toggle="true" data-dropdown-selector="#Div-4 .accordion-content:first" class="CS_title visible-mobile accordion-title js_dropdown_control">Sun Damage & Sun Protection</div>
-      <div class="accordion-content">
-        <div class="CS_img" >
-          <iframe width="359" height="201" src="//www.youtube.com/embed/O1VnRLmTppU?wmode=transparent" frameborder="0" allowfullscreen wmode="Opaque"></iframe>
+        <p>Every skin is different, and the combination of each skin type and particular skin condition presents a unique set of characteristics.</p>
         </div>
-        <div class="CS_wrapper" >
-          <div class="CS_title hidden-mobile">Sun Damage & Sun Protection</div>
-          <div class="CS_text">
-            The sun is the source of energy that sustains life, but accumulated exposure without proper protection has negative consequences.
+
+        <div class="skin-4-head">
+        <h1>Sun Damage & Sun Protection</h1>
+        </div>
+
+        <div class="skin-div" class="skin-4">
+        
+        <p>The sun is the source of energy that sustains life, but accumulated exposure without proper protection has negative consequences.</p>
+        </div>
+
+        <div class="skin-div" class="skin-5">
+        <p>
             The three main types of rays that damage our skin are UVA, UVB, and infrared rays, all of which have the ability to penetrate skin and cause damage to cells and DNA. 
-            On the surface, this damage manifests as fine lines, wrinkles, laxity, and discoloration, but the most dangerous consequence beneath the surface is the risk of skin cancer.<br><br>
-            To adequately shield skin from the sun, sunscreen needs to be a part of every daily routine. Options include physical UV-reflecting ingredients, chemical UV-absorbing 
+            </p>
+          </div>
+          <div class="skin-div" class="skin-6">
+           <p>
+            On the surface, this damage manifests as fine lines, wrinkles, laxity, and discoloration, but the most dangerous consequence beneath the surface is the risk of skin cancer.</p>
+           
+          </div>
+          <br><br>
+          <div class="skin-div" class="skin-7">
+          <p>
+             To adequately shield skin from the sun, sunscreen needs to be a part of every daily routine. Options include physical UV-reflecting ingredients, chemical UV-absorbing 
             ingredients, or a combination of both, but the most important thing to look for on a label is the term "broad spectrum". This indicates full coverage from the entire spectrum 
-            of UVA and UVB radiation, whereas SPF only measures the length of time one is protected from the UVB rays responsible for sunburn.<br><br>Research has shown that sunscreen alone 
+            of UVA and UVB radiation, whereas SPF only measures the length of time one is protected from the UVB rays responsible for sunburn.
+            </p>
+            </div><br><br>
+            <div class="skin-div" class="skin-8">
+            <p>Research has shown that sunscreen alone 
             does not provide adequate protection from environmental damage. A key finding shows that the average consumer does not apply enough sunscreen, therefore only obtaining up to 
-            half the protection stated on the bottle. Second, sunscreens only block 55%* of the free radicals generated by UV exposure. Finally, UV filters do not provide protection from 
+            half the protection stated on the bottle. Second, sunscreens only block 55%* of the free radicals generated by UV exposure.
+            </p>
+            </div>
+            <div class="skin-div" class="skin-9">
+            <p> Finally, UV filters do not provide protection from 
             damaging infrared radiation. For broad range protection against all sources of environmental skin insults, it’s imperative to use a topical antioxidant in conjunction with a 
             daily sunscreen. SkinCareX offers eight antioxidant products that have been clinically proven to provide optimal protection from the damage caused by UV rays and other 
-            environmental factors.<br><br>
-            <i>* Haywood, R., et al, J Invest Dermatol 2006;121:862-868</i>
-          </div>
-        </div>
-      </div>
-      <div id="Div-4_1">
-        <div data-multi-toggle="true" data-dropdown-selector="#Div-4_1 .accordion-content" class="CS_title visible-mobile accordion-title js_dropdown_control">Environmental Aggressors</div>
-        <div class="accordion-content">
-          <div class="CS_img">
-            <img src="http://demandware.edgesuite.net/aang_prd/on/demandware.static/-/Sites-skinc-us-Library/default/dw5c0673e4/skin-explained/SKN_EXPLN_Lndng_Envrmntl_IMG02.jpg">
-          </div>
-          <div class="CS_wrapper">
-            <div class="CS_title hidden-mobile">Environmental Aggressors</div>
-            <div class="CS_text">
-              A natural reservoir of protective antioxidants helps the skin repair itself, but as it is bombarded with environmental aggressors, this supply is quickly depleted. Without antioxidant protection, the skin can succumb to cellular damage that affects both its appearance and long-term health.<br><br>
-              The main environmental factors that contribute to skin damage are sunlight, infrared radiation, air pollution, alcohol consumption, and cigarette smoke. These aggressors generate free radicals, which cause a damaging chain of events in the skin that compromises vital cellular components as well as the cells’ DNA. Inflammation, DNA mutations, protein damage, and changes in gene expression are among the other destructive effects. When cells become less able to defend themselves from environmental insults and lose their ability to replicate correctly, the visible signs include fine lines, wrinkles, laxity, discoloration, and potentially skin cancer.
+            environmental factors.</p>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-      
+
+           
+
+            <div class="skin-div" class="skin-10">
+            <p>A natural reservoir of protective antioxidants helps the skin repair itself, but as it is bombarded with environmental aggressors, this supply is quickly depleted. Without antioxidant protection, the skin can succumb to cellular damage that affects both its appearance and long-term health.</p>
+            </div>
+
+            <div class="skin-div" class="skin-11">
+            <p>The main environmental factors that contribute to skin damage are sunlight, infrared radiation, air pollution, alcohol consumption, and cigarette smoke. These aggressors generate free radicals, which cause a damaging chain of events in the skin that compromises vital cellular components as well as the cells’ DNA. </p>
+            </div>
+
+            <div class="skin-div" class="skin-12">
+            <p>Inflammation, DNA mutations, protein damage, and changes in gene expression are among the other destructive effects. When cells become less able to defend themselves from environmental insults and lose their ability to replicate correctly, the visible signs include fine lines, wrinkles, laxity, discoloration, and potentially skin cancer.</p>
+            </div>
+
+            <div class="skin-13-head">
+              <h1>The Importance of a Proper Regimen</h1>
+            </div>
+
+            <div class="skin-div" class="skin-13">
+            
+            <p>In order to maintain and improve the health and appearance of skin, a proper skincare regimen is essential. Although the specific products depend on skin type and skin conditions, every effective regimen must include three fundamental elements&mdash;Prevention, Protection, and Correction. At SkinCareX, our product philosophy and consumer education programs are built around these principles.  These three steps address and minimize the effects that environmental aggressors have on the skin.</p>
+            </div>
+
+            <div class="skin-div" class="skin-14">
+            <p>To "Prevent" accelerated skin aging and skin cancer, it's imperative to use a daily topical antioxidant. This targeted range of products prevents skin damage by neutralizing the free radicals generated by UV rays, infrared radiation, and other environmental factors like pollution, alcohol consumption, and cigarette smoke.</p>
+            </div>
+
+            <div class="skin-div" class="skin-15">
+            <p>Photodamage created by the sun is the number-one cause of accelerated skin aging and skin cancer. In order to prevent this damage, it’s essential to “Protect” skin with sunscreen. SkinCareX offers a full range of broad spectrum sunscreens designed for different skin types, conditions, and lifestyles in order to shield skin from UV rays.</p>
+            </div>
+
+            <div class="skin-div" class="skin-16">
+              <p>To minimize lines, wrinkles, discoloration, and other visible effects of past damage, SkinCareX offers products designed to "Correct". These potent skincare products are formulated with powerful ingredients and advanced technologies to restore a healthier, younger-looking complexion.<br><br>
+            These three components ensure an effective skincare regimen for maintaining and improving the health and appearance of skin.</p>
+            </div>
+
+            <div class="skin-div" class="skin-17">
+            <p> A SkinCareX skincare professional can create an effective skincare regimen that is tailored to every unique skin type and condition. These professionals are extensively trained in the science behind SkinCareX and can prescribe additional in-office treatments that make it possible to achieve one’s skincare goals. Think of a SkinCareX skincare professional as an essential partner for healthy, beautiful skin.</p>
+            </div>
     
-      
-        
-  <div id="Div-5" class=" control-title" data-alt-title="Skin Regimen">
-    <div class=" content_asset skin-explained-5 ">
-      <div class="CS_main">
-        <div data-multi-toggle="true" data-dropdown-selector="#Div-5 .accordion-content" class="CS_title accordion-title js_dropdown_control">The Importance of a Proper Regimen</div>
-        <div class="accordion-content CS_wrapper">In order to maintain and improve the health and appearance of skin, a proper skincare regimen is essential. Although the specific products depend on skin type and skin conditions, every effective regimen must include three fundamental elements&mdash;Prevention, Protection, and Correction. At SkinCareX, our product philosophy and consumer education programs are built around these principles.  These three steps address and minimize the effects that environmental aggressors have on the skin.<br><br>
-            To "Prevent" accelerated skin aging and skin cancer, it's imperative to use a daily topical antioxidant. This targeted range of products prevents skin damage by neutralizing the free radicals generated by UV rays, infrared radiation, and other environmental factors like pollution, alcohol consumption, and cigarette smoke. <br><br>
-            Photodamage created by the sun is the number-one cause of accelerated skin aging and skin cancer. In order to prevent this damage, it’s essential to “Protect” skin with sunscreen. SkinCareX offers a full range of broad spectrum sunscreens designed for different skin types, conditions, and lifestyles in order to shield skin from UV rays.<br>
-            To minimize lines, wrinkles, discoloration, and other visible effects of past damage, SkinCareX offers products designed to "Correct". These potent skincare products are formulated with powerful ingredients and advanced technologies to restore a healthier, younger-looking complexion.<br><br>
-            These three components ensure an effective skincare regimen for maintaining and improving the health and appearance of skin.<br><br>
-        A SkinCareX skincare professional can create an effective skincare regimen that is tailored to every unique skin type and condition. These professionals are extensively trained in the science behind SkinCareX and can prescribe additional in-office treatments that make it possible to achieve one’s skincare goals. Think of a SkinCareX skincare professional as an essential partner for healthy, beautiful skin.</div>
-      </div>
-    </div>
-  </div>
+
 </div>
 </template>
 
@@ -873,16 +882,85 @@
 </template>
 
 <template id="google-template">
+
+
+
+
  <script src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places&callback=initMap" async defer></script>
  <div id="find" id='high'> 
       <p id='high'>Find a dermatologist</p>
       </div>
+
+
+
+ <div id="location-input-div" class="input-div">
+    <div id="location-label" class="form-section-label">Location:</div>
+    <input type="hidden" id="location" name="location">
+    <input type="hidden" id="location_specific" name="location_specific">
+    <div id="location-from-ip-div" style="display: none;">
+      <input type="text" id="location-from-ip-display-box" class="input-text" readonly>
+      <div id="location-from-ip-confirmation" class="line-message-div">
+        <div class="line-message">Is this accurate?</div>
+        <a id="correct-location-button" class='form-button form-button-a-tag'><center>Yes</center></a>
+        <a id="incorrect-location-button" class='form-button form-button-a-tag'><center>No</center></a>
+        <br>
+      </div>
+    </div>
+    <div id="locationField">
+      <input id="autocomplete" class="input-text" onFocus="geolocate()" type="text" placeholder="Enter your location"></input>
+      <div id="location-from-autocomplete-confirmation" style='display: none;' class="line-message-div">
+        <br>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
 <script>
+
+
+
+    
 var map;
 var infowindow;
 
 function initMap() {
-  var dermatologists = {lat: 40.7033127, lng: -73.979681};
+
+// var script = document.createElement('script');
+//     script.src = "http://maps.googleapis.com/maps/api/js?sensor=false&callback=initialize";
+//     script.id = 'google-maps-api'
+//     document.getElementById('map_wrapper').appendChild(script);
+//     console.log('Google maps API script appended.')
+
+
+  // var dermatologists = {lat: 40.7033127, lng: -73.979681};
+
+var map;
+
+    var bounds = new google.maps.LatLngBounds();
+    
+    var mapOptions = {
+        mapTypeId: 'roadmap'
+    };
+                    
+    // Display a map on the page
+    // map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    // map.setTilt(45);
+        
+    // Multiple Markers
+
+    var markers = [
+        {{#each this}}
+      ['{{name}}', {{geolocation}}],
+    {{/each}}
+    ];
+
+
+
 
   map = new google.maps.Map(document.getElementById('map'), {
     center: dermatologists,
@@ -952,6 +1030,9 @@ function createMarker(place) {
 <script src="/javascript/backbone/views/signinview.js"></script>
 <script src="/javascript/backbone/views/signlogview.js"></script>
 <script src="/javascript/backbone/views/orderview.js"></script>
+<script src="/javascript/backbone/views/antioxidantview.js"></script>
+<script src="/javascript/backbone/views/sunscreenview.js"></script>
+
  
 <script src="/javascript/backbone/models/categorymodel.js"></script>
 <script src="/javascript/backbone/models/productmodel.js"></script>
@@ -969,9 +1050,18 @@ function createMarker(place) {
 
 
  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> 
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> 
+
+
+
+ 
+
+
 </body>
 
 <footer>

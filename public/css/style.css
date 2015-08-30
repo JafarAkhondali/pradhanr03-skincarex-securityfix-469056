@@ -46,6 +46,7 @@ background: -moz-linear-gradient(top,  rgba(240,249,255,1) 0%, rgba(203,235,255,
 	
 }
 
+
 #checkout-button {
 	background: #cdeb8e; /* Old browsers */
 	background: -moz-linear-gradient(top, #cdeb8e 0%, #a5c956 100%); /* FF3.6+ */
@@ -92,10 +93,7 @@ background: #ffd65e; /* Old browsers */
 }
 
 
-#web {
-	text-align: center;
-	
-}
+
 
 #science-explained {
 	display: flex;
@@ -328,31 +326,31 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#959595', end
 	margin-right: 10%;
 }
 
-#sign-cart-wrap {
+/*#sign-cart-wrap {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	/*margin-right: 2%;*/
-}
+	
+}*/
 
 
-
+/*
 #sign-log {
 	display: flex;
 	flex-direction: row;
-	/*align-self: flex-end;*/
+	
 	margin-left:700px; 
 	
 	padding: 6px;
 	
-}
-#sign {
+}*/
+/*#sign {
 	padding: 6px;
 
 }
 #checkout {
 	margin-top: 1%;
-}
+}*/
 
 #chat {
 	margin-top: 1%;
@@ -429,3 +427,28 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f6f6', end
 	text-align: right;
 	margin-right: 6%;
 }
+
+#skin-container {
+	background: url(http://wwwlifespancom.c.presscdn.com/wp-content/uploads/2014/01/how-to-keep-your-skin-wrinkle-free.jpg) fixed;
+	margin: 0px;
+	background-size: 100% 150%;
+    background-repeat: no-repeat;
+}
+
+.skin-div {
+	background: white;
+	border-radius: 25px;
+    border: 2px solid #D0FAEE;
+    padding: 20px; 
+    width: 400px;
+    box-shadow: h-shadow v-shadow blur spread color inset;
+   /*padding: ;*/
+
+   /* height: 150px;*/ 
+}
+
+
+
+
+
+
