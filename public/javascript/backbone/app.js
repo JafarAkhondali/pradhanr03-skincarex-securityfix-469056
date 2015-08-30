@@ -20,7 +20,7 @@ $(function() {
     $('#web').click(homePage);
     $('.skin').click(skinPage);
     $('.science').click(sciencePage);
-    $('#chat').click(chatPage);
+    $('.chat').click(chatPage);
    
    
 
