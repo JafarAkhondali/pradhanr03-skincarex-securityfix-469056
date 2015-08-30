@@ -66,7 +66,7 @@
 <div id="chat-modal"></div>
 
 
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header" id="web">
       <a class="navbar-brand" class="active" href="#">SkinCareX</a>
@@ -111,7 +111,7 @@
   <div id="right-bar">
   </div>
 
-  <div id="page-container">
+  <div id="page-container" class="container-fluid">
   <div id="page-table"></div>
     <div id="page">
      
@@ -127,7 +127,7 @@
 
       
         <div class = 'product-list'>
-          <img src="{{image}}">
+          <img src="{{image}}" class="img-thumbnail img-rounded">
           <h6><a href="#" class="product-modal" data-value="{{id}}">{{title}}</a></h6>
           <p>${{price}}</p>
         </div>
@@ -139,7 +139,7 @@
 
       {{#each products}}
         <div class = 'product-list'>
-          <img src="{{image}}">
+          <img src="{{image}}" class="img-thumbnail img-rounded">
           <h6 class='m-title'><a href="#" class="product-modal" data-value="{{id}}">{{title}}</a></h6>
           <div>
           <p class='m-price'>${{price}}</p></div>
@@ -151,7 +151,7 @@
     <p><button class='close'>Return Back</button></p>
     <div class ="per-modal">
       <div class ="img">
-      <img src="{{image}}">
+      <img src="{{image}}" class="img-thumbnail img-rounded">
       </div>
       <div class="info">
         <div class="title">
@@ -217,24 +217,24 @@
       </template>
 
   <template id='signin-template'>
-    <div class='signup'>
-     
+    <div class='signup form-group'>
+      
       <h2> SIGN UP</h2>
           
             <label>Name:</label>
               <br>
-            <input type="text" name="name" placeholder="Enter your name" required/>
+            <input type="text" class='form-control' name="name" placeholder="Enter your name" required/>
               <br> 
             <label>Email:</label>
               <br>
-            <input type="text" name="email" placeholder="Enter your email" required/>
+            <input type="text" class='form-control' name="email" placeholder="Enter your email" required/>
               <br>
             <label>Password:</label>
               <br>
-            <input type="password" name="password" placeholder="Enter your password" required/>
+            <input type="password" class='form-control' name="password" placeholder="Enter your password" required/>
               <br>
               <br>
-            <button id='signup-button' name="sign">Submit</button>
+            <button id='signup-button' class="btn-lg btn-default" name="sign">Submit</button>
             <br>
             <br>
         
@@ -242,19 +242,19 @@
   </template>
 
   <template id='login-template'>
-    <div class='signup'>
+    <div class='signup form-group'>
       <h2> LOG IN</h2>
         <label>Email:</label>
         <br>
-        <input type="text" name="email" placeholder="Enter your email" required/>
+        <input type="text" class='form-control' name="email" placeholder="Enter your email" required/>
         <br>
         <br>
         <label>Password:</label>
         <br>
-            <input type="password" name="password" placeholder="Enter your password" required/>
+            <input type="password" class='form-control' name="password" placeholder="Enter your password" required/>
               <br>
               <br>
-            <button id='login-button' name="log">Submit</button>
+            <button id='login-button' class="btn-lg btn-default" name="log">Submit</button>
             <br>
             <br>
         
@@ -1032,6 +1032,8 @@ function createMarker(place) {
 <script src="/javascript/backbone/views/orderview.js"></script>
 <script src="/javascript/backbone/views/antioxidantview.js"></script>
 <script src="/javascript/backbone/views/sunscreenview.js"></script>
+<script src="/javascript/backbone/views/moisturizerview.js"></script>
+<script src="/javascript/backbone/views/cleanserview.js"></script>
 
  
 <script src="/javascript/backbone/models/categorymodel.js"></script>
@@ -1044,6 +1046,9 @@ function createMarker(place) {
 <script src="/javascript/backbone/collections/productscollection.js"></script>
 <script src="/javascript/backbone/collections/customerscollection.js"></script>
 <script src="/javascript/backbone/collections/orderscollection.js"></script>
+<script src="/javascript/backbone/collections/sunscreencollection.js"></script>
+<script src="/javascript/backbone/collections/moisturizercollection.js"></script>
+<script src="/javascript/backbone/collections/cleansercollection.js"></script>
 
 
 

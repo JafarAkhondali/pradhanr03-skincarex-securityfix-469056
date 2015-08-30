@@ -9,6 +9,7 @@ App.Views.Login = Backbone.View.extend({
 	},
 
 	render: function () {
+		$('#page-table').empty();
 		this.$el.empty();
 		this.$el.append(this.template());
 	},

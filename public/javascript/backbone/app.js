@@ -14,6 +14,8 @@ $(function() {
     $('.products').click(productPage);
     $('.antioxidant').click(antioxidantPage);
     $('.sunscreen').click(sunscreenPage);
+    $('.moisturizer').click(moisturizerPage);
+    $('.cleanser').click(cleanserPage);
     $('.company').click(companyPage);
     $('#web').click(homePage);
     $('.skin').click(skinPage);
@@ -149,9 +151,9 @@ var antioxidantPage = function() {
 var sunscreenPage = function() {
      console.log('sunscreen clicked');
      $('#page-table').empty();
-
+        
         // App.sunscreen = Backbone.Collection.extend({url: '/categoriesprod/1'});
-       App.sunscreens = new App.Collections.Categories({url: '/categoriesprod/2'})
+       App.sunscreens = new App.Collections.Sunscreens();
 
         App.SunscreenView = new App.Views.SunscreenView({collection: App.sunscreens});
         
@@ -165,11 +167,25 @@ var moisturizerPage = function() {
      console.log('moisturizer clicked');
      $('#page-table').empty();
        
-        App.moisturizer = new App.Models.Category({id: 3});
+        App.moisturizer = new App.Collections.Moisturizers();
 
-        App.MoisturizerView = new App.Views.MoisturizerView({model: App.moisturizer});
+        App.MoisturizerView = new App.Views.MoisturizerView({collection: App.moisturizer});
         
         App.moisturizer.fetch({
+            reset: true
+        });
+
+    };
+
+var cleanserPage = function() {
+     console.log('cleanser clicked');
+     $('#page-table').empty();
+       
+        App.cleanser = new App.Collections.Cleansers();
+
+        App.CleanserView = new App.Views.CleanserView({collection: App.cleanser});
+        
+        App.cleanser.fetch({
             reset: true
         });
 
