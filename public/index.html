@@ -56,6 +56,26 @@
 
 
 
+<!-- skin page parallex -->
+
+<script>
+function parallax() {
+  var layer1 = document.getElementById('skin-pic1');
+  layer1.style.top = -(window.pageYOffset/1)+'px';
+  var layer2 = document.getElementById('skin-pic2');
+  layer2.style.top = -(window.pageYOffset/2)+'px';
+  var layer3 = document.getElementById('skin-pic3');
+  layer3.style.top = -(window.pageYOffset/3.6)+'px';
+  
+   
+  // var layer5 = document.getElementById('content_layer');
+  // layer5.style.top = -(window.pageYOffset/20)+'px';
+
+}
+
+window.addEventListener("scroll", parallax, false);
+</script>
+
 
 
   </head>
@@ -114,10 +134,50 @@
   <div id="page-container" class="container-fluid">
   <div id="page-table"></div>
     <div id="page">
+
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+    <li data-target="#myCarousel" data-slide-to="3"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img src="http://demandware.edgesuite.net/aang_prd/on/demandware.static/-/Sites-skinc-us-Library/default/dwc84fe9a3/homepage-slide-top/gwp_homepage_panel.jpg" alt="Chania">
+    </div>
+
+    <div class="item">
+      <img src="https://www.mediabistro.com/portfolios/samples_files/1420311_J0X7vs3r6H8rcTbR_8ZC46Oka.jpg" alt="Chania">
+    </div>
+
+    <div class="item">
+      <img src="https://puipo.files.wordpress.com/2014/03/shiseido-white-lucent.jpg" alt="Flower">
+    </div>
+
+    <div class="item">
+      <img src="http://cremitas.com/wp-content/2010/11/BiothermSkinVivo.jpg" alt="Flower">
+    </div>
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+
+
      
-      <div class="img1">
-      <img src="http://demandware.edgesuite.net/aang_prd/on/demandware.static/-/Sites-skinc-us-Library/default/dwc84fe9a3/homepage-slide-top/gwp_homepage_panel.jpg">
-      </div>
+      
     </div>
   </div>
   <div class="push"></div>
@@ -216,9 +276,45 @@
 
 
   <template id="home-template">
-    <div class="img1">
-      <img src="http://demandware.edgesuite.net/aang_prd/on/demandware.static/-/Sites-skinc-us-Library/default/dwc84fe9a3/homepage-slide-top/gwp_homepage_panel.jpg">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+    <li data-target="#myCarousel" data-slide-to="3"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img src="http://demandware.edgesuite.net/aang_prd/on/demandware.static/-/Sites-skinc-us-Library/default/dwc84fe9a3/homepage-slide-top/gwp_homepage_panel.jpg" alt="Chania">
     </div>
+
+    <div class="item">
+      <img src="https://www.mediabistro.com/portfolios/samples_files/1420311_J0X7vs3r6H8rcTbR_8ZC46Oka.jpg" alt="Chania">
+    </div>
+
+    <div class="item">
+      <img src="https://puipo.files.wordpress.com/2014/03/shiseido-white-lucent.jpg" alt="Flower">
+    </div>
+
+    <div class="item">
+      <img src="http://cremitas.com/wp-content/2010/11/BiothermSkinVivo.jpg" alt="Flower">
+    </div>
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
   </template>
 
   <template id="sign-log-template">
@@ -445,60 +541,74 @@
 <template id="skin-template">
 
 <div id="skin-container">
-
+  <div id="skin-pic1">
         
-         <div class="skin-1-head">
-        <h1>YOUR SKIN EXPLAINED</h1>
         </div>
 
+        <div id="skin-pic2">
+           
+        </div>
+
+         <div id="skin-pic3">
+             
+            </div>
+
+        
+        <!-- 
+         <div id="skin-1-head">
+        <h1>YOUR SKIN EXPLAINED</h1>
+        </div>
+ -->
+        
+   
+        <!-- <div id="skin-2-head">
+        <h1>UNDERSTANDING SKIN</h1>
+        </div>
+
+        <div id="skin-3-head">
+        <h1>SKIN TYPES & CONDITIONS</h1>
+        </div>
+ -->
+        <!-- <div id="skin-4-head">
+        <h1>Sun Damage & Sun Protection</h1>
+        </div>
+
+         <div id="skin-13-head">
+              <h1>The Importance of a Proper Regimen</h1>
+            </div> -->
+
+        <div id ="content_layer">
+        <br><br>
         <div class="skin-div" class="skin-1">
         <p>
         Skin is the body's largest organ and one of the most important. In order to achieve optimal skin health, understanding the various skin types and conditions as well as factors that potentially cause damage is essential.</p>
         </div>
-   
-        <div class="skin-2-head">
-        <h1>UNDERSTANDING SKIN</h1>
-        </div>
-
+        <br><br>
         <div class="skin-div" class="skin-2">
         <p>The skin is the largest organ of the body with multiple layers, structural proteins, and vital components responsible for its health and appearance. The key to optimal skin improvement is understanding the inner workings of this dynamic organ.</p>
         </div>
-
-        <div class="skin-pic1">
-          <img src="http://demandware.edgesuite.net/aang_prd/on/demandware.static/-/Sites-skinc-us-Library/default/dwd1c61f88/skin-explained/SKN_EXPLN_Lndng_SknTypCndtn_IMG01.jpg" class="img-rounded">
-        </div>
-
-        <div class="skin-pic2">
-           <img class="visible-mobile" src="http://demandware.edgesuite.net/aang_prd/on/demandware.static/-/Sites-skinc-us-Library/default/dw6a2d220c/skin-explained/SKN_EXPLN_Lndng_Undrstnd_IMG01.jpg" class="img-rounded">
-        </div>
-
-         <div class="skin-pic3">
-               <img src="http://demandware.edgesuite.net/aang_prd/on/demandware.static/-/Sites-skinc-us-Library/default/dw5c0673e4/skin-explained/SKN_EXPLN_Lndng_Envrmntl_IMG02.jpg" class="img-rounded">
-            </div>
-
-        <div class="skin-3-head">
-        <h1>SKIN TYPES & CONDITIONS</h1>
-        </div>
+        <br><br>
+        
 
         <div class="skin-div" class="skin-3">
         
         <p>Every skin is different, and the combination of each skin type and particular skin condition presents a unique set of characteristics.</p>
         </div>
-
-        <div class="skin-4-head">
-        <h1>Sun Damage & Sun Protection</h1>
-        </div>
+<br><br>
+        
 
         <div class="skin-div" class="skin-4">
         
         <p>The sun is the source of energy that sustains life, but accumulated exposure without proper protection has negative consequences.</p>
         </div>
-
+<br><br>
         <div class="skin-div" class="skin-5">
         <p>
             The three main types of rays that damage our skin are UVA, UVB, and infrared rays, all of which have the ability to penetrate skin and cause damage to cells and DNA. 
             </p>
           </div>
+<br><br>
+
           <div class="skin-div" class="skin-6">
            <p>
             On the surface, this damage manifests as fine lines, wrinkles, laxity, and discoloration, but the most dangerous consequence beneath the surface is the risk of skin cancer.</p>
@@ -518,6 +628,7 @@
             half the protection stated on the bottle. Second, sunscreens only block 55%* of the free radicals generated by UV exposure.
             </p>
             </div>
+            <br><br>
             <div class="skin-div" class="skin-9">
             <p> Finally, UV filters do not provide protection from 
             damaging infrared radiation. For broad range protection against all sources of environmental skin insults, it’s imperative to use a topical antioxidant in conjunction with a 
@@ -525,44 +636,44 @@
             environmental factors.</p>
             </div>
 
-           
+           <br><br>
 
             <div class="skin-div" class="skin-10">
             <p>A natural reservoir of protective antioxidants helps the skin repair itself, but as it is bombarded with environmental aggressors, this supply is quickly depleted. Without antioxidant protection, the skin can succumb to cellular damage that affects both its appearance and long-term health.</p>
             </div>
-
+<br><br>
             <div class="skin-div" class="skin-11">
             <p>The main environmental factors that contribute to skin damage are sunlight, infrared radiation, air pollution, alcohol consumption, and cigarette smoke. These aggressors generate free radicals, which cause a damaging chain of events in the skin that compromises vital cellular components as well as the cells’ DNA. </p>
             </div>
-
+<br><br>
             <div class="skin-div" class="skin-12">
             <p>Inflammation, DNA mutations, protein damage, and changes in gene expression are among the other destructive effects. When cells become less able to defend themselves from environmental insults and lose their ability to replicate correctly, the visible signs include fine lines, wrinkles, laxity, discoloration, and potentially skin cancer.</p>
             </div>
 
-            <div class="skin-13-head">
-              <h1>The Importance of a Proper Regimen</h1>
-            </div>
+           <br><br>
 
             <div class="skin-div" class="skin-13">
             
             <p>In order to maintain and improve the health and appearance of skin, a proper skincare regimen is essential. Although the specific products depend on skin type and skin conditions, every effective regimen must include three fundamental elements&mdash;Prevention, Protection, and Correction. At SkinCareX, our product philosophy and consumer education programs are built around these principles.  These three steps address and minimize the effects that environmental aggressors have on the skin.</p>
             </div>
-
+<br><br>
             <div class="skin-div" class="skin-14">
             <p>To "Prevent" accelerated skin aging and skin cancer, it's imperative to use a daily topical antioxidant. This targeted range of products prevents skin damage by neutralizing the free radicals generated by UV rays, infrared radiation, and other environmental factors like pollution, alcohol consumption, and cigarette smoke.</p>
             </div>
-
+<br><br>
             <div class="skin-div" class="skin-15">
             <p>Photodamage created by the sun is the number-one cause of accelerated skin aging and skin cancer. In order to prevent this damage, it’s essential to “Protect” skin with sunscreen. SkinCareX offers a full range of broad spectrum sunscreens designed for different skin types, conditions, and lifestyles in order to shield skin from UV rays.</p>
             </div>
-
+<br><br>
             <div class="skin-div" class="skin-16">
               <p>To minimize lines, wrinkles, discoloration, and other visible effects of past damage, SkinCareX offers products designed to "Correct". These potent skincare products are formulated with powerful ingredients and advanced technologies to restore a healthier, younger-looking complexion.<br><br>
             These three components ensure an effective skincare regimen for maintaining and improving the health and appearance of skin.</p>
             </div>
-
+<br><br>
             <div class="skin-div" class="skin-17">
             <p> A SkinCareX skincare professional can create an effective skincare regimen that is tailored to every unique skin type and condition. These professionals are extensively trained in the science behind SkinCareX and can prescribe additional in-office treatments that make it possible to achieve one’s skincare goals. Think of a SkinCareX skincare professional as an essential partner for healthy, beautiful skin.</p>
+            </div>
+            <br><br>
             </div>
     
 

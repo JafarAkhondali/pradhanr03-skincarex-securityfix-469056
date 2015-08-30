@@ -281,6 +281,7 @@ var skinPage = function() {
      console.log('skin clicked');
       // $('#autocomplete').keyup(geoAutocomplete);
      $('#page-table').empty();
+     
      var template = Handlebars.compile($('#skin-template').html());
      $('#page').empty();
      $('#page').append(template);
