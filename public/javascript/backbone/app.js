@@ -21,6 +21,9 @@ $(function() {
     $('.skin').click(skinPage);
     $('.science').click(sciencePage);
     $('.chat').click(chatPage);
+    $('.google').click(googlePage);
+    $('.privacy').click(privacyPage);
+   
    
    
 
@@ -30,18 +33,6 @@ $(function() {
 
 
 
-
-// geoAutocomplete: function(e) {
-//     var keyPressed = e.keyCode || e.which;
-
-//     // keyCode 13 is return key; keyCode 9 is tab key
-//     if ((keyPressed !== 13) && (keyPressed !== 9)) {
-//       $('#geolocation').val('')
-//       $('#location_specific').val($('#autocomplete').val());
-//       console.log('geolocation: ' + $('#geolocation').val());
-//       console.log('location specific: ' + $('#location_specific').val());
-//     }
-//   };
 
 
 
@@ -202,6 +193,77 @@ var companyPage = function() {
      $('#page').append(template);
 };
 
+var privacyPage = function() {
+     console.log('privacy clicked');
+    
+};
+
+
+
+var googlePage = function() {
+     console.log('google clicked');     
+      $('#page-table').empty();
+     var template = Handlebars.compile($('#google-template').html());
+     $('#page').empty();
+     $('#page').append(template);
+
+     var map;
+var infowindow;
+
+function initMap() {
+  var pyrmont = {lat: -33.867, lng: 151.195};
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: pyrmont,
+    zoom: 15
+  });
+
+  infowindow = new google.maps.InfoWindow();
+
+  var service = new google.maps.places.PlacesService(map);
+  service.nearbySearch({
+    location: pyrmont,
+    radius: 500,
+    types: ['store']
+  }, callback);
+}
+
+function callback(results, status) {
+  if (status === google.maps.places.PlacesServiceStatus.OK) {
+    for (var i = 0; i < results.length; i++) {
+      createMarker(results[i]);
+    }
+  }
+}
+
+function createMarker(place) {
+  var placeLoc = place.geometry.location;
+  var marker = new google.maps.Marker({
+    map: map,
+    position: place.geometry.location
+  });
+
+  google.maps.event.addListener(marker, 'click', function() {
+    infowindow.setContent(place.name);
+    infowindow.open(map, this);
+  });
+}
+
+// geoAutocomplete: function(e) {
+//     var keyPressed = e.keyCode || e.which;
+
+//     // keyCode 13 is return key; keyCode 9 is tab key
+//     if ((keyPressed !== 13) && (keyPressed !== 9)) {
+//       $('#geolocation').val('')
+//       console.log('geolocation: ' + $('#geolocation').val());
+
+//     }
+//   }
+
+
+};
+
+
 var homePage = function() {
      console.log('home clicked');
      $('#page-table').empty();
@@ -287,52 +349,7 @@ var skinPage = function() {
      $('#page').append(template);
 
 
-     // $('#page-table').empty();
-     // var template = Handlebars.compile($('#google-template').html());
-     // $('#page').empty();
-     // $('#page').append(template);
-
-//      var map;
-// var infowindow;
-
-// function initMap() {
-//   var pyrmont = {lat: -33.867, lng: 151.195};
-
-//   map = new google.maps.Map(document.getElementById('map'), {
-//     center: pyrmont,
-//     zoom: 15
-//   });
-
-//   infowindow = new google.maps.InfoWindow();
-
-//   var service = new google.maps.places.PlacesService(map);
-//   service.nearbySearch({
-//     location: pyrmont,
-//     radius: 500,
-//     types: ['store']
-//   }, callback);
-// }
-
-// function callback(results, status) {
-//   if (status === google.maps.places.PlacesServiceStatus.OK) {
-//     for (var i = 0; i < results.length; i++) {
-//       createMarker(results[i]);
-//     }
-//   }
-// }
-
-// function createMarker(place) {
-//   var placeLoc = place.geometry.location;
-//   var marker = new google.maps.Marker({
-//     map: map,
-//     position: place.geometry.location
-//   });
-
-//   google.maps.event.addListener(marker, 'click', function() {
-//     infowindow.setContent(place.name);
-//     infowindow.open(map, this);
-//   });
-// }
+    
 };
 
 var sciencePage = function() {

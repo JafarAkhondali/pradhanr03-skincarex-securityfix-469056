@@ -463,13 +463,18 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f6f6', end
 
 #skin-pic1 {
 	position: fixed;
-	background: url(http://www.pcaskin.com/media/consumers/skin_explained/2.jpg) no-repeat 10px 1000px;
-	background-size: 30%;
-	width: 30%; 
-	height: 1400px;
+	background: url(../assets/images/pic1.jpg) no-repeat 10px 600px;
+	background-size: 60%;
+	width: 60%; 
+	height: 1000px;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";       /* IE 8 */
+filter: alpha(opacity=20);  /* IE 5-7 */
+-moz-opacity: 0.2;          /* Netscape */
+-khtml-opacity: 0.5;        /* Safari 1.x */
+opacity: 0.5;
+
 
 }
-
 
 #skin-pic2 {
 	position: fixed;
@@ -477,6 +482,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f6f6', end
 	background-size: 30%;
 	width: 30%; 
 	height: 1400px;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";       /* IE 8 */
+filter: alpha(opacity=20);  /* IE 5-7 */
+-moz-opacity: 0.2;          /* Netscape */
+-khtml-opacity: 0.5;        /* Safari 1.x */
+opacity: 0.5;
 }
 
 #skin-pic3 {
@@ -485,6 +495,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f6f6', end
 	background-size: 30%;
 	width: 40%; 
 	height: 1400px;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";       /* IE 8 */
+filter: alpha(opacity=20);  /* IE 5-7 */
+-moz-opacity: 0.2;          /* Netscape */
+-khtml-opacity: 0.5;        /* Safari 1.x */
+opacity: 0.5;
 }
 
 
@@ -504,6 +519,18 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f6f6', end
 	height: 583px;
 	width: 993px;
 }
+
+.item {
+	height: 583px;
+	width: 993px;
+}
+
+.item img {
+	height: 100%;
+	width: 100%;
+}
+
+
 
 
 * {
