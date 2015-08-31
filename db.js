@@ -148,17 +148,34 @@ module.exports = {
     });
     this.end();	
   },
-  authorIdAndArticle: function (table1, table2, column1, column2, id, cb) {
+  allFromCategory: function (table1, table2, column1, column2, id, cb) {
     pg.connect(dbUrl, function (err, client, done) {
-      client.query('SELECT * FROM ' + table1 + ' LEFT JOIN ' + table2+ ' ON ' +table1+ '.' + column1 + ' = ' + table2+'.'+column2+' WHERE '+table1+'.'+column1+ ' = '+id, function (err, result) {
+      client.query('SELECT * FROM ' + table1 + ' INNER JOIN ' + table2+ ' ON ' +table1+ '.' + column1 + ' = ' + table2+'.'+column2+' WHERE '+table1+'.'+column1+ ' = '+id, function (err, result) {
         done();
         if(err){
           console.error("Stupid relationships", err)
         }
+        console.log(result);
+        console.log(result.rows);
+        cb(result.rows);
+      });
+    });
+    this.end(); 
+  },
+  allCategory: function (table1, table2, column1, column2, cb) {
+    pg.connect(dbUrl, function (err, client, done) {
+      client.query('SELECT * FROM ' + table1 + ' INNER JOIN ' + table2+ ' ON ' +table1+ '.' + column1 + ' = ' + table2+'.'+column2, function (err, result) {
+        done();
+        if(err){
+          console.error("Stupid relationships", err)
+        }
+        console.log(result);
+        console.log(result.rows);
         cb(result.rows);
       });
     });
     this.end(); 
   }
+  
 };
 

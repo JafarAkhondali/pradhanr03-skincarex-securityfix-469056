@@ -5,42 +5,32 @@ module.exports.controller = function(app) {
 	//ARTIST INDEX
 //this renders all the artists in the artists table INDEX
 	app.get('/categories', function (req, res) {
-		debugger;
+		
 		Category.all( function (categories) {
 
-			// var user = req.session.currentUser;
-			// var name = req.session.name;
-			// var id = req.session.id;
-
-			// console.log(">>>>>>>>>>>");
-			
-			// var data ={
-			//         user: user,
-			//         name: name,
-			//         categories: categories
-			//    }
-			//    console.log(data);
 			console.log(categories);
 			// res.send('hello');
 			res.json(categories);
 		});
 	});
 
-	// app.get("/categories/:id", function (req, res) {
-	//     Category.getWithArticles( req.params.id, function (categories){
-	//      var user = req.session.currentUser;
-	// 		var name = req.session.name;
-	// 		var id = req.session.id;
+	app.get('/categoriesprod', function (req, res) {
 		
-	// 		console.log(">>>>>>>>>>>");
-
+		Category.allCategory( function (antioxidants) {
 			
-	// 		var data ={
-	// 		        user: user,
-	// 		        name: name,
-	// 		        categories: categories
-	// 		   }
-	//       res.render('categoryList', data);
-	//     });
-	// });
+			console.log(antioxidants);
+			// res.send('hello');
+			res.json(antioxidants);
+		});
+	});
+
+	app.get('/categoriesprod/:id', function (req, res) {
+		
+		Category.allFromCategory( req.params.id, function (antioxidants) {
+			
+			console.log(antioxidants);
+			// res.send('hello');
+			res.json(antioxidants);
+		});
+	});
 };

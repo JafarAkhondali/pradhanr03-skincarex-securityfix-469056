@@ -1,7 +1,5 @@
-
-App.Collections.Categories = Backbone.Collection.extend({
-	url: "/categoriesprod/1"
- 	,
+App.Collections.Cleansers = Backbone.Collection.extend({
+	url: "/categoriesprod/4", 	
 	model: App.Models.Category,
 
 	initialize: function() {

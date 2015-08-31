@@ -1,6 +1,6 @@
 
-App.Collections.Categories = Backbone.Collection.extend({
-	url: "/categoriesprod/1"
+App.Collections.Sunscreens = Backbone.Collection.extend({
+	url: "/categoriesprod/2"
  	,
 	model: App.Models.Category,
 

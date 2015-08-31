@@ -1,7 +1,5 @@
-
-App.Collections.Categories = Backbone.Collection.extend({
-	url: "/categoriesprod/1"
- 	,
+App.Collections.Moisturizers = Backbone.Collection.extend({
+	url: "/categoriesprod/3", 	
 	model: App.Models.Category,
 
 	initialize: function() {

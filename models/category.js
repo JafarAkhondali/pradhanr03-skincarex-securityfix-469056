@@ -11,6 +11,27 @@ module.exports.Category = {
       }
       callback(data);
     });
+  },
+  allCategory : function (callback) {
+    db.allCategory('categories', 'products', 'id', 'category_id', function (categories) {
+  
+       console.log(categories);
+      
+      callback(categories);
+    });
+  },
+  allFromCategory : function (id, callback) {
+    db.allFromCategory('categories', 'products', 'id', 'category_id', id, function (categories) {
+  // console.log(products);
+      // var data={
+      //   products: products
+      // }
+      // callback(data);
+
+      console.log(categories);
+      
+      callback(categories);
+    });
   }
    
 }

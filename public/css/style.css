@@ -46,6 +46,7 @@ background: -moz-linear-gradient(top,  rgba(240,249,255,1) 0%, rgba(203,235,255,
 	
 }
 
+
 #checkout-button {
 	background: #cdeb8e; /* Old browsers */
 	background: -moz-linear-gradient(top, #cdeb8e 0%, #a5c956 100%); /* FF3.6+ */
@@ -92,10 +93,7 @@ background: #ffd65e; /* Old browsers */
 }
 
 
-#web {
-	text-align: center;
-	
-}
+
 
 #science-explained {
 	display: flex;
@@ -218,14 +216,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#959595', end
 }
 
 #page-container {
+	margin-top: 5%;
 	margin-left: 10%;
 	margin-right: 10%;
 	/*background: lightgrey;*/
 	height: 100%;
+
 }
 
 #page {
-	/*height: 800px;*/
+	/*width: 100%;*/
 }
 
 
@@ -261,14 +261,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#959595', end
 	margin: auto;*/
 	 display: block;
     /*padding: 18px;*/
-    border: 1px solid lightgrey;
+    /*border: 1px solid lightgrey;*/
     margin-right: 5px;
     width: 200px;
-    height: 300px;
+    height: 280px;
     display: flex;
 	flex-flow: row wrap;
 	flex-direction: column;
-	justify-content: space-between;
+	/*justify-content: space-between;*/
 	margin-top: 10%;
 }
 
@@ -282,7 +282,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#959595', end
     /*padding-top: 2%;*/
     text-align: center;
     overflow: scroll;
-    height: 100%;
+    height: 90%;
     z-index: 201;
     /*margin-bottom: -3%;*/
     
@@ -310,7 +310,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#959595', end
 	text-align: left;
 	margin-right: 10%;
 	margin-left: 10%;
-	margin-top: 3%;
+	/*margin-top: 3%;*/
 	/*border: 2px solid rgba(0, 0, 0, 0.4);*/
 }
 .content {
@@ -328,31 +328,31 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#959595', end
 	margin-right: 10%;
 }
 
-#sign-cart-wrap {
+/*#sign-cart-wrap {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	/*margin-right: 2%;*/
-}
+	
+}*/
 
 
-
+/*
 #sign-log {
 	display: flex;
 	flex-direction: row;
-	/*align-self: flex-end;*/
+	
 	margin-left:700px; 
 	
 	padding: 6px;
 	
-}
-#sign {
+}*/
+/*#sign {
 	padding: 6px;
 
 }
 #checkout {
 	margin-top: 1%;
-}
+}*/
 
 #chat {
 	margin-top: 1%;
@@ -429,3 +429,101 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f6f6', end
 	text-align: right;
 	margin-right: 6%;
 }
+
+
+
+#skin-container {
+	background: url(http://wwwlifespancom.c.presscdn.com/wp-content/uploads/2014/01/how-to-keep-your-skin-wrinkle-free.jpg) fixed;
+	margin: 0px;
+	background-size: 100% 200%;
+	width: 100%;
+
+
+
+	
+    background-repeat: no-repeat;
+}
+
+.skin-div {
+	
+	
+	background: rgba(255,255,255,0.9);
+
+	border-radius: 25px;
+    border: 2px solid #D0FAEE;
+    padding: 20px; 
+    width: 400px;
+    box-shadow: h-shadow v-shadow blur spread color inset;
+   /*padding: ;*/
+
+   /* height: 150px;*/ 
+}
+
+
+
+#skin-pic1 {
+	position: fixed;
+	background: url(http://www.pcaskin.com/media/consumers/skin_explained/2.jpg) no-repeat 10px 1000px;
+	background-size: 30%;
+	width: 30%; 
+	height: 1400px;
+
+}
+
+
+#skin-pic2 {
+	position: fixed;
+	background: url(http://www.pcaskin.com/media/consumers/skin_explained/4.jpg) no-repeat 100px 1000px;
+	background-size: 30%;
+	width: 30%; 
+	height: 1400px;
+}
+
+#skin-pic3 {
+	position: fixed;
+	background: url(http://www.pcaskin.com/media/consumers/skin_explained/1.jpg) no-repeat 300px 1000px;
+	background-size: 30%;
+	width: 40%; 
+	height: 1400px;
+}
+
+
+
+#content_layer {
+	/*position: absolute;*/
+	margin-left: 55%;
+/*	position: fixed;*/
+	width: 100%; 
+	/*height: 100px;*/
+	/*background: 800px 100px;*/
+
+	
+}
+
+#myCarousel {
+	height: 583px;
+	width: 993px;
+}
+
+
+* {
+    margin: 0;
+}
+html, body {
+    height: 100%;
+}
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -155px; /* the bottom margin is the negative value of the footer's height */
+}
+.footer, .push {
+    height: 155px; /* .push must be the same height as .footer */
+}
+
+
+
+
+
+
