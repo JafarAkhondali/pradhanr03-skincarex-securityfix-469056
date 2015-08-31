@@ -5,11 +5,21 @@ App = {
 }
 var user_id = null;
 $(function() {
-    App.customers = new App.Collections.Customers();
+  
+
+ if (!App.signlog) {
+           App.customers = new App.Collections.Customers();
     App.signlog = new App.Views.Signlog({collection: App.customers});
     App.customers.fetch({
         reset: true
     });
+        }
+
+    //  App.customers = new App.Collections.Customers();
+    // App.signlog = new App.Views.Signlog({collection: App.customers});
+    // App.customers.fetch({
+    //     reset: true
+    // });
     
     $('.products').click(productPage);
     $('.antioxidant').click(antioxidantPage);

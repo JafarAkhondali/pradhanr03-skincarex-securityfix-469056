@@ -82,7 +82,7 @@ App.Views.Signlog = Backbone.View.extend({
 	},
   cartPage: function() {
     console.log('cart page clicked');
-
+    debugger;
     // -------templates required for the cart page--------
     var template = Handlebars.compile($('#cart-template').html());
     var template1 = Handlebars.compile($('#temp-cart').html());
@@ -129,15 +129,28 @@ App.Views.Signlog = Backbone.View.extend({
                         id: data
                     }
                 user_id = data
+
+              if (data) {
+                debugger;
                  $('#page-table').append(template3(sessObj));
-                
-            },            
-            fail: function(){
-                var sessObj = {
+              }
+                else {
+                   debugger;
+                  var Obj = {
                         id: null
                     }
+                     debugger;
+                    $('#page-table').append(template3(Obj));
 
-                $('#page-table').append(template3(sessObj));
+                }
+              
+            },            
+            fail: function(){
+                // var sessObj = {
+                //         id: null
+                //     }
+
+                // $('#page-table').append(template3(sessObj));
             }
 
         });
