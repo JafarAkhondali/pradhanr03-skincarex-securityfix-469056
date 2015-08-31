@@ -467,7 +467,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f6f6', end
 	background-size: 30%;
 	width: 30%; 
 	height: 1400px;
-	
+
 }
 
 
@@ -498,6 +498,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f6f6', end
 	/*background: 800px 100px;*/
 
 	
+}
+
+#myCarousel {
+	height: 583px;
+	width: 993px;
 }
 
 
