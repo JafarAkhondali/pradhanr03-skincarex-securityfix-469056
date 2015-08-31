@@ -75,6 +75,10 @@ App.Views.Signlog = Backbone.View.extend({
         }
 		});
     this.render();
+     $('#page-table').empty();
+     var template = Handlebars.compile($('#home-template').html());
+     $('#page').empty();
+     $('#page').append(template);
 	},
   cartPage: function() {
     console.log('cart page clicked');
