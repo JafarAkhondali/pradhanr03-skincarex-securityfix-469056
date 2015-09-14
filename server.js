@@ -20,7 +20,10 @@ app.set('port', (process.env.PORT || 3000));
 // sockets
 
 var http = require('http').createServer(app);
-var io = require('socket.io').listen(http);
+var io = require('socket.io')(http);
+
+
+
 
 
 http.listen(app.get('port'), function() {
