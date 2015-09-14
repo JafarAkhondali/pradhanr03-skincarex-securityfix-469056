@@ -14,7 +14,7 @@ var path = require('path');
 var db = require('./db.js');
 var router = express.Router();
 
-app.set('port', (process.env.PORT || 5000));
+app.set('port', (process.env.PORT || 3000));
 
 
 // sockets
@@ -50,7 +50,7 @@ app.use(session({
 
 
 //for sockets
-io.sockets.on('connection', function (socket) {
+io.on('connection', function (socket) {
   //    io.set("transports", ["xhr-polling"]); 
   // io.set("polling duration", 10); 
     //when recieving the data from the server, push the same message to client.
