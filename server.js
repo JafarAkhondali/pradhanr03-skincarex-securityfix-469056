@@ -24,12 +24,14 @@ var io = require('socket.io')(http);
 
 
 
-
 http.listen(app.get('port'), function() {
     console.log("io app is running at localhost:" + app.get('port'));
 });
 
 
+
+
+  
 
 
 app.engine('handlebars', exphbs({defaultLayout: 'main', extname: 'handlebars'}));
@@ -48,11 +50,13 @@ app.use(session({
 }));
 
 
+//   io.set("transports", ["xhr-polling"]);
+// io.set("polling duration", 10);
+
 
 //for sockets
 io.on('connection', function (socket) {
-  //    io.set("transports", ["xhr-polling"]); 
-  // io.set("polling duration", 10); 
+
     //when recieving the data from the server, push the same message to client.
     socket.on("clientMsg", function (data) {
         //send the data to the current client requested/sent.
