@@ -14,23 +14,19 @@ var path = require('path');
 var db = require('./db.js');
 var router = express.Router();
 
-
-
-
-//sockets!
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-
-
-
-
 app.set('port', (process.env.PORT || 3000));
 
 
-///added this for sockets
+// sockets
+
+var http = require('http').createServer(app);
+var io = require('socket.io').listen(http);
+
+
 http.listen(app.get('port'), function() {
     console.log("io app is running at localhost:" + app.get('port'));
-})
+});
+
 
 
 
@@ -50,7 +46,11 @@ app.use(session({
 }));
 
 
+
+//for sockets
 io.sockets.on('connection', function (socket) {
+  //    io.set("transports", ["xhr-polling"]); 
+  // io.set("polling duration", 10); 
     //when recieving the data from the server, push the same message to client.
     socket.on("clientMsg", function (data) {
         //send the data to the current client requested/sent.
@@ -64,7 +64,7 @@ io.sockets.on('connection', function (socket) {
         socket.broadcast.emit("sender", data);
     });
 });
-
+//end
 
 
 app.use(methodOverride(function(req, res) {
