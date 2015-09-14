@@ -14,14 +14,13 @@ var path = require('path');
 var db = require('./db.js');
 var router = express.Router();
 
-app.set('port', (process.env.PORT || 3000));
+app.set('port', (process.env.PORT || 5000));
 
 
 // sockets
 
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
-
 
 
 
@@ -68,6 +67,7 @@ io.sockets.on('connection', function (socket) {
     });
 });
 //end
+
 
 
 app.use(methodOverride(function(req, res) {
