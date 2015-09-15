@@ -242,10 +242,14 @@ var chatPage = function() {
      $("#msg").empty();
      $('#page-container').prepend(template);
      $('#close-chat').click(closeChatPage);
+       
+ 
+
      var unk = 'Anonymous';
      var name,
             // socket = io.connect("http://localhost:3000");
-            socket = io.connect();
+            socket = io.connect(window.location.hostname);
+
         // $(function () {
             //as the user to enter their nick name or name.
             
