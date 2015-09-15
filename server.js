@@ -14,15 +14,20 @@ var path = require('path');
 var db = require('./db.js');
 var router = express.Router();
 
-app.set('port', (process.env.PORT || 3000));
 
+app.set('port', (process.env.PORT || 3000));
 
 // sockets
 
 var http = require('http').createServer(app);
-var io = require('socket.io')(http);
+var io = require('socket.io').listen(http);
 
 
+
+// io.configure(function () { 
+//   io.set("transports", ["xhr-polling"]); 
+//   io.set("polling duration", 10); 
+// });
 
 http.listen(app.get('port'), function() {
     console.log("io app is running at localhost:" + app.get('port'));
@@ -50,10 +55,7 @@ app.use(session({
 }));
 
 
-//   io.set("transports", ["xhr-polling"]);
-// io.set("polling duration", 10);
-
-
+//   
 //for sockets
 io.on('connection', function (socket) {
 
