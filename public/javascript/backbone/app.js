@@ -247,8 +247,8 @@ var chatPage = function() {
 
      var unk = 'Anonymous';
      var name,
-            // socket = io.connect("http://localhost:3000");
-            socket = io.connect();
+            // socket = io.connect("http://localhost:3000"); ////uncomment this if you want to use in localhost
+            socket = io.connect();//comment this out if you want to test in localhost
 
         // $(function () {
             //as the user to enter their nick name or name.
