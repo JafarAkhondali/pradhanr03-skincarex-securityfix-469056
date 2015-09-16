@@ -13,6 +13,11 @@ var logger = require('morgan');
 var path = require('path');
 var db = require('./db.js');
 var router = express.Router();
+var dotenv = require('dotenv');
+dotenv.load();
+
+var sendkey = process.env.SECRET_KEY;
+var sendgrid = require('sendgrid')(sendkey);
 
 
 app.set('port', (process.env.PORT || 3000));
@@ -94,6 +99,45 @@ fs.readdirSync('./controllers').forEach(function (file) {
      route.controller(app, session);
  };
 });
+
+
+
+app.post('/send', function(req, res) {
+      var mail =req.body.mail;
+      var message=req.body.message;
+
+      var revString = mail.split('').reverse().join('');
+      var rev= revString.slice(4,9);
+      var string = rev.split('').reverse().join('');
+
+      if (string ==='yahoo') {
+        res.send('Due to yahoo policy, yahoo doesnt allow third party email handlers to send email. So please enter an email address that is not yahoo.com');
+      }
+    else {
+
+    var email     = new sendgrid.Email({
+      to:       'pradhanr03@gmail.com',
+      from:     mail,
+      subject:  'Subject goes here',
+      text:     message
+    });
+    }
+          
+              sendgrid.send(email, function(err, json) {
+      if (err) { return res.send('nope'); }
+      res.send('yay');
+    });
+});
+
+
+
+
+
+
+
+
+
+
 
 
 ////////////STRIPE

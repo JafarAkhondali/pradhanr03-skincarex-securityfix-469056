@@ -549,6 +549,11 @@ html, body {
     height: 155px; /* .push must be the same height as .footer */
 }
 
+.list {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
 
 
 

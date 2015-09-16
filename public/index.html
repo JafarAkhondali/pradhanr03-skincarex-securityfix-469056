@@ -202,22 +202,24 @@ window.addEventListener("scroll", parallax, false);
   <div class="push"></div>
   </div>
 
-  <nav class="navbar navbar-inverse navbar-bottom footer" id="footer">
+<div id='bottom'>
+  <nav class="navbar navbar-inverse navbar-bottom footer footer-distributed" id="footer">
         <div class="container"> 
             <div class="row">
-                <div class="col-sm-4">
+                
                     <h5 id='footer-header'> SITEMAP </h3>
-                    <ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav list">
                     <li class="chat"><a href="#">Chat with Customer Service</a></li>
                      <li class="google"><a href="#">Find a Dermatalogist</a></li> 
         <li class="privacy"><a href="#">Privacy Policy</a></li> 
+         <li class="contact"><a href="#">Contact Us</a></li> 
         <li class="github"><a href="https://github.com/pradhanr03/skincarex">Github</a></li> 
       </ul>
-              </div>      
+                  
             </div>
         </div>
     </nav>
-
+</div>
 
  <template id="single-product-template">
 
@@ -578,29 +580,7 @@ window.addEventListener("scroll", parallax, false);
              
             </div>
 
-        
-        <!-- 
-         <div id="skin-1-head">
-        <h1>YOUR SKIN EXPLAINED</h1>
-        </div>
- -->
-        
-   
-        <!-- <div id="skin-2-head">
-        <h1>UNDERSTANDING SKIN</h1>
-        </div>
-
-        <div id="skin-3-head">
-        <h1>SKIN TYPES & CONDITIONS</h1>
-        </div>
- -->
-        <!-- <div id="skin-4-head">
-        <h1>Sun Damage & Sun Protection</h1>
-        </div>
-
-         <div id="skin-13-head">
-              <h1>The Importance of a Proper Regimen</h1>
-            </div> -->
+       
 
         <div id ="content_layer">
         <br><br>
@@ -705,6 +685,34 @@ window.addEventListener("scroll", parallax, false);
 </div>
 </template>
 
+
+<template id='contact-template'>
+<div class="container-fluid form-group">
+
+<div class='signup form-group contactmail'>
+      
+      <h2> CONTACT US</h2>
+          
+           
+            <label>Email:</label>
+              <br>
+            <input type="text" class='form-control' name="mail" placeholder="Enter your email" required/>
+              <br>
+            <label>Message:</label>
+              <br>
+           <textarea name="message" class='form-control' style='height:200px;' id="msgbox" placeholder="Enter Message"></textarea>
+              <br>
+              <br>
+            <button id='send' class="btn-lg btn-default" name="sign">Submit</button>
+            <br>
+            <br>
+            <h3 id='msgpopup'></h3>
+        
+    </div>
+    </div>
+
+
+</template>
  
 
 <template id="science-template">

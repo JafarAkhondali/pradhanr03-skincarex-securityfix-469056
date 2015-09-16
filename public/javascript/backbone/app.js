@@ -33,6 +33,9 @@ $(function() {
     $('.chat').click(chatPage);
     $('.google').click(googlePage);
     $('.privacy').click(privacyPage);
+    $('.contact').click(contactPage);
+    $('body').on('click', '#send', mail);
+    // $('#send').click(mail);
    
    
    
@@ -47,18 +50,78 @@ $(function() {
 
 
 
+var contactPage = function() {
+    console.log('contact clicked');
+      $('#page-table').empty();
+       var template = Handlebars.compile($('#contact-template').html());
+     $('#page').empty();
+     $('#page').append(template);
+
+}
 
 
 
-    // $(this).removeClass("btn");
+var mail = function() {
+    console.log('hello');
 
-    
-    // $('.sign-in').click(signinPage);
-    // $('.log-in').click(loginPage);
-     
+var data = {
+                   mail: $('[name=mail]').val(),
+                   message: $('[name=message]').val()
+            }
+ var email =$('[name=mail]').val();
 
-/////////////////////STRIPE START/////////////
 
+            if ((data.mail.length <1) || (data.message.length<1) || (data.mail.length <1 && data.message.length<1)) {
+                
+                $('#msgpopup').html('Please enter a valid email or message  '+'<i class="fa fa-smile-o"></i>');
+                $("#msgpopup").delay(4000).fadeOut("slow", function () { $(this).remove(); });
+                var msgpopup= $('<h3>').attr('id', 'msgpopup');
+                $('.contactmail').append(msgpopup);
+            }
+
+                else {
+                        var revString = email.split('').reverse().join('');
+                        var rev= revString.slice(4,9);
+                        var string = rev.split('').reverse().join('');
+
+                        if (string ==='yahoo') {
+                             $('#msgpopup').html('Please enter another email besides a yahoo email  '+'<i class="fa fa-smile-o"></i>');
+                            $("#msgpopup").delay(4000).fadeOut("slow", function () { $(this).remove(); });
+                            var msgpopup= $('<h3>').attr('id', 'msgpopup');
+                            $('.contactmail').append(msgpopup);
+
+                               $('[name=mail]').val('');
+                                $('[name=message]').val('');
+                        }
+                            else {
+                                 $('#msgpopup').html('Thank you for the email '+'<i class="fa fa-smile-o"></i>');
+                                    $("#msgpopup").delay(4000).fadeOut("slow", function () { $(this).remove(); });
+
+                                    var msgpopup= $('<h3>').attr('id', 'msgpopup');
+                                     $('.contactmail').append(msgpopup);
+                               
+
+
+                               $('[name=mail]').val('');
+                                $('[name=message]').val('');
+
+debugger;
+                               
+                             $.ajax({
+                                        type: "POST",
+                                        url: '/send',
+                                        data: data,
+                                       success: function(){
+
+                                       },
+                                       fail: function(){
+                                     
+                                       }
+                                });
+                            }
+                }
+
+};
 
 
 
