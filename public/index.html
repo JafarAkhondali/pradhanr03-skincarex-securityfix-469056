@@ -1,212 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
-  
-  <head>
-   <!--  -->
-   <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-   <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+<head>
+    <!--  -->
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <meta charset="UTF-8">
-     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/superhero/bootstrap.min.css" rel="stylesheet">
      -->
-      <script src="/socket.io/socket.io.js"></script>
-      <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-        <script type="text/javascript">
-
-        </script>
-
-
-<!-- <script type="text/javascript" src="https://js.stripe.com/v1/"></script> -->
-
-<script src="https://cdn.socket.io/socket.io-1.3.6.js"></script>
-
-    
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script type="text/javascript">
+    </script>
+    <!-- <script type="text/javascript" src="https://js.stripe.com/v1/"></script> -->
+    <script src="https://cdn.socket.io/socket.io-1.3.6.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
-
-
-
-
-
-  
-
-
-
-
-   
-
     <link rel="stylesheet" href="/css/style.css">
     <link href="/assets/images/skin1.jpg">
-   
     <title></title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
-  <script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
-  <script src="https://code.jquery.com/jquery-2.1.4.js">
-  </script>
- 
-
-
-   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
+    <script src='http://code.jquery.com/jquery-2.1.3.min.js'></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.js">
+    </script>
     <!-- Bootstrap -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- skin page parallex -->
+    <script>
+    function parallax() {
+        var layer1 = document.getElementById('skin-pic1');
+        layer1.style.top = -(window.pageYOffset / 4) + 'px';
+        var layer2 = document.getElementById('skin-pic2');
+        layer2.style.top = -(window.pageYOffset / 2) + 'px';
+        var layer3 = document.getElementById('skin-pic3');
+        layer3.style.top = -(window.pageYOffset / 3.6) + 'px';
 
 
+        // var layer5 = document.getElementById('content_layer');
+        // layer5.style.top = -(window.pageYOffset/20)+'px';
 
+    }
 
-<!-- skin page parallex -->
-
-<script>
-function parallax() {
-  var layer1 = document.getElementById('skin-pic1');
-  layer1.style.top = -(window.pageYOffset/4)+'px';
-  var layer2 = document.getElementById('skin-pic2');
-  layer2.style.top = -(window.pageYOffset/2)+'px';
-  var layer3 = document.getElementById('skin-pic3');
-  layer3.style.top = -(window.pageYOffset/3.6)+'px';
-  
-   
-  // var layer5 = document.getElementById('content_layer');
-  // layer5.style.top = -(window.pageYOffset/20)+'px';
-
-}
-
-window.addEventListener("scroll", parallax, false);
-</script>
-
-
-<script type="text/javascript" src="http://skincarex.herokuapp.com:3000/socket.io/socket.io.js">    </script>
+    window.addEventListener("scroll", parallax, false);
+    </script>
+    <script type="text/javascript" src="http://skincarex.herokuapp.com:3000/socket.io/socket.io.js">
+    </script>
     <script type="text/javascript">
     var socket = io.connect('http://skincarex.herokuapp.com:3000');
-        // var socket = io.connect('http://localhost', { port: 3000 });
+    // var socket = io.connect('http://localhost', { port: 3000 });
 
-        socket.on('connect', function () {
-            alert('connect');
-        });
+    socket.on('connect', function() {
+        alert('connect');
+    });
 
-        socket.on('error', function (data) {
-            console.log(data || 'error');
-        });
+    socket.on('error', function(data) {
+        console.log(data || 'error');
+    });
 
-        socket.on('connect_failed', function (data) {
-            console.log(data || 'connect_failed');
-        });
+    socket.on('connect_failed', function(data) {
+        console.log(data || 'connect_failed');
+    });
     </script>
+</head>
 
-
-
-  </head>
-  
-  <body>
-  <div id ='wrapper'>
-<div id="modal"></div>
-<div id="chat-modal"></div>
-
-
-<nav class="navbar navbar-inverse navbar-fixed-top">
-  <div class="container-fluid">
-    <div class="navbar-header" id="web">
-      <a class="navbar-brand" class="active" href="#">SkinCareX</a>
-    </div>
-    
-   
-    <div>
-      <ul class="nav navbar-nav navbar-right" id="sign-log">
-                
-      </ul>
-    </div>
-    <div>
-    <ul class="nav navbar-nav">
-        <li class="company"><a href="#">Company</a></li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Product
+<body>
+    <div id='wrapper'>
+        <div id="modal"></div>
+        <div id="chat-modal"></div>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header" id="web">
+                    <a class="navbar-brand" class="active" href="#">SkinCareX</a>
+                </div>
+                <div>
+                    <ul class="nav navbar-nav navbar-right" id="sign-log">
+                    </ul>
+                </div>
+                <div>
+                    <ul class="nav navbar-nav">
+                        <li class="company"><a href="#">Company</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Product
           <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-          <li  class="products"><a href="#">Products</a></li>
-            <li class="antioxidant"><a href="#">Antioxidant</a></li>
-            <li class="sunscreen"><a href="#">Sunscreen</a></li>
-            <li class="moisturizer"><a href="#">Moisturizer</a></li> 
-            <li class="cleanser"><a href="#">Cleanser</a></li> 
-          </ul>
-        </li>
-        <li class="science"><a href="#">Science</a></li> 
-        <li class="skin"><a href="#">Skin Explained</a></li> 
-      </ul>
+                            <ul class="dropdown-menu">
+                                <li class="products"><a href="#">Products</a></li>
+                                <li class="antioxidant"><a href="#">Antioxidant</a></li>
+                                <li class="sunscreen"><a href="#">Sunscreen</a></li>
+                                <li class="moisturizer"><a href="#">Moisturizer</a></li>
+                                <li class="cleanser"><a href="#">Cleanser</a></li>
+                            </ul>
+                        </li>
+                        <li class="science"><a href="#">Science</a></li>
+                        <li class="skin"><a href="#">Skin Explained</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div id="left-bar">
+        </div>
+        <div id="right-bar">
+        </div>
+        <div id="page-container" class="container-fluid">
+            <div id="page-table" class="container-fluid"></div>
+            <div id="page" class="container-fluid">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                        <li data-target="#myCarousel" data-slide-to="3"></li>
+                    </ol>
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <img src="http://demandware.edgesuite.net/aang_prd/on/demandware.static/-/Sites-skinc-us-Library/default/dwc84fe9a3/homepage-slide-top/gwp_homepage_panel.jpg" alt="Chania">
+                        </div>
+                        <div class="item">
+                            <img src="https://www.mediabistro.com/portfolios/samples_files/1420311_J0X7vs3r6H8rcTbR_8ZC46Oka.jpg" alt="Chania">
+                        </div>
+                        <div class="item">
+                            <img src="https://puipo.files.wordpress.com/2014/03/shiseido-white-lucent.jpg" alt="Flower">
+                        </div>
+                        <div class="item">
+                            <img src="http://cremitas.com/wp-content/2010/11/BiothermSkinVivo.jpg" alt="Flower">
+                        </div>
+                    </div>
+                    <!-- Left and right controls -->
+                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="push"></div>
     </div>
-    
-   
-  </div>
-</nav>
-
-
-
-
-
-  <div id="left-bar">
-  </div>
-
-  <div id="right-bar">
-  </div>
-
-  <div id="page-container" class="container-fluid">
-  <div id="page-table" class="container-fluid"></div>
-    <div id="page" class="container-fluid">
-
-      <div id="myCarousel" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#myCarousel" data-slide-to="1"></li>
-    <li data-target="#myCarousel" data-slide-to="2"></li>
-    <li data-target="#myCarousel" data-slide-to="3"></li>
-  </ol>
-
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner" role="listbox">
-    <div class="item active">
-      <img src="http://demandware.edgesuite.net/aang_prd/on/demandware.static/-/Sites-skinc-us-Library/default/dwc84fe9a3/homepage-slide-top/gwp_homepage_panel.jpg" alt="Chania">
-    </div>
-
-    <div class="item">
-      <img src="https://www.mediabistro.com/portfolios/samples_files/1420311_J0X7vs3r6H8rcTbR_8ZC46Oka.jpg" alt="Chania">
-    </div>
-
-    <div class="item">
-      <img src="https://puipo.files.wordpress.com/2014/03/shiseido-white-lucent.jpg" alt="Flower">
-    </div>
-
-    <div class="item">
-      <img src="http://cremitas.com/wp-content/2010/11/BiothermSkinVivo.jpg" alt="Flower">
-    </div>
-  </div>
-
-  <!-- Left and right controls -->
-  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-
-
-
-     
-      
-    </div>
-  </div>
-  <div class="push"></div>
-  </div>
-
-<div id='bottom'>
-  <nav class="navbar navbar-inverse navbar-bottom footer footer-distributed" id="footer">
-        <div class="container"> 
-            <div class="row">
-                
+    <div id='bottom'>
+        <nav class="navbar navbar-inverse navbar-bottom footer footer-distributed" id="footer">
+            <div class="container">
+                <div class="row">
                     <h5 id='footer-header'> SITEMAP </h3>
                     <ul class="nav navbar-nav list">
                     <li class="chat"><a href="#">Chat with Customer Service</a></li>

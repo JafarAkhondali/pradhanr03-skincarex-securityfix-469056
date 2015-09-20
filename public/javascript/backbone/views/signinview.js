@@ -1,60 +1,59 @@
 App.Views.Signin = Backbone.View.extend({
 
-	el: '#page',
+    el: '#page',
 
-	initialize: function () {
-		console.log('sign in page loaded');
-		this.template = Handlebars.compile($('#signin-template').html());
-		this.render();
-	},
+    initialize: function() {
+        console.log('sign in page loaded');
+        this.template = Handlebars.compile($('#signin-template').html());
+        this.render();
+    },
 
-	render: function () {
-		$('#page-table').empty();
-		this.$el.empty();
-		this.$el.append(this.template());
-	},
-	events: {
-		'click #signup-button': 'createCustomer'
-	},
-	createCustomer: function() {
+    render: function() {
+        $('#page-table').empty();
+        this.$el.empty();
+        this.$el.append(this.template());
+    },
+    events: {
+        'click #signup-button': 'createCustomer'
+    },
+    createCustomer: function() {
 
 
-      	var data = {
-            
+        var data = {
+
             email: $('[name=email]').val(),
             password: $('[name=password]').val(),
             name: $('[name=name]').val()
         };
 
-       var data1 = {
-            
+        var data1 = {
+
             email: $('[name=email]').val(),
             password: $('[name=password]').val()
-      };
+        };
 
         // this.collection.create(data);
 
-         $.ajax({
+        $.ajax({
             type: "POST",
             url: '/users',
             data: data,
-           success: function(){
-           	var template = Handlebars.compile($('#home-template').html());
-	     $('#page').empty();
-	     $('#page').append(template);
-	           	
-           },
-           fail: function(){
-           }
-          });
+            success: function() {
+                var template = Handlebars.compile($('#home-template').html());
+                $('#page').empty();
+                $('#page').append(template);
 
-  	var template = Handlebars.compile($('#home-template').html());
-	     $('#page').empty();
-	     $('#page').append(template);
-         
-                     
-		console.log('what do you seek?');
-     
-	}
+            },
+            fail: function() {}
+        });
+
+        var template = Handlebars.compile($('#home-template').html());
+        $('#page').empty();
+        $('#page').append(template);
+
+
+        console.log('what do you seek?');
+
+    }
 
 });
