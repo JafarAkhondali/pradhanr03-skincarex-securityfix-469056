@@ -73,38 +73,37 @@ App.Views.Signlog = Backbone.View.extend({
         console.log('cart page clicked');
 
         // -------templates required for the cart page--------
-        var template = Handlebars.compile($('#cart-template').html());
+        var template = Handlebars.compile($('#cart-template').html()); //Multiple templates were required because only the items added in cart needed to be looped while the certain area didn't 
         var template1 = Handlebars.compile($('#temp-cart').html());
         var template2 = Handlebars.compile($('#temp-cart-bottom').html());
         var template3 = Handlebars.compile($('#checkout-template').html());
 
-        $('#page').empty();
-        $('#page-table').empty();
-        $('#page-table').append(template1()); //just appending a header template
+        $('#page').empty(); //#page is the main container of the page which needs to be emptied before the table template is appended
+        $('#page-table').empty(); // #page-table is the table div which is emptied to refresh the template
+        $('#page-table').append(template1()); //appending a header of the table template(Product ID  Product Quantity  Price) to the table page div container
 
-        var cartObj = [];
+        var cartObj = []; //declaring a empty array variable
 
         for (var key in sessionStorage) { //iterating over sessionStorage object and 
-            cartObj.push(JSON.parse(sessionStorage[key])); //pushing into empty array cartObj
+            cartObj.push(JSON.parse(sessionStorage[key])); //pushing the parsed values into empty array cartObj
         }
 
-        var car = { //Just inserting a cartObj in an obj , so we can pass an object into the template
+        var car = { //assigning cartObj as obj , so we can pass an object into the template
             obj: cartObj
         }
 
-        $('#page-table').append(template(car)); //appending the list of products objects template in the cart view
-
+        $('#page-table').append(template(car)); //appending the template with the car object in the #page-table div container
         var sum = 0;
-        for (var key in car.obj) { //calculating the total price of the added products
+        for (var key in car.obj) { //calculating the total price of the value of each items in the which was stored in the sessionStorage
             sum = sum + car.obj[key].price;
         }
 
-        var total = { //just inserting the sum in an object, so we can pass it to a template
+        var total = { //assigning the sum in an object, so we can pass it to a template
             sum: sum
         }
 
-        localStorage.setItem("total_price", sum);
-        localStorage.setItem("customer_id", user_id);
+        localStorage.setItem("total_price", sum); //Used localStorage to store "total_price" and sum as key, value pair respectively
+        localStorage.setItem("customer_id", user_id); //Used localStorage to store "customer_id" and user_id as key, value pair respectively. Also user_id is a global variable that has the current session's user's id which is assigned in the Ajax request below
 
         $('#page-table').append(template2(total)); //appending the template that has total price on it
 
@@ -113,16 +112,16 @@ App.Views.Signlog = Backbone.View.extend({
             type: 'GET',
             success: function(data) {
                 var sessObj = {
-                    id: data
+                    id: data // assiggning the user's id in sessObj to pass it to template3
                 }
-                user_id = data
+                user_id = data //assigning the user's id in the user_id variable globally
                 if (data) {
-                    $('#page-table').append(template3(sessObj));
+                    $('#page-table').append(template3(sessObj)); //if user is logged in, it appends the checkout button with the user's id as a data value in it
                 } else {
                     var Obj = {
                         id: null
                     }
-                    $('#page-table').append(template3(Obj));
+                    $('#page-table').append(template3(Obj)); //if user is not logged in, it appends the checkout button with a null data value
                 }
             },
             fail: function() {}
@@ -130,9 +129,9 @@ App.Views.Signlog = Backbone.View.extend({
         console.log(App.orders);
         console.log(App.order);
 
-        if (!App.order) {
-            App.orders = new App.Collections.Orders();
-            App.order = new App.Views.Order({
+        if (!App.order) { //false condition to make sure I don't instantiate the App.Views.Order({}) if it has already been instantiated once.
+            App.orders = new App.Collections.Orders(); //instantiating the order collection so i can pass it on to the order view
+            App.order = new App.Views.Order({ //instantiating the order view so that it can only be accessed after clicking the checkout button
                 collection: App.orders
             });
         }
