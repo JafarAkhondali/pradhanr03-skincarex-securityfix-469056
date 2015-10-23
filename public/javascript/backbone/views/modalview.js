@@ -26,11 +26,11 @@ App.Views.Modal = Backbone.View.extend({
         $("#popup").delay(1000).fadeOut("slow", function() { //this functions gives the #popup div a animation effect where it slowly fades out after 1000ms and removes itself from it's parent modal div 
             $(this).remove();
         });
-        var productId = this.model; //Assigning the object model into a new variable called productId
+        var product = this.model; //Assigning the object model into a new variable called productId
         var cart = {
-            id: productId.id,
-            title: productId.title,
-            price: productId.price,
+            id: product.id,
+            title: product.title,
+            price: product.price,
             quantity: 1
         }
 
