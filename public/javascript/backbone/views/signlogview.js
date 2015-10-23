@@ -120,8 +120,10 @@ App.Views.Signlog = Backbone.View.extend({
             },
             fail: function() {}
         });
+
+        //localStorage is used to stored the sum and user_id values for the checkout process, when the checkout is successful, the order is saved in the db using localStorage
         localStorage.setItem("total_price", sum); //Used localStorage to store "total_price" and sum as key, value pair respectively
-        localStorage.setItem("customer_id", user_id); //Used localStorage to store "customer_id" and user_id as key, value pair respectively. Also user_id is a global variable that has the current session's user's id which is assigned in the Ajax request below
+        localStorage.setItem("customer_id", user_id); //Used localStorage to store "customer_id" and user_id as key, value pair respectively. Also user_id is a global variable that has the current session's user's id which is assigned in the Ajax request performed above
 
         console.log(App.orders);
         console.log(App.order);
