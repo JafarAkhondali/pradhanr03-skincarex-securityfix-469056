@@ -1,10 +1,8 @@
 App.Views.Signlog = Backbone.View.extend({
     el: '#wrapper',
-
     initialize: function() {
         this.template = Handlebars.compile($('#sign-log-template').html());
         console.log('sign and log in view loaded');
-        // this.listenTo(this.collection, 'reset', this.render)
         this.render();
     },
     render: function() {
@@ -12,9 +10,7 @@ App.Views.Signlog = Backbone.View.extend({
             url: '/sessions',
             type: 'GET',
             success: function(data) {
-
                 if (data) {
-
                     $.ajax({
                         type: 'GET',
                         url: 'customers/' + data,
@@ -25,14 +21,11 @@ App.Views.Signlog = Backbone.View.extend({
                         }
                     });
                 } else {
-
                     var template = Handlebars.compile($('#sign-log-template').html());
                     $('#sign-log').empty();
                     $('#sign-log').append(template());
-
                 }
             }
-
         });
     },
     events: {
@@ -55,7 +48,6 @@ App.Views.Signlog = Backbone.View.extend({
     },
     loginPage: function() {
         console.log('login clicked');
-        // $('#page').empty();
         App.customers = new App.Collections.Customers();
         App.login = new App.Views.Login({
             collection: App.customers
@@ -69,9 +61,7 @@ App.Views.Signlog = Backbone.View.extend({
         $.ajax({
             url: '/sessions',
             type: 'DELETE',
-            success: function() {
-
-            }
+            success: function() {}
         });
         this.render();
         $('#page-table').empty();
@@ -81,7 +71,7 @@ App.Views.Signlog = Backbone.View.extend({
     },
     cartPage: function() {
         console.log('cart page clicked');
-        debugger;
+
         // -------templates required for the cart page--------
         var template = Handlebars.compile($('#cart-template').html());
         var template1 = Handlebars.compile($('#temp-cart').html());
@@ -91,7 +81,6 @@ App.Views.Signlog = Backbone.View.extend({
         $('#page').empty();
         $('#page-table').empty();
         $('#page-table').append(template1()); //just appending a header template
-
 
         var cartObj = [];
 
@@ -104,7 +93,6 @@ App.Views.Signlog = Backbone.View.extend({
         }
 
         $('#page-table').append(template(car)); //appending the list of products objects template in the cart view
-
 
         var sum = 0;
         for (var key in car.obj) { //calculating the total price of the added products
@@ -128,29 +116,16 @@ App.Views.Signlog = Backbone.View.extend({
                     id: data
                 }
                 user_id = data
-
                 if (data) {
-                    debugger;
                     $('#page-table').append(template3(sessObj));
                 } else {
-                    debugger;
                     var Obj = {
                         id: null
                     }
-                    debugger;
                     $('#page-table').append(template3(Obj));
-
                 }
-
             },
-            fail: function() {
-                // var sessObj = {
-                //         id: null
-                //     }
-
-                // $('#page-table').append(template3(sessObj));
-            }
-
+            fail: function() {}
         });
         console.log(App.orders);
         console.log(App.order);
@@ -160,32 +135,9 @@ App.Views.Signlog = Backbone.View.extend({
             App.order = new App.Views.Order({
                 collection: App.orders
             });
-            // App.order = new App.Views.Order();
         }
-
     },
     loadCustomerPage: function() {
         console.log('hello Customer');
-        // $.ajax({
-        //      url: '/sessions/new',
-        //      type: 'GET',
-        //      success: function(data) {
-
-
-        //          if (data){
-        //            $.ajax({
-        //            type: 'GET',
-        //            url: 'seekers/'+ data,
-        //              success: function(data) {
-        //                console.log('hello');
-        //                console.log(data);
-        //                var template = HandlebarsTemplates['seeker'];
-        //                $('#search-bar').empty();
-        //                $('#search-bar').html(template(data));   
-        //              }
-        //            });
-        //          }
-        //      }
-        //  });
     }
 });

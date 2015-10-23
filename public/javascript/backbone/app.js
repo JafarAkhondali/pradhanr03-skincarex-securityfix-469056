@@ -3,9 +3,9 @@ App = {
     Models: {},
     Views: {}
 }
+
 var user_id = null;
 $(function() {
-
 
     if (!App.signlog) {
         App.customers = new App.Collections.Customers();
@@ -16,12 +16,6 @@ $(function() {
             reset: true
         });
     }
-
-    //  App.customers = new App.Collections.Customers();
-    // App.signlog = new App.Views.Signlog({collection: App.customers});
-    // App.customers.fetch({
-    //     reset: true
-    // });
 
     $('.products').click(productPage);
     $('.antioxidant').click(antioxidantPage);
@@ -37,20 +31,8 @@ $(function() {
     $('.privacy').click(privacyPage);
     $('.contact').click(contactPage);
     $('body').on('click', '#send', mail);
-    // $('#send').click(mail);
-
-
-
-
-
 
 });
-
-
-
-
-
-
 
 var contactPage = function() {
     console.log('contact clicked');
@@ -60,8 +42,6 @@ var contactPage = function() {
     $('#page').append(template);
 
 }
-
-
 
 var mail = function() {
     console.log('hello');
@@ -110,7 +90,6 @@ var mail = function() {
             $('[name=mail]').val('');
             $('[name=message]').val('');
 
-            debugger;
 
             $.ajax({
                 type: "POST",
@@ -128,9 +107,6 @@ var mail = function() {
 
 };
 
-
-
-
 var productPage = function() {
     console.log('product clicked');
     $('#page-table').empty();
@@ -146,7 +122,6 @@ var productPage = function() {
     });
 
 };
-
 
 var antioxidantPage = function() {
     console.log('antioxidant clicked');
@@ -169,7 +144,6 @@ var sunscreenPage = function() {
     console.log('sunscreen clicked');
     $('#page-table').empty();
 
-    // App.sunscreen = Backbone.Collection.extend({url: '/categoriesprod/1'});
     App.sunscreens = new App.Collections.Sunscreens();
 
     App.SunscreenView = new App.Views.SunscreenView({
@@ -214,9 +188,6 @@ var cleanserPage = function() {
 
 };
 
-
-
-
 var companyPage = function() {
     console.log('company clicked');
     $('#page-table').empty();
@@ -230,8 +201,6 @@ var privacyPage = function() {
 
 };
 
-
-
 var googlePage = function() {
     console.log('google clicked');
     $('#page-table').empty();
@@ -239,67 +208,7 @@ var googlePage = function() {
     $('#page').empty();
     $('#page').append(template);
 
-
-    // var template = Handlebars.compile($('#google-template').html());
-    // $('#page').empty();
-    // $('#page').append(template);
-
-    //      var map;
-    // var infowindow;
-
-    // function initMap() {
-    //   var pyrmont = {lat: -33.867, lng: 151.195};
-
-    //   map = new google.maps.Map(document.getElementById('map'), {
-    //     center: pyrmont,
-    //     zoom: 15
-    //   });
-
-    //   infowindow = new google.maps.InfoWindow();
-
-    //   var service = new google.maps.places.PlacesService(map);
-    //   service.nearbySearch({
-    //     location: pyrmont,
-    //     radius: 500,
-    //     types: ['store']
-    //   }, callback);
-    // }
-
-    // function callback(results, status) {
-    //   if (status === google.maps.places.PlacesServiceStatus.OK) {
-    //     for (var i = 0; i < results.length; i++) {
-    //       createMarker(results[i]);
-    //     }
-    //   }
-    // }
-
-    // function createMarker(place) {
-    //   var placeLoc = place.geometry.location;
-    //   var marker = new google.maps.Marker({
-    //     map: map,
-    //     position: place.geometry.location
-    //   });
-
-    //   google.maps.event.addListener(marker, 'click', function() {
-    //     infowindow.setContent(place.name);
-    //     infowindow.open(map, this);
-    //   });
-    // }
-
-    // geoAutocomplete: function(e) {
-    //     var keyPressed = e.keyCode || e.which;
-
-    //     // keyCode 13 is return key; keyCode 9 is tab key
-    //     if ((keyPressed !== 13) && (keyPressed !== 9)) {
-    //       $('#geolocation').val('')
-    //       console.log('geolocation: ' + $('#geolocation').val());
-
-    //     }
-    //   }
-
-
 };
-
 
 var homePage = function() {
     console.log('home clicked');
@@ -309,8 +218,6 @@ var homePage = function() {
     $('#page').append(template);
 };
 
-
-
 var chatPage = function() {
     console.log('chat clicked');
     var template = Handlebars.compile($('#chat-template').html());
@@ -318,9 +225,6 @@ var chatPage = function() {
     $("#msg").empty();
     $('#page-container').prepend(template);
     $('#close-chat').click(closeChatPage);
-
-
-
     var unk = 'Anonymous';
     var name,
         // socket = io.connect("http://localhost:3000"); ////uncomment this if you want to use in localhost
@@ -369,28 +273,20 @@ var chatPage = function() {
     // });
 };
 
-
-
 var closeChatPage = function() {
     console.log('chat close clicked');
 
     $('#chat-popup').remove();
-    // $('#chat').undelegateEvents();
-    // socket.stopListening();
-    // socket.on(stopListening());
-};
 
+};
 
 var skinPage = function() {
     console.log('skin clicked');
-    // $('#autocomplete').keyup(geoAutocomplete);
     $('#page-table').empty();
 
     var template = Handlebars.compile($('#skin-template').html());
     $('#page').empty();
     $('#page').append(template);
-
-
 
 };
 
@@ -404,6 +300,5 @@ var sciencePage = function() {
 
 
 };
-
 
 var counter = 0;

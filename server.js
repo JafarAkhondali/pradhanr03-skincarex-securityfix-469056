@@ -19,30 +19,14 @@ dotenv.load();
 var sendkey = process.env.SECRET_KEY;
 var sendgrid = require('sendgrid')(sendkey);
 
-
 app.set('port', (process.env.PORT || 3000));
-
-// sockets
 
 var http = require('http').createServer(app);
 var io = require('socket.io').listen(http);
 
-
-
-// io.configure(function () { 
-//   io.set("transports", ["xhr-polling"]); 
-//   io.set("polling duration", 10); 
-// });
-
 http.listen(app.get('port'), function() {
     console.log("io app is running at localhost:" + app.get('port'));
 });
-
-
-
-
-
-
 
 app.engine('handlebars', exphbs({
     defaultLayout: 'main',
@@ -50,7 +34,6 @@ app.engine('handlebars', exphbs({
 }));
 app.set('views', path.join(root, 'views'));
 app.set('view engine', 'handlebars');
-
 
 app.use(express.static('public'));
 app.use(logger('dev'));
@@ -64,8 +47,6 @@ app.use(session({
     resave: false
 }));
 
-
-//   
 //for sockets
 io.on('connection', function(socket) {
 
@@ -76,15 +57,12 @@ io.on('connection', function(socket) {
         //send the data to all the clients who are acessing the same site(localhost)
         socket.broadcast.emit("serverMsg", data);
     });
-
     socket.on("sender", function(data) {
         socket.emit("sender", data);
         socket.broadcast.emit("sender", data);
     });
 });
 //end
-
-
 
 app.use(methodOverride(function(req, res) {
     if (req.body && typeof req.body === 'object' && '_method' in req.body) {
@@ -95,8 +73,6 @@ app.use(methodOverride(function(req, res) {
     }
 }));
 
-
-
 fs.readdirSync('./controllers').forEach(function(file) {
     if (file.substr(-3) == '.js') {
         route = require('./controllers/' + file);
@@ -105,12 +81,9 @@ fs.readdirSync('./controllers').forEach(function(file) {
     };
 });
 
-
-
 app.post('/send', function(req, res) {
     var mail = req.body.mail;
     var message = req.body.message;
-
     var revString = mail.split('').reverse().join('');
     var rev = revString.slice(4, 9);
     var string = rev.split('').reverse().join('');
@@ -118,7 +91,6 @@ app.post('/send', function(req, res) {
     if (string === 'yahoo') {
         res.send('Due to yahoo policy, yahoo doesnt allow third party email handlers to send email. So please enter an email address that is not yahoo.com');
     } else {
-
         var email = new sendgrid.Email({
             to: 'pradhanr03@gmail.com',
             from: mail,
@@ -126,7 +98,6 @@ app.post('/send', function(req, res) {
             text: message
         });
     }
-
     sendgrid.send(email, function(err, json) {
         if (err) {
             return res.send('nope');

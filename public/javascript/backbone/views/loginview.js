@@ -1,13 +1,10 @@
 App.Views.Login = Backbone.View.extend({
-
     el: '#page',
-
     initialize: function() {
         console.log('log in page loaded');
         this.template = Handlebars.compile($('#login-template').html());
         this.render();
     },
-
     render: function() {
         $('#page-table').empty();
         this.$el.empty();
@@ -19,11 +16,9 @@ App.Views.Login = Backbone.View.extend({
     loginCustomer: function() {
         console.log('login button submit clicked');
         var data = {
-
             email: $('[name=email]').val(),
             password: $('[name=password]').val()
         };
-
 
         $.ajax({
             type: "POST",
@@ -40,10 +35,7 @@ App.Views.Login = Backbone.View.extend({
             },
             fail: function() {}
         });
-
-
         console.log('logged in man!');
         console.log(data);
     }
-
 })
