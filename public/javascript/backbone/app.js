@@ -52,9 +52,7 @@ var mail = function() {
     }
     var email = $('[name=mail]').val();
 
-
     if ((data.mail.length < 1) || (data.message.length < 1) || (data.mail.length < 1 && data.message.length < 1)) {
-
         $('#msgpopup').html('Please enter a valid email or message  ' + '<i class="fa fa-smile-o"></i>');
         $("#msgpopup").delay(4000).fadeOut("slow", function() {
             $(this).remove();
@@ -81,30 +79,21 @@ var mail = function() {
             $("#msgpopup").delay(4000).fadeOut("slow", function() {
                 $(this).remove();
             });
-
             var msgpopup = $('<h3>').attr('id', 'msgpopup');
             $('.contactmail').append(msgpopup);
 
-
-
             $('[name=mail]').val('');
             $('[name=message]').val('');
-
 
             $.ajax({
                 type: "POST",
                 url: '/send',
                 data: data,
-                success: function() {
-
-                },
-                fail: function() {
-
-                }
+                success: function() {},
+                fail: function() {}
             });
         }
     }
-
 };
 
 var productPage = function() {
@@ -120,7 +109,6 @@ var productPage = function() {
     App.products.fetch({
         reset: true
     });
-
 };
 
 var antioxidantPage = function() {
@@ -137,7 +125,6 @@ var antioxidantPage = function() {
     App.antioxidants.fetch({
         reset: true
     });
-
 };
 
 var sunscreenPage = function() {
@@ -153,7 +140,6 @@ var sunscreenPage = function() {
     App.sunscreens.fetch({
         reset: true
     });
-
 };
 
 var moisturizerPage = function() {
@@ -169,7 +155,6 @@ var moisturizerPage = function() {
     App.moisturizer.fetch({
         reset: true
     });
-
 };
 
 var cleanserPage = function() {
@@ -185,7 +170,6 @@ var cleanserPage = function() {
     App.cleanser.fetch({
         reset: true
     });
-
 };
 
 var companyPage = function() {
@@ -198,7 +182,6 @@ var companyPage = function() {
 
 var privacyPage = function() {
     console.log('privacy clicked');
-
 };
 
 var googlePage = function() {
@@ -207,7 +190,6 @@ var googlePage = function() {
     var template = Handlebars.compile($('#soon-template').html());
     $('#page').empty();
     $('#page').append(template);
-
 };
 
 var homePage = function() {
@@ -270,24 +252,19 @@ var chatPage = function() {
             $("#status").html('');
         }, 3000);
     });
-    // });
 };
 
 var closeChatPage = function() {
     console.log('chat close clicked');
-
     $('#chat-popup').remove();
-
 };
 
 var skinPage = function() {
     console.log('skin clicked');
     $('#page-table').empty();
-
     var template = Handlebars.compile($('#skin-template').html());
     $('#page').empty();
     $('#page').append(template);
-
 };
 
 var sciencePage = function() {
@@ -297,8 +274,6 @@ var sciencePage = function() {
     var template = Handlebars.compile($('#science-template').html());
     $('#page').empty();
     $('#page').append(template);
-
-
 };
 
 var counter = 0;
