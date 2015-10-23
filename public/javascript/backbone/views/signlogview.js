@@ -83,9 +83,10 @@ App.Views.Signlog = Backbone.View.extend({
         $('#page-table').append(template1()); //appending a header of the table template(Product ID  Product Quantity  Price) to the table page div container
 
         var cartObj = []; //declaring a empty array variable
-
+        var sum = 0;
         for (var key in sessionStorage) { //iterating over sessionStorage object and 
             cartObj.push(JSON.parse(sessionStorage[key])); //pushing the parsed values into empty array cartObj
+            sum = sum + JSON.parse(sessionStorage[key]).price; //calculating the total price of the value of each items in the which was stored in the sessionStorage
         }
 
         var car = { //assigning cartObj as obj , so we can pass an object into the template
@@ -93,17 +94,10 @@ App.Views.Signlog = Backbone.View.extend({
         }
 
         $('#page-table').append(template(car)); //appending the template with the car object in the #page-table div container
-        var sum = 0;
-        for (var key in car.obj) { //calculating the total price of the value of each items in the which was stored in the sessionStorage
-            sum = sum + car.obj[key].price;
-        }
 
         var total = { //assigning the sum in an object, so we can pass it to a template
             sum: sum
         }
-
-        localStorage.setItem("total_price", sum); //Used localStorage to store "total_price" and sum as key, value pair respectively
-        localStorage.setItem("customer_id", user_id); //Used localStorage to store "customer_id" and user_id as key, value pair respectively. Also user_id is a global variable that has the current session's user's id which is assigned in the Ajax request below
 
         $('#page-table').append(template2(total)); //appending the template that has total price on it
 
@@ -126,6 +120,9 @@ App.Views.Signlog = Backbone.View.extend({
             },
             fail: function() {}
         });
+        localStorage.setItem("total_price", sum); //Used localStorage to store "total_price" and sum as key, value pair respectively
+        localStorage.setItem("customer_id", user_id); //Used localStorage to store "customer_id" and user_id as key, value pair respectively. Also user_id is a global variable that has the current session's user's id which is assigned in the Ajax request below
+
         console.log(App.orders);
         console.log(App.order);
 
